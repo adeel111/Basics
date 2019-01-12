@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "121760029534",
+    "firebase_url": "https://admissionsystem-a14dc.firebaseio.com",
+    "project_id": "admissionsystem-a14dc",
+    "storage_bucket": "admissionsystem-a14dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:121760029534:android:43d4c0c2dfc33b9d",
+        "android_client_info": {
+          "package_name": "com.example.adeeliftikhar.admission"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "121760029534-pru9i3iafg9tnqho8tjt4a197lqk2hjj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.adeeliftikhar.admission",
+            "certificate_hash": "28c81fe2d89dabd717d5c0c7bea3c2ea8f334207"
+          }
+        },
+        {
+          "client_id": "121760029534-karu15g1souul1st2qdtr8oem651asv3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_txGpu-Z0qRa5FT1jtS7nBA5i4f8nQjk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "121760029534-karu15g1souul1st2qdtr8oem651asv3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:121760029534:android:7e40c68b480492b6",
+        "android_client_info": {
+          "package_name": "com.example.adeeliftikhar.admissionserverapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "121760029534-d6dphu3k2berv5fd05t9na97ip822dv6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.adeeliftikhar.admissionserverapp",
+            "certificate_hash": "28c81fe2d89dabd717d5c0c7bea3c2ea8f334207"
+          }
+        },
+        {
+          "client_id": "121760029534-karu15g1souul1st2qdtr8oem651asv3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_txGpu-Z0qRa5FT1jtS7nBA5i4f8nQjk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "121760029534-karu15g1souul1st2qdtr8oem651asv3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

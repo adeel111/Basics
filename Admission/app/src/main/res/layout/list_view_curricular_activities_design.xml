@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="5dp"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/curricular_activity_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="5dp"
+        android:fitsSystemWindows="true"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/content_description"
+        android:src="@drawable/entertainment" />
+
+    <TextView
+        android:id="@+id/curricular_activity_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:text="Curricular Activity Name"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimaryDark"/>
+
+    <me.biubiubiu.justifytext.library.JustifyTextView
+        android:id="@+id/curricular_activity_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="15dp"
+        android:text="@string/message"
+        android:textSize="16sp"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>

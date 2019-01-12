@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_vertical">
+
+        <android.support.design.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/coordinate_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#90A4AE"
+                android:orientation="vertical"
+                android:weightSum="8"
+                tools:context=".AddNotesActivity">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/colorPrimary"
+                    android:theme="@style/ActionBarTheme"
+                    app:title="Edit Note"
+                    app:titleTextColor="@color/colorWhite" />
+
+                <EditText
+                    android:id="@+id/edit_text_edit_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="70dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/common_design"
+                    android:hint="Edit Note Title"
+                    android:inputType="text"
+                    android:maxLines="5"
+                    android:padding="10dp"
+                    android:textSize="16sp"
+                    tools:ignore="Autofill,HardcodedText" />
+
+                <EditText
+                    android:id="@+id/edit_text_edit_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/common_design"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:hint="Edit Date"
+                    android:inputType="date"
+                    android:maxLines="5"
+                    android:padding="10dp"
+                    android:textSize="16sp"
+                    tools:ignore="Autofill,HardcodedText" />
+
+                <EditText
+                    android:id="@+id/edit_text_edit_note"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/common_design"
+                    android:gravity="top"
+                    android:hint="Edit Your Note"
+                    android:inputType="textMultiLine"
+                    android:lines="13"
+                    android:padding="9dp"
+                    android:textSize="16sp"
+                    tools:ignore="Autofill,HardcodedText" />
+
+                <Button
+                    android:id="@+id/button_add_notes_to_db"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="45dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginBottom="45dp"
+                    android:background="@drawable/button_design"
+                    android:gravity="center"
+                    android:onClick="editNote"
+                    android:text="Update Note"
+                    android:textAllCaps="false"
+                    android:padding="11dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+        </android.support.design.widget.CoordinatorLayout>
+    </FrameLayout>
+</ScrollView>

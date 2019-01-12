@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="7dp"
+            android:layout_marginEnd="7dp"
+            android:gravity="center"
+            android:stretchColumns="*">
+
+            <TableRow
+                android:background="@color/colorPrimaryDark"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_span="1"
+                    android:gravity="start"
+                    android:text="S.NO"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_span="5"
+                    android:gravity="start"
+                    android:text="Activity"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_marginStart="7dp"
+                    android:layout_span="1"
+                    android:gravity="start"
+                    android:text="Date"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp" />
+            </TableRow>
+
+            <TableRow
+                android:background="#B2DFDB"
+                android:padding="7dp">
+
+                <TextView
+                    android:layout_marginStart="7dp"
+                    android:layout_span="1"
+                    android:gravity="start"
+                    android:text="1."
+                    android:textColor="#000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_span="5"
+                    android:gravity="start"
+                    android:text="Admissions Open"
+                    android:textColor="#000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_marginStart="7dp"
+                    android:layout_span="1"
+                    android:gravity="start"
+                    android:text="15/07/2018"
+                    android:textColor="#000"
+                    android:textSize="15sp" />
+            </TableRow>
+
+            <TableRow
+                android:background="#80CBC4"
+                android:padding="7dp">
+
+                <TextView
+                    android:layout_marginStart="7dp"
+                    android:layout_span="1"
+                    android:gravity="start"
+                    android:text="2."
+                    android:textColor="#000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_span="5"
+                    android:gravity="start"
+                    android:text="Dead line for scholarship (Chairman Talent Award)"
+                    android:textColor="#000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_marginStart="7dp"
+                    android:layout_span="1"
+                    android:gravity="start"
+                    android:text="08/08/2018"
+                    android:textColor="#000"
+                    android:textSize="15sp" />
+            </TableRow>
+
+            <TableRow
+                android:background="#B2DFDB"
+                android:padding="7dp">
+
+                <TextView
+                    android:layout_marginStart="7dp"
+                    android:layout_span="1"
+                    android:gravity="start"
+                    android:text="3."
+                    android:textColor="#000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_span="5"
+                    android:gravity="start"
+                    android:text="Merit List Display"
+                    android:textColor="#000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_marginStart="7dp"
+                    android:layout_span="1"
+                    android:gravity="start"
+                    android:text="10/07/2018"
+                    android:textColor="#000"
+                    android:textSize="15sp" />
+            </TableRow>
+
+            <TableRow
+                android:background="#80CBC4"
+                android:padding="7dp">
+
+                <TextView
+                    android:layout_marginStart="7dp"
+                    android:layout_span="1"
+                    android:gravity="start"
+                    android:text="4."
+                    android:textColor="#000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_span="5"
+                    android:gravity="start"
+                    android:text="Last date of fee submission for merit scholarship"
+                    android:textColor="#000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_marginStart="7dp"
+                    android:layout_span="1"
+                    android:gravity="start"
+                    android:text="15/08/2018"
+                    android:textColor="#000"
+                    android:textSize="15sp" />
+            </TableRow>
+
+            <TableRow
+                android:background="#B2DFDB"
+                android:padding="7dp">
+
+                <TextView
+                    android:layout_marginStart="7dp"
+                    android:layout_span="1"
+                    android:gravity="start"
+                    android:text="5."
+                    android:textColor="#000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_span="5"
+                    android:gravity="start"
+                    android:text="Orientation"
+                    android:textColor="#000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_marginStart="7dp"
+                    android:layout_span="1"
+                    android:gravity="start"
+                    android:text="27/08/2018"
+                    android:textColor="#000"
+                    android:textSize="15sp" />
+            </TableRow>
+
+            <TableRow
+                android:background="#80CBC4"
+                android:padding="7dp">
+
+                <TextView
+                    android:layout_marginStart="7dp"
+                    android:layout_span="1"
+                    android:gravity="start"
+                    android:text="6."
+                    android:textColor="#000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_span="5"
+                    android:gravity="start"
+                    android:text="Commencement of Classes"
+                    android:textColor="#000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_marginStart="7dp"
+                    android:layout_span="1"
+                    android:gravity="start"
+                    android:text="03/09/2018"
+                    android:textColor="#000"
+                    android:textSize="15sp" />
+            </TableRow>
+        </TableLayout>
+</ScrollView>
