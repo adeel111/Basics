@@ -33,7 +33,7 @@
                     android:layout_height="?attr/actionBarSize"
                     android:background="?attr/colorPrimary"
                     android:theme="@style/ActionBarTheme"
-                    app:title="@string/app_name"
+                    app:title="@string/add_note"
                     app:titleTextColor="@color/colorWhite" />
 
                 <EditText
@@ -82,6 +82,7 @@
                     android:inputType="textMultiLine"
                     android:lines="13"
                     android:padding="9dp"
+                    android:scrollbars="vertical"
                     android:textSize="16sp"
                     tools:ignore="Autofill,HardcodedText" />
 
@@ -107,18 +108,4 @@
     </FrameLayout>
 </ScrollView>
 
-<!--<Button-->
-<!--android:id="@+id/button_show_notes_from_db"-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="wrap_content"-->
-<!--android:layout_gravity="center"-->
-<!--android:layout_marginLeft="40dp"-->
-<!--android:layout_marginRight="40dp"-->
-<!--android:layout_marginBottom="5dp"-->
-<!--android:background="@drawable/button_design"-->
-<!--android:gravity="center"-->
-<!--android:onClick="showNotesFromDb"-->
-<!--android:text="@string/button_show_note"-->
-<!--android:textAllCaps="false"-->
-<!--android:textColor="@color/colorWhite"-->
-<!--android:textSize="18sp" />-->
+    <!--<Button--><!--android:id="@+id/button_show_notes_from_db"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:layout_gravity="center"--><!--android:layout_marginLeft="40dp"--><!--android:layout_marginRight="40dp"--><!--android:layout_marginBottom="5dp"--><!--android:background="@drawable/button_design"--><!--android:gravity="center"--><!--android:onClick="showNotesFromDb"--><!--android:text="@string/button_show_note"--><!--android:textAllCaps="false"--><!--android:textColor="@color/colorWhite"--><!--android:textSize="18sp" />-->

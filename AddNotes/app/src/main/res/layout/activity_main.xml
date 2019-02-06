@@ -59,7 +59,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="30dp"
         android:background="@color/colorButton"
         android:backgroundTint="@color/colorButton"
         android:clickable="true"

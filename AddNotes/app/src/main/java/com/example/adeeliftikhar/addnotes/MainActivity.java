@@ -11,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.support.v7.widget.SearchView;
 import android.widget.Toast;
 
 //      trim() ==> This methods is used no exclude empty spaces before and after the String.
@@ -33,10 +35,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         customToolbar();
-//        if (getSupportActionBar() != null) {
-//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//            getSupportActionBar().setDisplayShowHomeEnabled(true);
-//        }
         buildRecyclerView();
     }
 
@@ -65,6 +63,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_items, menu);
+        MenuItem searchItem = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                myAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
         return true;
     }
 
@@ -72,20 +87,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
-            case R.id.profile:
-                Toast.makeText(this, "Profile Clicked", Toast.LENGTH_SHORT).show();
+            case R.id.search:
+//                Toast.makeText(this, "Profile Clicked", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.general:
-                Toast.makeText(this, "General Clicked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.features:
-                Toast.makeText(this, "Features Clicked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.setting:
-                Toast.makeText(this, "Setting Clicked", Toast.LENGTH_SHORT).show();
-                break;
-//            case android.R.id.home:
-//                finish();
         }
         return true;
     }

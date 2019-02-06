@@ -28,6 +28,8 @@
         android:layout_marginLeft="7dp"
         android:layout_marginRight="7dp"
         android:hint="@string/rv_notes_content"
+        android:maxLines="2"
+        android:minLines="2"
         android:padding="5dp"
         android:textSize="17sp" />
 
@@ -52,11 +54,23 @@
             android:textStyle="bold" />
 
         <ImageButton
+            android:id="@+id/image_button_see_notes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/see_icon"
+            android:backgroundTint="#0277BD"
+            android:contentDescription="@string/description" />
+
+        <ImageButton
             android:id="@+id/image_button_edit_notes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="25dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/edit_icon"
             android:backgroundTint="#2E7D32"
             android:contentDescription="@string/description" />
@@ -65,11 +79,13 @@
             android:id="@+id/image_button_delete_notes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/del_icon"
             android:backgroundTint="#C62828"
             android:clickable="true"
-            android:focusable="true"
-            android:contentDescription="@string/description" />
+            android:contentDescription="@string/description"
+            android:focusable="true" />
     </LinearLayout>
 </LinearLayout>

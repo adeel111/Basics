@@ -8,10 +8,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,15 +26,18 @@ import com.example.adeeliftikhar.addnotes.R;
 import com.example.adeeliftikhar.addnotes.SQLiteDatabase.DatabaseOperations;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class NotesRVAdapter extends RecyclerView.Adapter<NotesRVAdapter.NotesViewHolder> {
+public class NotesRVAdapter extends RecyclerView.Adapter<NotesRVAdapter.NotesViewHolder> implements Filterable {
 
     private Context context;
     private Cursor myCursor;
     private static SQLiteDatabase sqLiteDB;
     private DatabaseOperations databaseOperations;
+    int adapterPosition;
 
     private ArrayList<String> myListData = new ArrayList<>();
+    private ArrayList<String> myListFullData;
 
     public NotesRVAdapter(Context context, Cursor cursor) {
         this.context = context;
@@ -40,6 +48,8 @@ public class NotesRVAdapter extends RecyclerView.Adapter<NotesRVAdapter.NotesVie
             myCursor.moveToNext();
         }
         databaseOperations = new DatabaseOperations(context);
+//    Copy of original list for search purpose...
+        myListFullData = new ArrayList<>(myListData);
     }
 
     @NonNull
@@ -63,12 +73,15 @@ public class NotesRVAdapter extends RecyclerView.Adapter<NotesRVAdapter.NotesVie
         holder.textViewDate.setText(date);
         holder.textViewNotes.setText(notes);
 
+//        adapterPosition = holder.getAdapterPosition();
+
         holder.imageButtonDeleteNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int itemIdFromDB = Integer.parseInt(myListData.get(holder.getAdapterPosition()));
                 int viewPosition = holder.getAdapterPosition();
-//                Toast.makeText(context, "position => " + itemIdFromDB, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "View Position => " + viewPosition, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Item DB Position => " + itemIdFromDB, Toast.LENGTH_SHORT).show();
                 deleteAlertDialogBox(viewPosition, itemIdFromDB);
             }
         });
@@ -79,6 +92,20 @@ public class NotesRVAdapter extends RecyclerView.Adapter<NotesRVAdapter.NotesVie
 //                Toast.makeText(context, "position => " + itemPosition, Toast.LENGTH_SHORT).show();
                 sqLiteDB = databaseOperations.getReadableDatabase();
                 showSpecificNoteFromDb(itemPosition);
+            }
+        });
+        holder.imageButtonSeeNotes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Toast.makeText(context, "See Note", Toast.LENGTH_SHORT).show();
+//                int itemIdFromDB = Integer.parseInt(myListData.get(holder.getAdapterPosition()));
+//                int viewPosition = holder.getAdapterPosition();
+//                Toast.makeText(context, "View Position => " + viewPosition, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Item DB Position => " + itemIdFromDB, Toast.LENGTH_SHORT).show();
+
+                int itemPosition = Integer.parseInt(myListData.get(holder.getAdapterPosition()));
+                sqLiteDB = databaseOperations.getReadableDatabase();
+                showSpecificNoteHere(itemPosition);
             }
         });
     }
@@ -92,6 +119,7 @@ public class NotesRVAdapter extends RecyclerView.Adapter<NotesRVAdapter.NotesVie
             public void onClick(DialogInterface dialog, int which) {
                 sqLiteDB = databaseOperations.getWritableDatabase();
                 databaseOperations.deleteNote(itemId, sqLiteDB);
+                Toast.makeText(context, "Note is Deleted", Toast.LENGTH_SHORT).show();
 //                Toast.makeText(context, "New Position => " + itemId, Toast.LENGTH_SHORT).show();
                 Cursor myCursor = MainActivity.getAllItems();
                 swapCursor(myCursor);
@@ -102,6 +130,7 @@ public class NotesRVAdapter extends RecyclerView.Adapter<NotesRVAdapter.NotesVie
             public void onClick(DialogInterface dialog, int which) {
             }
         });
+        builder.setCancelable(false);
         builder.show();
     }
 
@@ -123,6 +152,61 @@ public class NotesRVAdapter extends RecyclerView.Adapter<NotesRVAdapter.NotesVie
                     myIntent2.putExtra("date", date);
                     myIntent2.putExtra("noteContent", note);
                     context.startActivity(myIntent2);
+                } while (cursor.moveToNext());
+            }
+        }
+    }
+
+    private void showSpecificNoteHere(int itemPosition) {
+        sqLiteDB = databaseOperations.getReadableDatabase();
+        Cursor cursor = databaseOperations.showSpecificNote(itemPosition, sqLiteDB);
+        if (cursor == null) {
+            Toast.makeText(context, "No Data", Toast.LENGTH_SHORT).show();
+        } else {
+            if (cursor.moveToFirst()) {
+                do {
+                    String id = cursor.getString(0);
+                    String title = cursor.getString(1);
+                    String date = cursor.getString(2);
+                    String note = cursor.getString(3);
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+                    View view = LayoutInflater.from(context).inflate(R.layout.alert_dialog_box_design, null);
+
+//                    ImageView buttonCancel = view.findViewById(R.id.cancel_button);
+
+//                    buttonCancel.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+//                                @Override
+//                                public void onDismiss(DialogInterface dialog) {
+//                                    dialog.dismiss();
+//                                    Toast.makeText(context, "Cancel Button Clicked", Toast.LENGTH_SHORT).show();
+//                                }
+//                            });
+//                        }
+//                    });
+
+                    TextView textViewTitle = view.findViewById(R.id.text_view_dialog_title);
+                    textViewTitle.setText(title);
+                    TextView textViewDate = view.findViewById(R.id.text_view_dialog_date);
+                    textViewDate.setText(date);
+
+                    TextView textViewNote = view.findViewById(R.id.text_view_dialog_notes);
+                    textViewNote.setMovementMethod(new ScrollingMovementMethod());
+                    textViewNote.setText(note);
+
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+
+                    builder.setCancelable(false);
+                    builder.setView(view);
+                    builder.show();
                 } while (cursor.moveToNext());
             }
         }
@@ -152,19 +236,63 @@ public class NotesRVAdapter extends RecyclerView.Adapter<NotesRVAdapter.NotesVie
     }
 
     //    NotesViewHolder Class...
+
     class NotesViewHolder extends RecyclerView.ViewHolder {
         TextView textViewTitle, textViewDate, textViewNotes;
-        ImageButton imageButtonEditNotes, imageButtonDeleteNotes;
+        ImageButton imageButtonEditNotes, imageButtonDeleteNotes, imageButtonSeeNotes;
 
-        NotesViewHolder(@NonNull View itemView) {
+        NotesViewHolder(@NonNull final View itemView) {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.text_view_title);
             textViewDate = itemView.findViewById(R.id.text_view_date);
             textViewNotes = itemView.findViewById(R.id.text_view_notes);
             imageButtonEditNotes = itemView.findViewById(R.id.image_button_edit_notes);
             imageButtonDeleteNotes = itemView.findViewById(R.id.image_button_delete_notes);
+            imageButtonSeeNotes = itemView.findViewById(R.id.image_button_see_notes);
         }
     }
 
 //    End of NotesViewHolder Class.
+
+    @Override
+    public Filter getFilter() {
+        return exampleFilter;
+    }
+
+    private Filter exampleFilter = new Filter() {
+        //        This method will filter the results on the basis of characters...
+//        Will Run on background thread...
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<String> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(myListFullData);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (int i = 0; i < myCursor.getCount(); i++) {
+                    String item = myCursor.getString(myCursor.getColumnIndex("title"));
+//                    Toast.makeText(context, item, Toast.LENGTH_SHORT).show();
+                    if (item.toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        //        This method will publish the results...
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            myListData.clear();
+            if (results.count == 0) {
+//                Toast.makeText(context, "No match found", Toast.LENGTH_SHORT).show();
+            } else {
+                myListData.addAll((List) results.values);
+                notifyDataSetChanged();
+            }
+        }
+    };
 }

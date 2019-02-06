@@ -42,7 +42,6 @@ public class DatabaseOperations extends SQLiteOpenHelper {
 
     public void deleteNote(int comingId, SQLiteDatabase sqLiteDB) {
         sqLiteDB.delete("notes", "id = ?", new String[]{String.valueOf(comingId)});
-        Toast.makeText(context, "Note has been Deleted", Toast.LENGTH_SHORT).show();
     }
 
     public Cursor showNotes(SQLiteDatabase sqldb) {

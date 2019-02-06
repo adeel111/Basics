@@ -19,9 +19,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.adeeliftikhar.addnotes.Adapters.NotesRVAdapter;
+import com.example.adeeliftikhar.addnotes.DataProvider.NotesDataProvider;
 import com.example.adeeliftikhar.addnotes.SQLiteDatabase.DatabaseOperations;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class AddNotesActivity extends AppCompatActivity {
@@ -31,9 +33,13 @@ public class AddNotesActivity extends AppCompatActivity {
     private NotesRVAdapter notesRVAdapter;
     private CoordinatorLayout coordinatorLayout;
     private EditText editTextEnterTitle, editTextEnterDate, editTextEnterNotes;
+    String comingTitle, comingDate, comingNotes;
 
     Calendar myCalendar;
     DatePickerDialog.OnDateSetListener dateSetListener;
+
+
+    ArrayList<NotesDataProvider> arrayList = new ArrayList<NotesDataProvider>();
 
     @SuppressLint("NewApi")
     @Override
@@ -94,14 +100,15 @@ public class AddNotesActivity extends AppCompatActivity {
     }
 
     public void enterNotesToDb(View view) {
-        String comingTitle = editTextEnterTitle.getText().toString();
-        String comingDate = editTextEnterDate.getText().toString();
-        String comingNotes = editTextEnterNotes.getText().toString();
+        comingTitle = editTextEnterTitle.getText().toString();
+        comingDate = editTextEnterDate.getText().toString();
+        comingNotes = editTextEnterNotes.getText().toString();
         if (comingTitle.isEmpty() || comingDate.isEmpty() || comingNotes.isEmpty()) {
             showSnackbarFillFields();
         } else {
             sqLiteDatabase = databaseOperations.getWritableDatabase();
             databaseOperations.insertNotes(comingTitle, comingDate, comingNotes, sqLiteDatabase);
+            Toast.makeText(this, "Note is Added", Toast.LENGTH_SHORT).show();
             Cursor myCursor = MainActivity.getAllItems();
             notesRVAdapter = new NotesRVAdapter(AddNotesActivity.this, myCursor);
             notesRVAdapter.swapCursor(myCursor);
@@ -110,28 +117,35 @@ public class AddNotesActivity extends AppCompatActivity {
             editTextEnterDate.setText("");
             editTextEnterNotes.setText("");
 
+            sendDataToProvider();
+
             Intent intent = new Intent(AddNotesActivity.this, MainActivity.class);
             startActivity(intent);
         }
     }
 
-    public void showNotesFromDb(View view) {
-        sqLiteDatabase = databaseOperations.getReadableDatabase();
-        Cursor cursor = databaseOperations.showNotes(sqLiteDatabase);
-        if (cursor == null) {
-            Toast.makeText(this, "Cursor is empty", Toast.LENGTH_SHORT).show();
-        } else {
-            if (cursor.moveToFirst()) {
-                do {
-                    String id = cursor.getString(0);
-                    String title = cursor.getString(1);
-                    String date = cursor.getString(2);
-                    String notes = cursor.getString(3);
-                    Toast.makeText(this, id + ", " + title + ", " + date + ", " + notes, Toast.LENGTH_SHORT).show();
-                } while (cursor.moveToNext());
-            }
-        }
+    private void sendDataToProvider() {
+            NotesDataProvider dataProvider = new NotesDataProvider(comingTitle, comingDate, comingNotes);
+            arrayList.add(dataProvider);
     }
+
+//    public void showNotesFromDb(View view) {
+//        sqLiteDatabase = databaseOperations.getReadableDatabase();
+//        Cursor cursor = databaseOperations.showNotes(sqLiteDatabase);
+//        if (cursor == null) {
+//            Toast.makeText(this, "Cursor is empty", Toast.LENGTH_SHORT).show();
+//        } else {
+//            if (cursor.moveToFirst()) {
+//                do {
+//                    String id = cursor.getString(0);
+//                    String title = cursor.getString(1);
+//                    String date = cursor.getString(2);
+//                    String notes = cursor.getString(3);
+//                    Toast.makeText(this, id + ", " + title + ", " + date + ", " + notes, Toast.LENGTH_SHORT).show();
+//                } while (cursor.moveToNext());
+//            }
+//        }
+//    }
 
     private void showSnackbarFillFields() {
         Snackbar mySnackbar = Snackbar.make(coordinatorLayout, "Please Fill All Fields", Snackbar.LENGTH_INDEFINITE)

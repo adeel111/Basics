@@ -11,6 +11,8 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -37,6 +39,13 @@ public class EditNoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_note);
         initializer();
+//        Back Button
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
         getIntentMethod();
     }
 
@@ -81,6 +90,13 @@ public class EditNoteActivity extends AppCompatActivity {
         editTextEditDate.setText(sdf.format(myCalendar.getTime()));
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
+    }
+
     private void getIntentMethod() {
         Intent myIntent = getIntent();
         comingId = Integer.parseInt(myIntent.getStringExtra("id"));
@@ -116,7 +132,7 @@ public class EditNoteActivity extends AppCompatActivity {
 
             Intent intent = new Intent(EditNoteActivity.this, MainActivity.class);
             startActivity(intent);
-            Toast.makeText(EditNoteActivity.this, "Note has been Updated", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditNoteActivity.this, "Note is Updated", Toast.LENGTH_SHORT).show();
         }
     }
 
