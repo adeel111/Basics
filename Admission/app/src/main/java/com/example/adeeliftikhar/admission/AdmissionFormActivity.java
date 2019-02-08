@@ -1,5 +1,6 @@
 package com.example.adeeliftikhar.admission;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
@@ -63,6 +65,8 @@ public class AdmissionFormActivity extends AppCompatActivity {
     private String buttonText;
 
     private int getFormNo;
+    ProgressDialog progressDialog;
+    ProgressDialog progressDialogSubmit;
 
     private Button buttonSubmitForm, buttonEditForm, buttonUpdateForm, buttonDeleteForm;
     private int galleryPic = 1;
@@ -82,6 +86,7 @@ public class AdmissionFormActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admission_form);
 //        Initializing All The Widgets...
         initializer();
+//        progressDialog.show();
 //        Get Form No From Database...
         getFormNoFromDB();
 //        Getting current date...
@@ -94,6 +99,7 @@ public class AdmissionFormActivity extends AppCompatActivity {
 
     private void initializer() {
 //        Initializing EditText...
+        showProgressDialog();
         formNo = findViewById(R.id.form_no);
         date = findViewById(R.id.date);
         name = findViewById(R.id.name);
@@ -226,6 +232,7 @@ public class AdmissionFormActivity extends AppCompatActivity {
 //                Toast.makeText(AdmissionFormActivity.this, "After ==> " + incrementedFormNo, Toast.LENGTH_SHORT).show();
                 String num = String.valueOf(incrementedFormNo);
                 formNo.setText(num);
+                progressDialog.dismiss();
             }
 // else {
 //                    formNo.setText("1");
@@ -259,7 +266,8 @@ public class AdmissionFormActivity extends AppCompatActivity {
                         } else {
                             submitTextForm();
                             submitAllImages();
-                            Toast.makeText(this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
+                            showProgressDialogSubmit();
+//                            Toast.makeText(this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
 
 //                            Now clear fields and images..
                             clearTextFields();
@@ -279,9 +287,10 @@ public class AdmissionFormActivity extends AppCompatActivity {
                                 !studentElectricityBillImage || !studentSalarySlipImage) {
                             showSnackBar();
                         } else {
+                            showProgressDialogSubmit();
                             submitTextForm();
                             submitAllImages();
-                            Toast.makeText(this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
 
 //                            Now clear fields and images..
                             clearTextFields();
@@ -479,6 +488,8 @@ public class AdmissionFormActivity extends AppCompatActivity {
         }
     }
 
+//    Hey! I am here...
+
     private void submitAllImages() {
         switch (stringStudyProgram) {
             case "Pre_Medical":
@@ -596,9 +607,11 @@ public class AdmissionFormActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Map updateHashMap = new HashMap();
                                 updateHashMap.put("salary_slip_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
                                     @Override
-                                    public void onComplete(@NonNull Task task) {
+                                    public void onSuccess(Object o) {
+                                        progressDialogSubmit.dismiss();
+                                        Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -722,9 +735,11 @@ public class AdmissionFormActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Map updateHashMap = new HashMap();
                                 updateHashMap.put("salary_slip_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
                                     @Override
-                                    public void onComplete(@NonNull Task task) {
+                                    public void onSuccess(Object o) {
+                                        progressDialogSubmit.dismiss();
+                                        Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -848,9 +863,11 @@ public class AdmissionFormActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Map updateHashMap = new HashMap();
                                 updateHashMap.put("salary_slip_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
                                     @Override
-                                    public void onComplete(@NonNull Task task) {
+                                    public void onSuccess(Object o) {
+                                        progressDialogSubmit.dismiss();
+                                        Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -974,9 +991,11 @@ public class AdmissionFormActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Map updateHashMap = new HashMap();
                                 updateHashMap.put("salary_slip_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
                                     @Override
-                                    public void onComplete(@NonNull Task task) {
+                                    public void onSuccess(Object o) {
+                                        progressDialogSubmit.dismiss();
+                                        Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -1099,9 +1118,11 @@ public class AdmissionFormActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Map updateHashMap = new HashMap();
                                 updateHashMap.put("salary_slip_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
                                     @Override
-                                    public void onComplete(@NonNull Task task) {
+                                    public void onSuccess(Object o) {
+                                        progressDialogSubmit.dismiss();
+                                        Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -1225,9 +1246,11 @@ public class AdmissionFormActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Map updateHashMap = new HashMap();
                                 updateHashMap.put("salary_slip_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
                                     @Override
-                                    public void onComplete(@NonNull Task task) {
+                                    public void onSuccess(Object o) {
+                                        progressDialogSubmit.dismiss();
+                                        Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -1350,9 +1373,11 @@ public class AdmissionFormActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Map updateHashMap = new HashMap();
                                 updateHashMap.put("salary_slip_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
                                     @Override
-                                    public void onComplete(@NonNull Task task) {
+                                    public void onSuccess(Object o) {
+                                        progressDialogSubmit.dismiss();
+                                        Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -1475,9 +1500,11 @@ public class AdmissionFormActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Map updateHashMap = new HashMap();
                                 updateHashMap.put("salary_slip_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
                                     @Override
-                                    public void onComplete(@NonNull Task task) {
+                                    public void onSuccess(Object o) {
+                                        progressDialogSubmit.dismiss();
+                                        Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -1510,7 +1537,7 @@ public class AdmissionFormActivity extends AppCompatActivity {
         View snackBarView = mySnackbar.getView();
         TextView textView = snackBarView.findViewById(android.support.design.R.id.snackbar_text);
         textView.setTextColor(Color.WHITE);
-        snackBarView.setBackgroundColor(Color.parseColor("#009688"));
+        snackBarView.setBackgroundColor(Color.parseColor("#BF360C"));
         mySnackbar.show();
     }
 
@@ -1594,6 +1621,7 @@ public class AdmissionFormActivity extends AppCompatActivity {
     public void buttonEditForm(View view) {
         a = 1;
         retrieveDataFromDB();
+        showProgressDialog();
 
         buttonEditForm.setVisibility(View.GONE);
         buttonUpdateForm.setVisibility(View.VISIBLE);
@@ -1686,10 +1714,16 @@ public class AdmissionFormActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess() {
 //                            Toast.makeText(AdmissionFormActivity.this, "Updated Successfully", Toast.LENGTH_SHORT).show();
+                                if (billThumbImage.equals("false")) {
+                                    progressDialog.dismiss();
+                                }
                             }
 
                             @Override
                             public void onError(Exception e) {
+                                if (billThumbImage.equals("false")) {
+                                    progressDialog.dismiss();
+                                }
                                 Picasso.get().load(fatherIdCardThumbImage).placeholder(R.drawable.father_id_card_place_holder).into(imageViewFatherIdCard);
                             }
                         });
@@ -1714,10 +1748,12 @@ public class AdmissionFormActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess() {
 //                            Toast.makeText(AdmissionFormActivity.this, "Updated Successfully", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
                             }
 
                             @Override
                             public void onError(Exception e) {
+                                progressDialog.dismiss();
                                 Picasso.get().load(salaryThumbImage).placeholder(R.drawable.salary_slip_place_holder).into(imageViewSalary);
                             }
                         });
@@ -1737,6 +1773,7 @@ public class AdmissionFormActivity extends AppCompatActivity {
 
     public void buttonUpdateForm(View view) {
         updateForm();
+        showProgressDialogSubmit();
         buttonUpdateForm.setVisibility(View.GONE);
         buttonEditForm.setVisibility(View.VISIBLE);
         buttonDeleteForm.setVisibility(View.VISIBLE);
@@ -1761,7 +1798,7 @@ public class AdmissionFormActivity extends AppCompatActivity {
                         } else {
                             submitTextForm();
                             submitAllImages();
-                            Toast.makeText(this, "Form is Updated Successfully", Toast.LENGTH_SHORT).show();
+                            showProgressDialogSubmit();
                             imageViewStudent.setImageResource(R.drawable.student_place_holder);
                             imageViewMetricResultCard.setImageResource(R.drawable.metric_rc_place_holder);
                             imageViewFatherIdCard.setImageResource(R.drawable.father_id_card_place_holder);
@@ -1775,7 +1812,7 @@ public class AdmissionFormActivity extends AppCompatActivity {
                         } else {
                             submitTextForm();
                             submitAllImages();
-                            Toast.makeText(this, "Form is Updated Successfully", Toast.LENGTH_SHORT).show();
+                            showProgressDialogSubmit();
 
                             imageViewStudent.setImageResource(R.drawable.student_place_holder);
                             imageViewMetricResultCard.setImageResource(R.drawable.metric_rc_place_holder);
@@ -1795,6 +1832,7 @@ public class AdmissionFormActivity extends AppCompatActivity {
 
     public void buttonDeleteForm(View view) {
         deleteForm();
+        Toast.makeText(this, "Form is Deleted", Toast.LENGTH_SHORT).show();
         buttonSubmitForm.setVisibility(View.VISIBLE);
         buttonEditForm.setVisibility(View.GONE);
         buttonUpdateForm.setVisibility(View.GONE);
@@ -2147,5 +2185,21 @@ public class AdmissionFormActivity extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home)
             finish();
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showProgressDialog() {
+        progressDialog = new ProgressDialog(AdmissionFormActivity.this);
+        progressDialog.setTitle("Loading");
+        progressDialog.setMessage("Loading Admission Form, Plz Wait.");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+    }
+
+    private void showProgressDialogSubmit() {
+        progressDialogSubmit = new ProgressDialog(AdmissionFormActivity.this);
+        progressDialogSubmit.setTitle("Submitting");
+        progressDialogSubmit.setMessage("Submitting Admission Form, Plz Wait.");
+        progressDialogSubmit.setCancelable(false);
+        progressDialogSubmit.show();
     }
 }

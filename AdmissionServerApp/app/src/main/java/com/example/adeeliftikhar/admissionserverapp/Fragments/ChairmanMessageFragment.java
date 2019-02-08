@@ -1,6 +1,7 @@
 package com.example.adeeliftikhar.admissionserverapp.Fragments;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -24,11 +25,16 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -55,6 +61,7 @@ public class ChairmanMessageFragment extends Fragment {
     private StorageReference storageRef;
 
     private int galleryPic = 1;
+    ProgressDialog progressDialog;
 
     public ChairmanMessageFragment() {
         // Required empty public constructor
@@ -78,6 +85,10 @@ public class ChairmanMessageFragment extends Fragment {
 
         dbRef = FirebaseDatabase.getInstance().getReference().child("ChairmanMessage");
         storageRef = FirebaseStorage.getInstance().getReference().child("Chairman");
+
+        getDataFromFirebase();
+        showProgressDialog();
+
 
         imageViewChairman.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,6 +160,7 @@ public class ChairmanMessageFragment extends Fragment {
         return thumbByte;
     }
 
+    //    Sending data to Firebase...
     private void sendDataToFirebase() {
         sendTextData();
         sendImage();
@@ -198,5 +210,46 @@ public class ChairmanMessageFragment extends Fragment {
                 }
             }
         });
+    }
+
+    //    Getting data to Firebase...
+    private void getDataFromFirebase() {
+        dbRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String name = dataSnapshot.child("name").getValue().toString();
+                String message = dataSnapshot.child("message").getValue().toString();
+                chairmanName.setText(name);
+                chairmanMessage.setText(message);
+//                Getting image from Database...
+                final String chairmanPic = dataSnapshot.child("chairman_image").getValue().toString();
+                Picasso.get().load(chairmanPic).placeholder(R.drawable.common_pic_place_holder).into(imageViewChairman, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        progressDialog.dismiss();
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        progressDialog.dismiss();
+                        Picasso.get().load(chairmanPic).placeholder(R.drawable.common_pic_place_holder).into(imageViewChairman);
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
+    private void showProgressDialog() {
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Loading");
+        progressDialog.setMessage("Loading previous Data, Plz Wait.");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
     }
 }
