@@ -48,10 +48,10 @@ public class TeamRecyclerAdapter extends RecyclerView.Adapter<TeamRecyclerAdapte
 
         public RecyclerViewHolder(View view) {
             super(view);
-            image = view.findViewById(R.id.team_mate_image);
-            name = view.findViewById(R.id.team_mate_name);
-            designation = view.findViewById(R.id.team_mate_designation);
-            message = view.findViewById(R.id.team_mate_message);
+            image = view.findViewById(R.id.team_mate_image_design);
+            name = view.findViewById(R.id.team_mate_name_design);
+            designation = view.findViewById(R.id.team_mate_designation_design);
+            message = view.findViewById(R.id.team_mate_message_design);
         }
     }
 }
