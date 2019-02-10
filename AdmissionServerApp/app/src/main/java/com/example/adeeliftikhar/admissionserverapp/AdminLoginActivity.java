@@ -100,7 +100,7 @@ public class AdminLoginActivity extends AppCompatActivity {
     private void showProgressDialog() {
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Login");
-        progressDialog.setMessage("Login in Progress, Plz Wait.");
+        progressDialog.setMessage("Login in Progress, Plz wait...");
         progressDialog.setCancelable(false);
         progressDialog.show();
     }

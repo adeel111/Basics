@@ -62,6 +62,7 @@ public class ChairmanMessageFragment extends Fragment {
 
     private int galleryPic = 1;
     ProgressDialog progressDialog;
+    ProgressDialog progressDialogSend;
 
     public ChairmanMessageFragment() {
         // Required empty public constructor
@@ -79,9 +80,6 @@ public class ChairmanMessageFragment extends Fragment {
         chairmanName = view.findViewById(R.id.chairman_name);
         chairmanMessage = view.findViewById(R.id.chairman_message);
         buttonSendData = view.findViewById(R.id.button_send_data);
-
-        stringName = chairmanName.getText().toString();
-        stringMessage = chairmanMessage.getText().toString();
 
         dbRef = FirebaseDatabase.getInstance().getReference().child("ChairmanMessage");
         storageRef = FirebaseStorage.getInstance().getReference().child("Chairman");
@@ -162,11 +160,15 @@ public class ChairmanMessageFragment extends Fragment {
 
     //    Sending data to Firebase...
     private void sendDataToFirebase() {
+        showProgressDialogSend();
         sendTextData();
         sendImage();
     }
 
     private void sendTextData() {
+
+        stringName = chairmanName.getText().toString();
+        stringMessage = chairmanMessage.getText().toString();
 
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("name", stringName);
@@ -200,10 +202,11 @@ public class ChairmanMessageFragment extends Fragment {
                     if (task.isSuccessful()) {
                         Map updateHashMap = new HashMap();
                         updateHashMap.put("chairman_image", imageDownloadLink);
-                        dbRef.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                        dbRef.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
                             @Override
-                            public void onComplete(@NonNull Task task) {
-                                Toast.makeText(getContext(), "Data Sent Successfully.", Toast.LENGTH_SHORT).show();
+                            public void onSuccess(Object o) {
+                                progressDialogSend.dismiss();
+                                Toast.makeText(getContext(), "Data Upload Successfully", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -244,12 +247,19 @@ public class ChairmanMessageFragment extends Fragment {
         });
     }
 
-
     private void showProgressDialog() {
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Loading");
-        progressDialog.setMessage("Loading previous Data, Plz Wait.");
+        progressDialog.setMessage("Loading previous Data, Plz wait...");
         progressDialog.setCancelable(false);
         progressDialog.show();
+    }
+
+    private void showProgressDialogSend() {
+        progressDialogSend = new ProgressDialog(getContext());
+        progressDialogSend.setTitle("Uploading");
+        progressDialogSend.setMessage("Uploading Data, Plz wait...");
+        progressDialogSend.setCancelable(false);
+        progressDialogSend.show();
     }
 }

@@ -8,36 +8,36 @@
     android:gravity="center">
 
     <ImageView
-        android:id="@+id/team_mate_image"
+        android:id="@+id/team_mate_image_design"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_margin="5dp"
         android:contentDescription="@string/content_description"
-        android:src="@drawable/one" />
+        android:src="@drawable/one"/>
 
     <TextView
-        android:id="@+id/team_mate_name"
+        android:id="@+id/team_mate_name_design"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:gravity="center"
-        android:text="Name"
+        android:hint="Name"
         android:textStyle="bold"
         android:textSize="16sp"
         android:textColor="@color/colorPrimaryDark"/>
 
     <TextView
-        android:id="@+id/team_mate_designation"
+        android:id="@+id/team_mate_designation_design"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:gravity="center"
-        android:text="Designation"
+        android:hint="Designation"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="16sp"/>
 
     <me.biubiubiu.justifytext.library.JustifyTextView
-        android:id="@+id/team_mate_message"
+        android:id="@+id/team_mate_message_design"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"

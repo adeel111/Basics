@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="end">
+
+    </TextView>
+
+    <ImageView
+        android:id="@+id/team_mate_image"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="5dp"
+        android:contentDescription="@string/content_description"
+        android:src="@drawable/one" />
+
+    <EditText
+        android:id="@+id/team_mate_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Name"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/team_mate_designation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Designation"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/team_mate_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Team Member Message"
+        android:minLines="10"
+        android:gravity="start"
+        android:padding="5dp"
+        android:maxLines="10"
+        android:textSize="16sp"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/button_add_member"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/home_buttons_design"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="Add Member"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>
