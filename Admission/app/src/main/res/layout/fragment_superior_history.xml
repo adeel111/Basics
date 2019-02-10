@@ -18,7 +18,7 @@
         android:layout_marginStart="19dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="5dp"
-        android:text="@string/history"
+        android:text="Superior History"
         android:textSize="16sp"/>
 
 </LinearLayout>

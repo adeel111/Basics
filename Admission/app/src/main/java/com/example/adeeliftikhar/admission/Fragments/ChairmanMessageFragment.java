@@ -99,7 +99,7 @@ public class ChairmanMessageFragment extends Fragment {
     private void showProgressDialog() {
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Loading");
-        progressDialog.setMessage("Loading Data, Plz Wait.");
+        progressDialog.setMessage("Loading Data, Plz wait...");
         progressDialog.setCancelable(false);
         progressDialog.show();
     }
