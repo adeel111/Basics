@@ -79,7 +79,6 @@ public class CurricularActivitiesFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -102,7 +101,6 @@ public class CurricularActivitiesFragment extends Fragment {
         recyclerViewActivity = view.findViewById(R.id.recycler_view_activity);
         recyclerViewActivity.setHasFixedSize(true);
         recyclerViewActivity.setLayoutManager(new LinearLayoutManager(getContext()));
-
 
 //      Load Data from Firebase Database...
         showProgressLoadData();
