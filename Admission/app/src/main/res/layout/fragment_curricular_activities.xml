@@ -6,10 +6,8 @@
     android:orientation="vertical"
     tools:context=".Fragments.SuperiorHistoryFragment">
 
-    <ListView
-        android:id="@+id/list_view_curricular_activities"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_activity"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </ListView>
-
+        android:layout_height="match_parent" />
 </LinearLayout>

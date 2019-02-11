@@ -46,10 +46,10 @@ public class ActivitiesListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = myLayoutInflater.inflate(R.layout.list_view_curricular_activities_design, null);
-        ImageView imageViewActivities = convertView.findViewById(R.id.curricular_activity_image);
-        TextView textViewActivitiesName = convertView.findViewById(R.id.curricular_activity_name);
-        TextView textViewActivitiesText = convertView.findViewById(R.id.curricular_activity_text);
+        convertView = myLayoutInflater.inflate(R.layout.recycler_view_activity_design, null);
+        ImageView imageViewActivities = convertView.findViewById(R.id.activity_image);
+        TextView textViewActivitiesName = convertView.findViewById(R.id.activity_name);
+        TextView textViewActivitiesText = convertView.findViewById(R.id.activity_description);
 
         imageViewActivities.setImageResource(activitiesImages[position]);
         textViewActivitiesName.setText(activitiesName[position]);
