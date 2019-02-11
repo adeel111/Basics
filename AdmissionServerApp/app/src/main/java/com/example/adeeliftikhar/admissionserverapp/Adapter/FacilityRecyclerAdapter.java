@@ -49,7 +49,7 @@ public class FacilityRecyclerAdapter extends RecyclerView.Adapter<FacilityRecycl
             super(view);
             imageFacility = view.findViewById(R.id.facility_image);
             nameFacility = view.findViewById(R.id.facility_name);
-            textFacility = view.findViewById(R.id.facility_text);
+            textFacility = view.findViewById(R.id.facility_description);
         }
     }
 }

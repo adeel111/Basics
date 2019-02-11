@@ -11,9 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:background="@color/colorPrimaryDark"
-        android:gravity="end">
-
-    </TextView>
+        android:gravity="end" />
 
     <ImageView
         android:id="@+id/team_mate_image"
