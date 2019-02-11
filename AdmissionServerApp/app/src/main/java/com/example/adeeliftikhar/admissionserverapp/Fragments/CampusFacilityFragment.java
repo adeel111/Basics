@@ -88,6 +88,7 @@ public class CampusFacilityFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_campus_facility, container, false);
+
         dbRef = FirebaseDatabase.getInstance().getReference().child("Facilities");
         dbRef.keepSynced(true);
         storageRef = FirebaseStorage.getInstance().getReference().child("Facilities");
