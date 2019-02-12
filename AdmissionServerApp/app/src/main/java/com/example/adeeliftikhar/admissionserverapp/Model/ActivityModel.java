@@ -1,10 +1,13 @@
 package com.example.adeeliftikhar.admissionserverapp.Model;
 
+//    Model is used to set and get data from Firebase...
 public class ActivityModel {
+//    These  variables names are the key at which value will store in Firebase...
     String name;
     String description;
     String image;
 
+//    Empty Constructor is necessary to write...
     public ActivityModel() {
 
     }

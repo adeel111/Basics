@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.adeeliftikhar.admissionserverapp.Adapter.ActivitiesListAdapter;
+import com.example.adeeliftikhar.admissionserverapp.Model.ActivityModel;
 import com.example.adeeliftikhar.admissionserverapp.Model.FacilityModel;
 import com.example.adeeliftikhar.admissionserverapp.R;
 import com.example.adeeliftikhar.admissionserverapp.ViewHolder.FacilityViewHolder;
@@ -74,6 +75,8 @@ public class CurricularActivitiesFragment extends Fragment {
 
     private DatabaseReference dbRef;
     private StorageReference storageRef;
+
+    ActivityModel activityModel;
 
     public CurricularActivitiesFragment() {
         // Required empty public constructor
@@ -232,14 +235,11 @@ public class CurricularActivitiesFragment extends Fragment {
     private void sendAllData() {
 
         final String stringName = editTextActivityName.getText().toString();
-        String stringDesignation = editTextActivityDesc.getText().toString();
+        String stringDescription = editTextActivityDesc.getText().toString();
 
-        HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("name", stringName);
-        hashMap.put("description", stringDesignation);
-        hashMap.put("image", imageURI);
+        activityModel = new ActivityModel(stringName, stringDescription, imageURI);
 
-        dbRef.push().setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+        dbRef.push().setValue(activityModel).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
@@ -263,6 +263,12 @@ public class CurricularActivitiesFragment extends Fragment {
 
     private void loadDataFromFirebaseDB() {
 
+//        Firebase Adapter Requires Four Things...
+//        1. Model
+//        2. ViewHolder
+//        3. RecyclerView Design File...
+//        4. Database Reference (from data is being loading)
+
         FirebaseRecyclerAdapter<FacilityModel, FacilityViewHolder> adapter = new
                 FirebaseRecyclerAdapter<FacilityModel, FacilityViewHolder>
                         (FacilityModel.class,
@@ -270,17 +276,18 @@ public class CurricularActivitiesFragment extends Fragment {
                                 FacilityViewHolder.class,
                                 dbRef) {
 
+//         populateViewHolder is used to populate (display) View given to RecyclerView...
                     @Override
                     protected void populateViewHolder(FacilityViewHolder viewHolder, FacilityModel model, int position) {
+//                        viewHolder ==> holds view...
+//                        model ==> used to set and get data from Firebase Database...
+//                        position ==> has the position of each item from Firebase Database...
                         viewHolder.setName(model.getName());
                         viewHolder.setDescription(model.getDescription());
                         viewHolder.setImage(model.getImage());
 
                         progressDialogLoad.dismiss();
-
-//                        Get Id or Key of user on Recycler Clicked Item.
-//                        getRef() ==> Will Get DatabaseReference then we will get the current user key or id.
-
+//                        get the key of each item at which data is store in Firebase Database...
                         final String userKey = getRef(position).getKey();
                         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override

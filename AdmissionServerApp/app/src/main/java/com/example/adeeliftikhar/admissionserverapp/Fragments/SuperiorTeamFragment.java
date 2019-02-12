@@ -79,6 +79,8 @@ public class SuperiorTeamFragment extends Fragment {
 
     RecyclerView recyclerViewTeam;
 
+    SuperiorTeamModel teamModel;
+
     public SuperiorTeamFragment() {
         // Required empty public constructor
     }
@@ -108,7 +110,6 @@ public class SuperiorTeamFragment extends Fragment {
         recyclerViewTeam = view.findViewById(R.id.recycler_view_team);
         recyclerViewTeam.setHasFixedSize(true);
         recyclerViewTeam.setLayoutManager(new LinearLayoutManager(getContext()));
-
 
 //      Load Data from Firebase Database...
         showProgressLoadData();
@@ -253,13 +254,18 @@ public class SuperiorTeamFragment extends Fragment {
         String stringDesignation = editTextDesignation.getText().toString();
         String stringMessage = editTextMessage.getText().toString();
 
-        HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("name", stringName);
-        hashMap.put("designation", stringDesignation);
-        hashMap.put("message", stringMessage);
-        hashMap.put("image", imageURI);
+//        First way ==> We can enter data in Firebase through Model as below...
+        teamModel = new SuperiorTeamModel(stringName, stringDesignation, stringMessage,imageURI);
 
-        dbRef.push().setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+//        Second way ==> We can enter data in Firebase through HashMap...
+
+//        HashMap<String, String> hashMap = new HashMap<>();
+//        hashMap.put("name", stringName);
+//        hashMap.put("designation", stringDesignation);
+//        hashMap.put("message", stringMessage);
+//        hashMap.put("image", imageURI);
+
+        dbRef.push().setValue(teamModel).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {

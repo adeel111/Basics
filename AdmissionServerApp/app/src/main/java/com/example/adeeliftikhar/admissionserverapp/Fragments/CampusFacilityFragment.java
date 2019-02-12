@@ -78,6 +78,8 @@ public class CampusFacilityFragment extends Fragment {
     private DatabaseReference dbRef;
     private StorageReference storageRef;
 
+    FacilityModel facilityModel;
+
     public CampusFacilityFragment() {
         // Required empty public constructor
     }
@@ -238,14 +240,11 @@ public class CampusFacilityFragment extends Fragment {
     private void sendAllData() {
 
         final String stringName = editTextFacilityName.getText().toString();
-        String stringDesignation = editTextFacilityDesc.getText().toString();
+        String stringDescription = editTextFacilityDesc.getText().toString();
 
-        HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("name", stringName);
-        hashMap.put("description", stringDesignation);
-        hashMap.put("image", imageURI);
+        facilityModel = new FacilityModel(stringName, stringDescription, imageURI);
 
-        dbRef.push().setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+        dbRef.push().setValue(facilityModel).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {

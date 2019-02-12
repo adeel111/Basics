@@ -11,6 +11,8 @@ import com.squareup.picasso.Picasso;
 
 import me.biubiubiu.justifytext.library.JustifyTextView;
 
+//      It will set View (Row) in RecyclerView...
+
 public class ActivityViewHolder extends RecyclerView.ViewHolder {
     private View view;
     private TextView textViewActivityName;
@@ -19,11 +21,14 @@ public class ActivityViewHolder extends RecyclerView.ViewHolder {
 
     public ActivityViewHolder(@NonNull View itemView) {
         super(itemView);
+//        itemView holds the design which is given to Firebase Adapter...
         view = itemView;
         textViewActivityName = view.findViewById(R.id.activity_name);
         activityDescription = view.findViewById(R.id.activity_description);
         imageViewFacility = view.findViewById(R.id.activity_image);
     }
+
+//    Setter methods to set the Data on RecyclerView's Row...
 
     public void setName(String name) {
         textViewActivityName.setText(name);
