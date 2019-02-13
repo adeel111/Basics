@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:id="@+id/first"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/dash_board"
+            android:icon="@drawable/dash_board"
+            android:title="Dash Board" />
+        <item
+            android:id="@+id/event"
+            android:icon="@drawable/event"
+            android:title="Events" />
+    </group>
+
+    <group
+        android:id="@+id/second"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/setting"
+            android:icon="@drawable/setting"
+            android:title="Setting" />
+        <item
+            android:id="@+id/search"
+            android:icon="@drawable/search"
+            android:title="Search" />
+    </group>
+    <item android:title="Communication">
+        <menu>
+            <item
+                android:id="@+id/activities"
+                android:icon="@drawable/activities"
+                android:title="Activities" />
+            <item
+                android:id="@+id/log_out"
+                android:icon="@drawable/log_out"
+                android:title="Log Out" />
+        </menu>
+    </item>
+</menu>

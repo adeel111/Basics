@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SimpleNavigationDrawer</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="dash_board_fragment">Dash Board</string>
+    <string name="events_fragment">Events</string>
+    <string name="setting_fragment">Setting</string>
+    <string name="search_fragment">Search</string>
+    <string name="activities_fragment">Activities</string>
+    <string name="log_out_fragment">Log Out</string>
+</resources>
