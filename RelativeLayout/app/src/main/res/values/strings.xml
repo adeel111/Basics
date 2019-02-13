@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">RelativeLayout</string>
+    <string name="facebook">facebook</string>
+    <string name="facebookBelowLine">#Best social site ever...</string>
+    <string name="email">Email:</string>
+    <string name="pass">Password:</string>
+    <string name="save_login">Save Login</string>
+    <string name="need">Need an Account?</string>
+    <string name="sign_up">Sign_Up by using your phone</string>
+</resources>
