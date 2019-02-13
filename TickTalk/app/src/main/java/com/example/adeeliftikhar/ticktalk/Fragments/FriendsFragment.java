@@ -36,7 +36,6 @@ public class FriendsFragment extends Fragment {
     DatabaseReference friendsDbRef;
     DatabaseReference userDbRef;
     String currentUserUid;
-//    String listUId;
     String name, thumb_image;
 
 

@@ -53,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
                 regRePassword = editTextRegisterReEnterPassword.getText().toString();
                 Boolean value = validateUser(regName, regEmail, regPassword, regRePassword);
                 if (!value) {
-                    Toast.makeText(RegisterActivity.this, "Something Wrong", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(RegisterActivity.this, "Something Wrong", Toast.LENGTH_SHORT).show();
                 } else {
                     showProgressDialog();
                     singUp(regName, regEmail, regPassword);

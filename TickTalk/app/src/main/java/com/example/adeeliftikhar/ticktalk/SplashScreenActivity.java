@@ -27,8 +27,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         imageViewRotate = findViewById(R.id.image_view_rotate);
         textViewTranslate = findViewById(R.id.text_view_translate);
 
-        rotateAnimation = AnimationUtils.loadAnimation(SplashScreenActivity.this, R.anim.rotate_anim);
-        imageViewRotate.setAnimation(rotateAnimation);
+//        rotateAnimation = AnimationUtils.loadAnimation(SplashScreenActivity.this, R.anim.rotate_anim);
+//        imageViewRotate.setAnimation(rotateAnimation);
         translateAnimation = AnimationUtils.loadAnimation(SplashScreenActivity.this, R.anim.translate_anim);
         textViewTranslate.setAnimation(translateAnimation);
         splashScreen();
@@ -40,7 +40,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             public void run() {
                 super.run();
                 try {
-                    Thread.sleep(3000);
+                    Thread.sleep(2000);
 //                  Intent mIntent = new Intent (MainActivity.this, SecondActivity.class);
 //                  startActivity(mIntent);
 //                  Another way to do this...

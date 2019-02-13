@@ -64,7 +64,7 @@ public class UsersProfileActivity extends AppCompatActivity {
 //        Whom the user which is clicked.
         userKey = getIntent().getStringExtra("userKey");
         if (!userKey.equals(null)) {
-            Toast.makeText(this, userKey, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, userKey, Toast.LENGTH_SHORT).show();
             mUserRef = FirebaseDatabase.getInstance().getReference().child("Users").child(userKey);
         }
         //retrieving data of user whole profile is clicked by all users list

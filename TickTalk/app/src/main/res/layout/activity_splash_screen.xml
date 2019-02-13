@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@color/colorSplashScreenBackground"
+    android:background="#FF5722"
     tools:context=".SplashScreenActivity">
 
     <ImageView
@@ -14,7 +14,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_margin="5dp"
-        android:src="@drawable/splash_screen_icon"
+        android:src="@drawable/message_icon"
         android:tint="@color/colorWhite"
         android:contentDescription="@string/text_splash_screen_icon_description"/>
     <TextView

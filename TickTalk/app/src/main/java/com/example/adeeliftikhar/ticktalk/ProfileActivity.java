@@ -99,7 +99,7 @@ public class ProfileActivity extends AppCompatActivity {
                         //                       Callback ==> Response
                         @Override
                         public void onSuccess() {
-                            Toast.makeText(ProfileActivity.this, "Updated Successfully", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(ProfileActivity.this, "Updated Successfully", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
@@ -168,7 +168,7 @@ public class ProfileActivity extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task task) {
                                                 progressDialog.dismiss();
-                                                Toast.makeText(ProfileActivity.this, "Successfully Updated the Profile", Toast.LENGTH_SHORT).show();
+//                                                Toast.makeText(ProfileActivity.this, "Successfully Updated the Profile", Toast.LENGTH_SHORT).show();
                                             }
                                         });
                                     }
@@ -226,7 +226,7 @@ public class ProfileActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(ProfileActivity.this, "Status Updated Successfully", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(ProfileActivity.this, "Status Updated Successfully", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

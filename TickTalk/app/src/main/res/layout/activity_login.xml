@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
     android:gravity="center"
     android:orientation="vertical"
     android:weightSum="10"
@@ -23,7 +22,7 @@
             android:fontFamily="serif"
             android:gravity="center"
             android:text="Login"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorBlack"
             android:textSize="25sp" />
 
         <TextView
@@ -31,7 +30,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Login to move on!"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorBlack"
             android:textSize="15sp" />
     </LinearLayout>
 
@@ -59,8 +58,8 @@
                 android:paddingTop="10dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="10dp"
-                android:textColor="@color/colorWhite"
-                android:textSize="20sp" />
+                android:textColor="@color/colorBlack"
+                android:textSize="17sp" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -84,8 +83,8 @@
                 android:paddingTop="10dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="10dp"
-                android:textColor="@color/colorWhite"
-                android:textSize="20sp" />
+                android:textColor="@color/colorBlack"
+                android:textSize="17sp" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -93,9 +92,9 @@
             android:id="@+id/login_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="20dp"
-            android:layout_marginRight="25dp"
+            android:layout_marginRight="15dp"
             android:layout_marginBottom="15dp"
             android:background="@drawable/reg_button_design"
             android:clickable="true"
@@ -110,18 +109,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="20dp"
             android:text="Not have an account, Click Below!"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorBlack"
             android:textSize="15sp" />
 
         <Button
             android:id="@+id/goto_register_activity_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
-            android:layout_marginRight="25dp"
+            android:layout_marginRight="15dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/reg_button_design"
             android:clickable="true"

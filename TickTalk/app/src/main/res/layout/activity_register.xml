@@ -7,7 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="10"
-    android:background="@drawable/bg"
     android:gravity="center"
     android:orientation="vertical"
     android:weightSum="10">
@@ -27,7 +26,7 @@
             android:layout_weight="1.5"
             android:gravity="bottom|center"
             android:text="Register"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorBlack"
             android:textSize="25sp" />
 
         <TextView
@@ -36,7 +35,7 @@
             android:gravity="top|center"
             android:layout_weight="1"
             android:text="Register to login yourself!"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorBlack"
             android:textSize="15sp" />
     </LinearLayout>
 
@@ -51,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <android.support.v7.widget.AppCompatEditText
+            <EditText
                 android:id="@+id/edit_text_register_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -60,16 +59,15 @@
                 android:layout_marginBottom="7dp"
                 android:hint="Name"
                 android:layout_gravity="center"
-                android:textColor="@color/colorWhite"
-                android:textSize="20sp"
-                app:backgroundTint="@color/colorWhite" />
+                android:textColor="@color/colorBlack"
+                android:textSize="17sp"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <android.support.v7.widget.AppCompatEditText
+            <EditText
                 android:id="@+id/edit_text_register_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,9 +76,8 @@
                 android:layout_marginBottom="7dp"
                 android:hint="Email"
                 android:layout_gravity="center"
-                android:textColor="@color/colorWhite"
-                android:textSize="20sp"
-                app:backgroundTint="@color/colorWhite" />
+                android:textColor="@color/colorBlack"
+                android:textSize="17sp" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -88,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <android.support.v7.widget.AppCompatEditText
+            <EditText
                 android:id="@+id/edit_text_register_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -98,9 +95,8 @@
                 android:hint="Password"
                 android:layout_gravity="center"
                 android:inputType="textPassword"
-                android:textColor="@color/colorWhite"
-                android:textSize="20sp"
-                app:backgroundTint="@color/colorWhite" />
+                android:textColor="@color/colorBlack"
+                android:textSize="17sp" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -108,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <android.support.v7.widget.AppCompatEditText
+            <EditText
                 android:id="@+id/edit_text_register_re_enter_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -117,9 +113,8 @@
                 android:layout_marginBottom="7dp"
                 android:hint="Re-Enter Password"
                 android:inputType="textPassword"
-                android:textColor="@color/colorWhite"
-                android:textSize="20sp"
-                app:backgroundTint="@color/colorWhite" />
+                android:textColor="@color/colorBlack"
+                android:textSize="17sp" />
         </android.support.design.widget.TextInputLayout>
 
         <Button
@@ -152,7 +147,7 @@
                 android:layout_gravity="center"
                 android:gravity="end"
                 android:text="Already have an Account? "
-                android:textColor="@color/colorWhite" />
+                android:textColor="@color/colorBlack" />
 
             <TextView
                 android:id="@+id/gotoLoginPage"
@@ -162,7 +157,7 @@
                 android:clickable="true"
                 android:onClick="gotoLoginPage"
                 android:text=" Login"
-                android:textColor="#03A9F4"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:ignore="OnClick" />

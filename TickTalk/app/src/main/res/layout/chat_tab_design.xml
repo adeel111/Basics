@@ -9,16 +9,16 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="25dp"
         android:layout_gravity="center"
-        android:src="@drawable/chat" />
+        android:layout_marginBottom="2dp"
+        android:src="@drawable/chat"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="Chat"
-        android:textColor="@color/colorWhite"
-        android:textStyle="bold"/>
+        android:textColor="@color/colorWhite"/>
 
 </LinearLayout>
