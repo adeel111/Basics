@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".UploadImageActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+    <ImageView
+        android:id="@+id/camera_image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/web"
+        android:layout_gravity="center"
+        android:layout_margin="7dp"/>
+    <TextView
+        android:id="@+id/text_view_camera_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Camera Image"
+        android:gravity="center"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_margin="7dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+    <ImageView
+        android:id="@+id/gallery_image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/web"
+        android:layout_gravity="center"
+        android:layout_margin="7dp"/>
+    <TextView
+        android:id="@+id/text_view_gallery_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gallery Image"
+        android:gravity="center"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_margin="7dp"/>
+    </LinearLayout>
+</LinearLayout>
+    <Button
+        android:id="@+id/button_take_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Take Image"
+        android:layout_margin="15dp"
+        android:padding="15dp"
+        android:textSize="20sp"
+        android:layout_marginTop="15dp"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/button_design" />
+    <Button
+        android:id="@+id/button_insert_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Insert Image"
+        android:layout_margin="15dp"
+        android:padding="15dp"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/button_design" />
+    <Button
+        android:id="@+id/button_show_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show Image"
+        android:layout_margin="15dp"
+        android:textAllCaps="false"
+        android:padding="15dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/button_design" />
+</LinearLayout>
+</ScrollView>

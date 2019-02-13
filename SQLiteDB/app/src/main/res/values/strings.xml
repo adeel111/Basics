@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SQLiteDB</string>
+    <string name="login_button">Login</string>
+    <string name="register_button">Register</string>
+    <string name="insert_button">Insert/Add</string>
+    <string name="update_info">Update</string>
+    <string name="delete_user">Delete</string>
+    <string name="insert_image">Insert Image</string>
+</resources>

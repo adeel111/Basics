@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#81C784"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:context=".MainActivity">
+
+            <Button
+                android:id="@+id/button_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/button_design"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="19dp"
+                android:onClick="gotoLoginPage"
+                android:text="@string/login_button"
+                android:textColor="@color/colorButtonText"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/button_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/button_design"
+                android:clickable="true"
+                android:padding="19dp"
+                android:focusable="true"
+                android:onClick="gotoRegistrationPage"
+                android:text="@string/register_button"
+                android:textColor="@color/colorButtonText"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/button_add_student11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/button_design"
+                android:clickable="true"
+                android:padding="19dp"
+                android:focusable="true"
+                android:onClick="gotoInsertStudent"
+                android:text="@string/insert_button"
+                android:textColor="@color/colorButtonText"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/button_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/button_design"
+                android:clickable="true"
+                android:padding="19dp"
+                android:focusable="true"
+                android:onClick="gotoUpdatePage"
+                android:text="@string/update_info"
+                android:textColor="@color/colorButtonText"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/button_delete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/button_design"
+                android:clickable="true"
+                android:padding="19dp"
+                android:focusable="true"
+                android:onClick="gotoDeletePage"
+                android:text="@string/delete_user"
+                android:textColor="@color/colorButtonText"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/button_image_send"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/button_design"
+                android:clickable="true"
+                android:padding="19dp"
+                android:focusable="true"
+                android:onClick="gotoInsertImagePage"
+                android:text="@string/insert_image"
+                android:textColor="@color/colorButtonText"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+</ScrollView>
