@@ -1,0 +1,103 @@
+-- Merging decision tree log ---
+manifest
+ADDED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:2:1-21:12
+INJECTED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:2:1-21:12
+INJECTED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:2:1-21:12
+INJECTED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:2:1-21:12
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\b421e0fbaced141fa27324529bdebba9\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\6cee4111baea3d332e4d1c8d4df09fe4\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\8c091120dff93b2da87029f01a942b0a\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\c2cd671167ac0a7db69f98c7878ff697\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\bf5bcd5dec351542c8965667efeae96d\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\7907d4c72fcd6b9e28fed46e645c9c98\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\3b17449a4bc06f13044e8c5500800053\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\18d6ac55f99ed5c7cc376a1cbdc9743f\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\2ed910232e22c7adce939e2d2e0d5970\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\3ed1fd78e3b9f5bee19c2b467b3e7ce2\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\700e3adca55138080d01777510815210\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\711c9ea19703e63345702273ae83155a\AndroidManifest.xml:17:1-22:12
+INJECTED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:2:1-21:12
+INJECTED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:2:1-21:12
+INJECTED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:2:1-21:12
+	package
+		ADDED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:3:5-49
+		INJECTED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml
+		INJECTED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml
+		ADDED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:2:1-21:12
+		INJECTED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml
+		ADDED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:2:1-21:12
+		INJECTED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:2:11-69
+application
+ADDED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:5:5-19:19
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\6cee4111baea3d332e4d1c8d4df09fe4\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\6cee4111baea3d332e4d1c8d4df09fe4\AndroidManifest.xml:9:5-20
+	android:supportsRtl
+		ADDED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:10:9-35
+	android:label
+		ADDED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:8:9-41
+	android:roundIcon
+		ADDED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:9:9-54
+	android:icon
+		ADDED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:7:9-43
+	android:allowBackup
+		ADDED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:6:9-35
+	android:theme
+		ADDED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:11:9-40
+activity#com.example.aydil.constraintlayout.MainActivity
+ADDED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:12:9-18:20
+	android:name
+		ADDED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:12:19-47
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:13:13-17:29
+action#android.intent.action.MAIN
+ADDED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:14:17-69
+	android:name
+		ADDED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:14:25-66
+category#android.intent.category.LAUNCHER
+ADDED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:16:17-77
+	android:name
+		ADDED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml:16:27-74
+uses-sdk
+INJECTED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml
+INJECTED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\b421e0fbaced141fa27324529bdebba9\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\b421e0fbaced141fa27324529bdebba9\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\6cee4111baea3d332e4d1c8d4df09fe4\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\6cee4111baea3d332e4d1c8d4df09fe4\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\8c091120dff93b2da87029f01a942b0a\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\8c091120dff93b2da87029f01a942b0a\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\c2cd671167ac0a7db69f98c7878ff697\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\c2cd671167ac0a7db69f98c7878ff697\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\bf5bcd5dec351542c8965667efeae96d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\bf5bcd5dec351542c8965667efeae96d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\7907d4c72fcd6b9e28fed46e645c9c98\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\7907d4c72fcd6b9e28fed46e645c9c98\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\3b17449a4bc06f13044e8c5500800053\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\3b17449a4bc06f13044e8c5500800053\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\18d6ac55f99ed5c7cc376a1cbdc9743f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\18d6ac55f99ed5c7cc376a1cbdc9743f\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\2ed910232e22c7adce939e2d2e0d5970\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\2ed910232e22c7adce939e2d2e0d5970\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\3ed1fd78e3b9f5bee19c2b467b3e7ce2\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\3ed1fd78e3b9f5bee19c2b467b3e7ce2\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\700e3adca55138080d01777510815210\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\700e3adca55138080d01777510815210\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\711c9ea19703e63345702273ae83155a\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\Adeel Iftikhar\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\711c9ea19703e63345702273ae83155a\AndroidManifest.xml:20:5-44
+INJECTED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml
+INJECTED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml
+		ADDED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml
+		INJECTED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml
+		ADDED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml
+		INJECTED from G:\Android\androidprojects\ConstraintLayout\app\src\main\AndroidManifest.xml
