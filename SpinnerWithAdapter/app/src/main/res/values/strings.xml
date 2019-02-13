@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SpinnerWithAdapter</string>
+    <string name="spinner_data" />
+    <string-array name="spinner_data">
+        <item>Pakistan</item>
+        <item>China</item>
+        <item>Iran</item>
+        <item>Iraq</item>
+        <item>Australia</item>
+        <item>England</item>
+        <item>Brazil</item>
+    </string-array>
+</resources>
