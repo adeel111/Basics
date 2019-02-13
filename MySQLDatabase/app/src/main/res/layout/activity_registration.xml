@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".RegistrationActivity">
+
+    <EditText
+        android:id="@+id/edit_text_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Name"
+        android:textSize="25sp"
+        android:textColorHint="@color/colorPrimary"
+        android:textColor="@color/colorAccent"
+        android:layout_margin="5dp"/>
+    <EditText
+        android:id="@+id/edit_text_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Email"
+        android:textSize="25sp"
+        android:textColorHint="@color/colorPrimary"
+        android:textColor="@color/colorAccent"
+        android:layout_margin="5dp"/>
+    <EditText
+        android:id="@+id/edit_text_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Phone Number"
+        android:textSize="25sp"
+        android:textColorHint="@color/colorPrimary"
+        android:textColor="@color/colorAccent"
+        android:layout_margin="5dp"/>
+    <EditText
+        android:id="@+id/edit_text_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Address"
+        android:textSize="25sp"
+        android:textColorHint="@color/colorPrimary"
+        android:textColor="@color/colorAccent"
+        android:layout_margin="5dp"/>
+    <EditText
+        android:id="@+id/edit_text_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Password"
+        android:textSize="25sp"
+        android:textColorHint="@color/colorPrimary"
+        android:textColor="@color/colorAccent"
+        android:layout_margin="5dp"/>
+    <EditText
+        android:id="@+id/edit_text_re_enter_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Re_Enter Password"
+        android:textSize="25sp"
+        android:textColorHint="@color/colorPrimary"
+        android:textColor="@color/colorAccent"
+        android:layout_margin="5dp"/>
+    <Button
+        android:id="@+id/button_sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register Me"
+        android:layout_margin="10dp"
+        android:padding="25dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/button_design" />
+    <Button
+        android:id="@+id/button_show_user_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show User Data"
+        android:layout_margin="10dp"
+        android:padding="25dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/button_design"/>
+</LinearLayout>

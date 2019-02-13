@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".RegistrationActivity">
+
+    <EditText
+        android:id="@+id/sign_in_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Name"
+        android:textSize="25sp"
+        android:textColorHint="@color/colorPrimary"
+        android:textColor="@color/colorAccent"
+        android:layout_margin="7dp"/>
+    <EditText
+        android:id="@+id/sign_in_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Password"
+        android:textSize="25sp"
+        android:inputType="textPassword"
+        android:textColorHint="@color/colorPrimary"
+        android:textColor="@color/colorAccent"
+        android:layout_margin="7dp"/>
+    <Button
+        android:id="@+id/button_log_in_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:layout_margin="10dp"
+        android:padding="25dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/button_design"/>
+    <Button
+        android:id="@+id/button_show_login_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login User Data"
+        android:layout_margin="10dp"
+        android:padding="25dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/button_design"/>
+</LinearLayout>
