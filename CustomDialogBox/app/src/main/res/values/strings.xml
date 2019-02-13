@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CustomDialogBox</string>
+    <string name="user_name">User Name Here...</string>
+    <string name="user_pass">User Password Here...</string>
+    <string name="db_open_button">Open Dialog Box</string>
+    <string name="edit_text_user_name">User Name</string>
+    <string name="edit_text_user_pass">User Password</string>
+</resources>
