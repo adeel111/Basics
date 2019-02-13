@@ -334,9 +334,6 @@ public class SuperiorTeamFragment extends Fragment {
 
                         progressDialogLoad.dismiss();
 
-//                        Get Id or Key of user on Recycler Clicked Item.
-//                        getRef() ==> Will Get DatabaseReference then we will get the current user key or id.
-
                         final String userKey = getRef(position).getKey();
 
                         viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -347,8 +344,6 @@ public class SuperiorTeamFragment extends Fragment {
 //                                Register context menu (Give view, by clicking this view, it will appear)...
 
                                 registerForContextMenu(view);
-
-//                                popupMenu(view);
                                 return false;
                             }//
                         });
@@ -356,28 +351,6 @@ public class SuperiorTeamFragment extends Fragment {
                 };
         recyclerViewTeam.setAdapter(adapter);
     }
-
-//    private void popupMenu(View view) {
-//        PopupMenu popup = new PopupMenu(getContext(), view);
-//        popup.getMenuInflater().inflate(R.menu.team_menu, popup.getMenu());
-//        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-//            @Override
-//            public boolean onMenuItemClick(MenuItem item) {
-//                int id = item.getItemId();
-//                switch (id) {
-//                    case R.id.update:
-//                        loadSingleValueFromFirebaseDB();
-//                        gotImage = true;
-//                        break;
-//                    case R.id.delete:
-//                        showAlertDialogDelete();
-//                        break;
-//                }
-//                return true;
-//            }
-//        });
-//        popup.show();
-//    }
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
@@ -397,7 +370,7 @@ public class SuperiorTeamFragment extends Fragment {
     public boolean onContextItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == 0) {
-            loadSingleValueFromFirebaseDB();
+            loadSpecificUserFromFirebaseDB();
             gotImage = true;
             return true;
         }
@@ -408,7 +381,7 @@ public class SuperiorTeamFragment extends Fragment {
         return true;
     }
 
-    private void loadSingleValueFromFirebaseDB() {
+    private void loadSpecificUserFromFirebaseDB() {
 
         dbRefSpecificUser.addValueEventListener(new ValueEventListener() {
             @Override
@@ -493,6 +466,7 @@ public class SuperiorTeamFragment extends Fragment {
             Picasso.get().load(image).placeholder(R.drawable.common_pic_place_holder).into(imageViewTeamMember, new Callback() {
                 @Override
                 public void onSuccess() {
+//                    getImage();
                 }
 
                 @Override
@@ -530,6 +504,9 @@ public class SuperiorTeamFragment extends Fragment {
 
         builder.setView(view);
         builder.setCancelable(false);
+
+//        This is the way to dismiss AlertDialog by Custom button instead of setPositive or
+//        setNegative Button...
         final AlertDialog alertDialog = builder.show();
         buttonDissmiss.setOnClickListener(new View.OnClickListener() {
             @Override
