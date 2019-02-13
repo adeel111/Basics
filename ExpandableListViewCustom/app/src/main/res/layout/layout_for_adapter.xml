@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:paddingLeft="40dp"
+        android:id="@+id/parent_group_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="GroupName"
+        android:gravity="left"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/child_group_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ChildGroupName"
+        android:gravity="left"
+        android:textSize="18sp"
+        android:paddingLeft="60dp"/>
+</LinearLayout>
