@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:weightSum="10"
+    android:orientation="horizontal"
+    android:background="#7E57C2"
+    android:layout_marginBottom="5dp">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_margin="5dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/msg_rv_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/bg"
+            android:padding="3dp"/>
+        <TextView
+            android:id="@+id/msg_rv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textColor="@color/colorBlack"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:padding="3dp"/>
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="9"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/msg_rv_message_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Message Going"
+            android:background="@drawable/going_message_design"
+            android:padding="13dp"
+            android:textSize="16dp"
+            android:textColor="@color/colorBlack"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="15dp"/>
+        <TextView
+            android:id="@+id/msg_rv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="right"
+            android:text="Just Now"
+            android:textColor="@color/colorBlack"
+            android:layout_marginRight="33dp"
+            android:layout_marginTop="-19dp"/>
+    </LinearLayout>
+
+</LinearLayout>

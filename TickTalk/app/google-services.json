@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "362469373584",
+    "firebase_url": "https://ticktalk-44328.firebaseio.com",
+    "project_id": "ticktalk-44328",
+    "storage_bucket": "ticktalk-44328.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362469373584:android:99c0b599c1bbcdfb",
+        "android_client_info": {
+          "package_name": "com.example.adeeliftikhar.ticktalk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "362469373584-hdgqmbgbnkv6r5ghs890tq3jgps4gvb0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.adeeliftikhar.ticktalk",
+            "certificate_hash": "28c81fe2d89dabd717d5c0c7bea3c2ea8f334207"
+          }
+        },
+        {
+          "client_id": "362469373584-q1n6g3vktoias398oc2map2ld8tvso85.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkRjmdMSNE7R3bfYEJwlQXuwPT81KjqW0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "362469373584-q1n6g3vktoias398oc2map2ld8tvso85.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
