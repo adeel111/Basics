@@ -1,0 +1,189 @@
+<resources>
+    <string name="app_name">NestedRecyclerView</string>
+
+    <!--<integer-array name="image_view">-->
+    <!--<item>"R.drawable.two"</item>-->
+    <!--<item>"R.drawable.two"</item>-->
+    <!--<item>"R.drawable.two"</item>-->
+    <!--<item>"R.drawable.two"</item>-->
+    <!--<item>"R.drawable.two"</item>-->
+    <!--<item>"R.drawable.two"</item>-->
+    <!--<item>"R.drawable.two"</item>-->
+    <!--<item>"R.drawable.two"</item>-->
+    <!--<item>"R.drawable.two"</item>-->
+    <!--<item>"R.drawable.two"</item>-->
+    <!--<item>"R.drawable.two"</item>-->
+    <!--<item>"R.drawable.two"</item>-->
+    <!--<item>"R.drawable.two"</item>-->
+    <!--</integer-array>-->
+
+    <string-array name="bold_heading">
+        <item>"Real Madrid 2-3 Barcelona HD\n" +
+    "1080i Full Match Highlights"</item>
+        <item>"Lional Messi #RESPECT\n" +
+    "moments . HD"</item>
+        <item>"Valencia vs Barcelona 0-2 all\n" +
+    "Goals and highlights"</item>
+        <item>"Craziest Reactions on Lional\n" +
+    "Messi Skills &amp; Goals"</item>
+        <item>"Lional Messi vs Ronaldo\n"</item>
+        <item>"Real Madrid 2-3 Barcelona HD\n" +
+    "1080i Full Match Highlights"</item>
+        <item>"Lional Messi #RESPECT\n" +
+    "moments . HD"</item>
+        <item>"Valencia vs Barcelona 0-2 all\n" +
+    "Goals and highlights"</item>
+        <item>"Craziest Reactions on Lional\n" +
+    "Messi Skills '&amp;' Goals"</item>
+        <item>"Lional Messi vs Ronaldo\n"</item>
+        <item>"Lional Messi vs Ronaldo\n"</item>
+        <item>"Lional Messi vs Ronaldo\n"</item>
+        <item>"Lional Messi vs Ronaldo\n"</item>
+    </string-array>
+
+    <string-array name="text2">
+        <item>"RealMadrid.Universe"</item>
+        <item>"RealMadrid.Universe"</item>
+        <item>"RealMadrid.Universe"</item>
+        <item>"RealMadrid.Universe"</item>
+        <item>"RealMadrid.Universe"</item>
+        <item>"RealMadrid.Universe"</item>
+        <item>"RealMadrid.Universe"</item>
+        <item>"RealMadrid.Universe"</item>
+        <item>"RealMadrid.Universe"</item>
+        <item>"RealMadrid.Universe"</item>
+        <item>"RealMadrid.Universe"</item>
+        <item>"RealMadrid.Universe"</item>
+        <item>"RealMadrid.Universe"</item>
+    </string-array>
+
+    <string-array name="text3">
+        <item>"9.4M views"</item>
+        <item>"9.4M views"</item>
+        <item>"9.4M views"</item>
+        <item>"9.4M views"</item>
+        <item>"9.4M views"</item>
+        <item>"9.4M views"</item>
+        <item>"9.4M views"</item>
+        <item>"9.4M views"</item>
+        <item>"9.4M views"</item>
+        <item>"9.4M views"</item>
+        <item>"9.4M views"</item>
+        <item>"9.4M views"</item>
+        <item>"9.4M views"</item>
+    </string-array>
+
+    <string-array name="likes">
+        <item>"Likes"</item>
+        <item>"Likes"</item>
+        <item>"Likes"</item>
+        <item>"Likes"</item>
+        <item>"Likes"</item>
+        <item>"Likes"</item>
+        <item>"Likes"</item>
+        <item>"Likes"</item>
+        <item>"Likes"</item>
+        <item>"Likes"</item>
+        <item>"Likes"</item>
+        <item>"Likes"</item>
+        <item>"Likes"</item>
+    </string-array>
+
+    <string-array name="likes_amount">
+        <item>"1500"</item>
+        <item>"1400"</item>
+        <item>"1300"</item>
+        <item>"1200"</item>
+        <item>"1000"</item>
+        <item>"1100"</item>
+        <item>"700"</item>
+        <item>"8000"</item>
+        <item>"9000"</item>
+        <item>"5000"</item>
+        <item>"4000"</item>
+        <item>"1900"</item>
+        <item>"1800"</item>
+    </string-array>
+
+    <string-array name="dis_likes">
+        <item>"Dis_Likes"</item>
+        <item>"Dis_Likes"</item>
+        <item>"Dis_Likes"</item>
+        <item>"Dis_Likes"</item>
+        <item>"Dis_Likes"</item>
+        <item>"Dis_Likes"</item>
+        <item>"Dis_Likes"</item>
+        <item>"Dis_Likes"</item>
+        <item>"Dis_Likes"</item>
+        <item>"Dis_Likes"</item>
+        <item>"Dis_Likes"</item>
+        <item>"Dis_Likes"</item>
+        <item>"Dis_Likes"</item>
+    </string-array>
+
+    <string-array name="dis_likes_amount">
+        <item>100</item>
+        <item>300</item>
+        <item>500</item>
+        <item>700</item>
+        <item>900</item>
+        <item>200</item>
+        <item>400</item>
+        <item>600</item>
+        <item>1200</item>
+        <item>1900</item>
+        <item>800</item>
+        <item>1300</item>
+        <item>1100</item>
+    </string-array>
+
+    <string-array name="neutral">
+        <item>"Neutral"</item>
+        <item>"Neutral"</item>
+        <item>"Neutral"</item>
+        <item>"Neutral"</item>
+        <item>"Neutral"</item>
+        <item>"Neutral"</item>
+        <item>"Neutral"</item>
+        <item>"Neutral"</item>
+        <item>"Neutral"</item>
+        <item>"Neutral"</item>
+        <item>"Neutral"</item>
+        <item>"Neutral"</item>
+        <item>"Neutral"</item>
+    </string-array>
+
+    <string-array name="neutral_amount">
+        <item>100</item>
+        <item>300</item>
+        <item>500</item>
+        <item>700</item>
+        <item>900</item>
+        <item>200</item>
+        <item>400</item>
+        <item>600</item>
+        <item>1200</item>
+        <item>1900</item>
+        <item>800</item>
+        <item>1300</item>
+        <item>1100</item>
+    </string-array>
+    <string-array name="country_name">
+        <item>Pakistan</item>
+        <item>China</item>
+        <item>Iran</item>
+        <item>Iraq</item>
+        <item>Australia</item>
+        <item>England</item>
+        <item>Brazil</item>
+    </string-array>
+    <string-array name="country_next">
+        <item>==></item>
+        <item>==></item>
+        <item>==></item>
+        <item>==></item>
+        <item>==></item>
+        <item>==></item>
+        <item>==></item>
+    </string-array>
+</resources>
