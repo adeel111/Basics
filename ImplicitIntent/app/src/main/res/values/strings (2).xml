@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Implicit Intent</string>
+    <string name="edit_text_phone">Enter Phone No.</string>
+    <string name="text_call">Call</string>
+    <string name="text_dial_pad">DialPad</string>
+    <string name="text_contact">Contact</string>
+    <string name="text_browser">Browser</string>
+    <string name="text_call_log">Call Log</string>
+    <string name="text_gallery">Gallery</string>
+    <string name="text_camera">Camera</string>
+</resources>
