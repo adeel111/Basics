@@ -3,6 +3,7 @@ package com.example.adeeliftikhar.admissionserverapp.Fragments;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,8 +16,13 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -26,30 +32,29 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.adeeliftikhar.admissionserverapp.Adapter.TeamRecyclerAdapter;
-import com.example.adeeliftikhar.admissionserverapp.DataProvider.TeamDataProvider;
 import com.example.adeeliftikhar.admissionserverapp.Model.SuperiorTeamModel;
 import com.example.adeeliftikhar.admissionserverapp.R;
 import com.example.adeeliftikhar.admissionserverapp.ViewHolder.TeamViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 import id.zelory.compressor.Compressor;
@@ -64,18 +69,20 @@ public class SuperiorTeamFragment extends Fragment {
     FloatingActionButton fabButtonAdd;
     ImageView imageViewTeamMember;
     EditText editTextName, editTextDesignation, editTextMessage;
-    Button buttonAddMember;
+    Button buttonAddMember, buttonDissmiss;
     int galleryPic = 1;
     String imageURI;
-//    Uri resultUri;
     boolean gotImage;
     RelativeLayout relativeLayout;
 
     private DatabaseReference dbRef;
+    private DatabaseReference dbRefSpecificUser;
     private StorageReference storageRef;
 
     ProgressDialog progressDialogLoad;
     ProgressDialog progressDialogSend;
+
+    AlertDialog.Builder alertDialogDelete;
 
     RecyclerView recyclerViewTeam;
 
@@ -103,7 +110,7 @@ public class SuperiorTeamFragment extends Fragment {
         fabButtonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openAlertDialogBox();
+                openAlertDialogBoxAdd();
             }
         });
 
@@ -118,7 +125,7 @@ public class SuperiorTeamFragment extends Fragment {
         return view;
     }
 
-    public void openAlertDialogBox() {
+    public void openAlertDialogBoxAdd() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         View view = LayoutInflater.from(getContext()).inflate(R.layout.team_alert_dialog_design, null);
         imageViewTeamMember = view.findViewById(R.id.team_mate_image);
@@ -133,6 +140,9 @@ public class SuperiorTeamFragment extends Fragment {
         editTextDesignation = view.findViewById(R.id.team_mate_designation);
         editTextMessage = view.findViewById(R.id.team_mate_message);
         buttonAddMember = view.findViewById(R.id.button_add_member);
+        buttonDissmiss = view.findViewById(R.id.button_dismiss);
+
+        buttonAddMember.setText("Add Member");
 
         buttonAddMember.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,7 +152,14 @@ public class SuperiorTeamFragment extends Fragment {
         });
 
         builder.setView(view);
-        builder.show();
+        builder.setCancelable(false);
+        final AlertDialog alertDialog = builder.show();
+        buttonDissmiss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
     }
 
     private void getImage() {
@@ -203,7 +220,7 @@ public class SuperiorTeamFragment extends Fragment {
     private void uploadData() {
         Boolean result = validateData();
         if (!result || !gotImage) {
-            showCnackBar();
+            showSnackBar();
         } else {
             showProgressDialogSend();
 //        First get image URI, then call sendAllData() method on its onSuccessListener...
@@ -227,15 +244,7 @@ public class SuperiorTeamFragment extends Fragment {
 
         String imageRandomID = UUID.randomUUID().toString();
         StorageReference imageFilepathChairman = storageRef.child("Image ID ==> " + imageRandomID);
-//        imageFilepathChairman.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    imageURI = task.getResult().getDownloadUrl().toString();
-//                    sendAllData();
-//                }
-//            }
-//        });
+
 //                Now putting image by using this path.
         imageFilepathChairman.putBytes(dataChairman).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -255,7 +264,7 @@ public class SuperiorTeamFragment extends Fragment {
         String stringMessage = editTextMessage.getText().toString();
 
 //        First way ==> We can enter data in Firebase through Model as below...
-        teamModel = new SuperiorTeamModel(stringName, stringDesignation, stringMessage,imageURI);
+        teamModel = new SuperiorTeamModel(stringName, stringDesignation, stringMessage, imageURI);
 
 //        Second way ==> We can enter data in Firebase through HashMap...
 
@@ -265,20 +274,38 @@ public class SuperiorTeamFragment extends Fragment {
 //        hashMap.put("message", stringMessage);
 //        hashMap.put("image", imageURI);
 
-        dbRef.push().setValue(teamModel).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    progressDialogSend.dismiss();
-                    Toast.makeText(getContext(), "Data Upload Successfully", Toast.LENGTH_SHORT).show();
+        if (buttonAddMember.getText().equals("Add Member")) {
+            dbRef.push().setValue(teamModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        progressDialogSend.dismiss();
+                        Toast.makeText(getContext(), "Data Uploaded Successfully", Toast.LENGTH_SHORT).show();
 //                    Now clear all fields...
-                    clearAllFields();
-                } else {
-                    FirebaseAuthException e = (FirebaseAuthException) task.getException();
-                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        clearAllFields();
+                    } else {
+                        FirebaseAuthException e = (FirebaseAuthException) task.getException();
+                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
+            });
+        }
+        if (buttonAddMember.getText().equals("Update")) {
+            dbRefSpecificUser.setValue(teamModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        progressDialogSend.dismiss();
+                        Toast.makeText(getContext(), "Data Updated Successfully", Toast.LENGTH_SHORT).show();
+//                    Now clear all fields...
+                        clearAllFields();
+                    } else {
+                        FirebaseAuthException e = (FirebaseAuthException) task.getException();
+                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
     }
 
     private void clearAllFields() {
@@ -288,10 +315,7 @@ public class SuperiorTeamFragment extends Fragment {
         imageViewTeamMember.setImageResource(R.drawable.common_pic_place_holder);
     }
 
-
     private void loadDataFromFirebaseDB() {
-//        For this you have to create two other classes, One is viewHolder (to display data) and second
-//        model class ( refers to name of nodes from where you are fetching data ).
 
         FirebaseRecyclerAdapter<SuperiorTeamModel, TeamViewHolder> adapter = new
                 FirebaseRecyclerAdapter<SuperiorTeamModel, TeamViewHolder>
@@ -302,6 +326,7 @@ public class SuperiorTeamFragment extends Fragment {
 
                     @Override
                     protected void populateViewHolder(TeamViewHolder viewHolder, SuperiorTeamModel model, int position) {
+
                         viewHolder.setName(model.getName());
                         viewHolder.setDesignation(model.getDesignation());
                         viewHolder.setMessage(model.getMessage());
@@ -313,15 +338,94 @@ public class SuperiorTeamFragment extends Fragment {
 //                        getRef() ==> Will Get DatabaseReference then we will get the current user key or id.
 
                         final String userKey = getRef(position).getKey();
-                        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+
+                        viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                             @Override
-                            public void onClick(View v) {
-                                Toast.makeText(getContext(), "View Clicked Key" + userKey, Toast.LENGTH_SHORT).show();
-                            }
+                            public boolean onLongClick(View view) {
+//                                Toast.makeText(getContext(), "View Clicked Key" + userKey, Toast.LENGTH_SHORT).show();
+                                dbRefSpecificUser = FirebaseDatabase.getInstance().getReference().child("SuperiorTeam").child(userKey);
+//                                Register context menu (Give view, by clicking this view, it will appear)...
+
+                                registerForContextMenu(view);
+
+//                                popupMenu(view);
+                                return false;
+                            }//
                         });
                     }
                 };
         recyclerViewTeam.setAdapter(adapter);
+    }
+
+//    private void popupMenu(View view) {
+//        PopupMenu popup = new PopupMenu(getContext(), view);
+//        popup.getMenuInflater().inflate(R.menu.team_menu, popup.getMenu());
+//        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//                int id = item.getItemId();
+//                switch (id) {
+//                    case R.id.update:
+//                        loadSingleValueFromFirebaseDB();
+//                        gotImage = true;
+//                        break;
+//                    case R.id.delete:
+//                        showAlertDialogDelete();
+//                        break;
+//                }
+//                return true;
+//            }
+//        });
+//        popup.show();
+//    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        menu.setHeaderTitle("Select Action");
+        menu.add(0, 0, 0, "Update");//groupId, itemId, order, title
+        menu.add(0, 1, 1, "Delete");
+
+//        Way to use Context Menu in Fragments...
+//        MenuInflater inflater = getActivity().getMenuInflater();
+//        inflater.inflate(R.menu.team_menu, menu);
+//        menu.setHeaderTitle("Choose one");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == 0) {
+            loadSingleValueFromFirebaseDB();
+            gotImage = true;
+            return true;
+        }
+        if (id == 1) {
+            showAlertDialogDelete();
+            return true;
+        }
+        return true;
+    }
+
+    private void loadSingleValueFromFirebaseDB() {
+
+        dbRefSpecificUser.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String name = dataSnapshot.child("name").getValue().toString();
+                String designation = dataSnapshot.child("designation").getValue().toString();
+                String message = dataSnapshot.child("message").getValue().toString();
+                String image = dataSnapshot.child("image").getValue().toString();
+
+                showAlertDialogBoxUpdate(name, designation, message, image);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void showProgressLoadData() {
@@ -340,12 +444,98 @@ public class SuperiorTeamFragment extends Fragment {
         progressDialogSend.show();
     }
 
-    private void showCnackBar() {
+    private void showAlertDialogDelete() {
+        alertDialogDelete = new AlertDialog.Builder(getContext());
+        alertDialogDelete.setTitle("Delete");
+        alertDialogDelete.setMessage("Do you want to Delete Team Member...");
+        alertDialogDelete.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+//                Call DeleteMember method to delete member from firebase...
+                deleteMember();
+            }
+        });
+        alertDialogDelete.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        alertDialogDelete.setCancelable(false);
+        alertDialogDelete.show();
+    }
+
+    private void deleteMember() {
+        dbRefSpecificUser.removeValue(new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                Toast.makeText(getContext(), "Member is Deleted", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void showSnackBar() {
         Snackbar mySnackbar = Snackbar.make(relativeLayout, "Please Fill All Fields", Snackbar.LENGTH_SHORT);
         View snackBarView = mySnackbar.getView();
         TextView textView = snackBarView.findViewById(android.support.design.R.id.snackbar_text);
         textView.setTextColor(Color.WHITE);
         snackBarView.setBackgroundColor(Color.parseColor("#BF360C"));
         mySnackbar.show();
+    }
+
+    public void showAlertDialogBoxUpdate(String name, String designation, String message, final String image) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.team_alert_dialog_design, null);
+
+        imageViewTeamMember = view.findViewById(R.id.team_mate_image);
+
+        if (!image.equals("false")) {
+            Picasso.get().load(image).placeholder(R.drawable.common_pic_place_holder).into(imageViewTeamMember, new Callback() {
+                @Override
+                public void onSuccess() {
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    Picasso.get().load(image).placeholder(R.drawable.common_pic_place_holder).into(imageViewTeamMember);
+                }
+            });
+        }
+
+        imageViewTeamMember.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getImage();
+            }
+        });
+
+        editTextName = view.findViewById(R.id.team_mate_name);
+        editTextDesignation = view.findViewById(R.id.team_mate_designation);
+        editTextMessage = view.findViewById(R.id.team_mate_message);
+        buttonAddMember = view.findViewById(R.id.button_add_member);
+        buttonDissmiss = view.findViewById(R.id.button_dismiss);
+
+        buttonAddMember.setText("Update");
+
+        editTextName.setText(name);
+        editTextDesignation.setText(designation);
+        editTextMessage.setText(message);
+
+        buttonAddMember.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadData();
+            }
+        });
+
+        builder.setView(view);
+        builder.setCancelable(false);
+        final AlertDialog alertDialog = builder.show();
+        buttonDissmiss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
     }
 }

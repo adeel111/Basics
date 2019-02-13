@@ -490,8 +490,6 @@ public class AdmissionFormActivity extends AppCompatActivity {
         }
     }
 
-//    Hey! I am here...
-
     private void submitAllImages() {
         switch (stringStudyProgram) {
             case "Pre_Medical":

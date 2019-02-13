@@ -7,11 +7,19 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:background="@color/colorPrimaryDark"
-        android:gravity="end" />
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/button_dismiss"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="3dp"
+            android:background="@drawable/cross_icon" />
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/team_mate_image"
@@ -44,11 +52,11 @@
         android:id="@+id/team_mate_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Team Member Message"
-        android:minLines="10"
         android:gravity="start"
-        android:padding="5dp"
+        android:hint="Team Member Message"
         android:maxLines="10"
+        android:minLines="10"
+        android:padding="5dp"
         android:textSize="16sp"
         tools:ignore="HardcodedText" />
 
