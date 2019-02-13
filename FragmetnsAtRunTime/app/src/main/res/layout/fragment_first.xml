@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="#FFC107"
+    android:id="@+id/first_fragment"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="First Fragment"
+        android:id="@+id/first_fragment_text_view"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:fontFamily="serif"/>
+    <Button
+        android:id="@+id/first_fragment_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Open Second Fragment"
+        android:textSize="16dp"
+        android:textAllCaps="false"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:padding="17dp"
+        android:layout_below="@id/first_fragment_text_view"/>
+</RelativeLayout>
