@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/text_view_value_receive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:hint="Enter Text"
+        android:layout_margin="50dp"/>
+
+    <TextView
+        android:id="@+id/text_view_valuess_receive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Number: "
+        android:layout_margin="50dp"/>
+
+    <Button
+        android:id="@+id/button_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sum"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:layout_marginBottom="5dp"/>
+    <Button
+        android:id="@+id/button_sub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subtract"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:layout_marginBottom="5dp"/>
+</LinearLayout>

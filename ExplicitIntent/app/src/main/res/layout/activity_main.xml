@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/edit_text_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:hint="Enter Text"
+        android:layout_margin="5dp"/>
+    <Button
+        android:id="@+id/button_send_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send Data"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:layout_marginBottom="50dp"
+        android:clickable="true"
+        android:onClick="buttonSendData"/>
+
+    <EditText
+        android:id="@+id/edit_text_first_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:hint="Enter First Value"
+        android:inputType="number"
+        android:layout_margin="5dp"/>
+    <EditText
+        android:id="@+id/edit_text_second_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:hint="Enter Second Value"
+        android:inputType="number"
+        android:layout_margin="5dp"/>
+    <Button
+        android:id="@+id/button_send_values"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send Values"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:layout_marginBottom="5dp"
+        android:clickable="true"
+        android:onClick="buttonSendValues"/>
+    <TextView
+        android:id="@+id/text_view_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:hint="Result"
+        android:layout_margin="5dp"/>
+</LinearLayout>
