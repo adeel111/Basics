@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:weightSum="7"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/text_view_pak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pak"
+        android:gravity="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="35sp"
+        android:layout_weight="2"/>
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="3">
+    <ImageView
+        android:id="@+id/flag2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/pak"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/pak_flag" />
+    <ImageView
+        android:id="@+id/flag1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center"
+        android:contentDescription="@string/zinda_abad"
+        app:srcCompat="@drawable/flag" />
+
+</FrameLayout>
+
+    <TextView
+        android:id="@+id/text_view_zindabad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/zinda_abad"
+        android:gravity="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="35sp"
+        android:layout_weight="2"/>
+</LinearLayout>
