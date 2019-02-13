@@ -1,0 +1,86 @@
+<resources>
+    <string name="app_name">FragmentsWithListViews</string>
+    <string name="tab_text_1">ListView</string>
+    <string name="tab_text_2">GridView</string>
+    <string name="tab_text_3">ExpandableLV</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <string-array name="movieNames">
+        <item>"john hancock"</item>
+        <item>"Sucide Squad"</item>
+        <item>"ESABELL"</item>
+        <item>"TRANSITION"</item>
+        <item>"DEATH NOTE"</item>
+        <item>"HARRY PORTER"</item>
+        <item>"I FRANKINSTIAN"</item>
+        <item>"TWILIGHT"</item>
+        <item>"INCEPTION"</item>
+        <item>"Speed"</item>
+    </string-array>
+
+    <string-array name="directorNames">
+        <item>"john hathons"</item>
+        <item>"esavell silly"</item>
+        <item>"ROSAMUND PIKE"</item>
+        <item>"NETFLIXER"</item>
+        <item>"IFLIXER"</item>
+        <item>"Ashfaq"</item>
+        <item>"JOHNSON"</item>
+        <item>"FRANKI"</item>
+        <item>"RIZWAN"</item>
+        <item>"ADEEL"</item>
+    </string-array>
+
+    <string-array name="likeText">
+        <item>Likes</item>
+        <item>Likes</item>
+        <item>Likes</item>
+        <item>Likes</item>
+        <item>Likes</item>
+        <item>Likes</item>
+        <item>Likes</item>
+        <item>Likes</item>
+        <item>Likes</item>
+        <item>Likes</item>
+    </string-array>
+
+    <string-array name="movieLikes">
+        <item>20k</item>
+        <item>25k</item>
+        <item>30k</item>
+        <item>35k</item>
+        <item>40k</item>
+        <item>45k</item>
+        <item>50k</item>
+        <item>55k</item>
+        <item>60k</item>
+        <item>65k</item>
+    </string-array>
+
+    <string-array name="disLikesText">
+        <item>"DisLikes"</item>
+        <item>"DisLikes"</item>
+        <item>"DisLikes"</item>
+        <item>"DisLikes"</item>
+        <item>"DisLikes"</item>
+        <item>"DisLikes"</item>
+        <item>"DisLikes"</item>
+        <item>"DisLikes"</item>
+        <item>"DisLikes"</item>
+        <item>"DisLikes"</item>
+    </string-array>
+
+    <string-array name="movieDisLikes">
+        <item>5k</item>
+        <item>7k</item>
+        <item>6k</item>
+        <item>3k</item>
+        <item>9k</item>
+        <item>2k</item>
+        <item>8k</item>
+        <item>12k</item>
+        <item>4k</item>
+        <item>3k</item>
+    </string-array>
+</resources>
