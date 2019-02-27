@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.adeeliftikhar.admission.Adapter.TeamRecyclerAdapter;
@@ -17,6 +19,8 @@ import com.example.adeeliftikhar.admission.Model.SuperiorTeamModel;
 import com.example.adeeliftikhar.admission.R;
 import com.example.adeeliftikhar.admission.ViewHolder.TeamViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.github.ybq.android.spinkit.SpinKitView;
+import com.github.ybq.android.spinkit.style.FadingCircle;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -33,7 +37,7 @@ public class SuperiorTeamFragment extends Fragment {
     private DatabaseReference dbRef;
     private StorageReference storageRef;
 
-    ProgressDialog progressDialogLoad;
+    SpinKitView spinKitView;
 
     public SuperiorTeamFragment() {
         // Required empty public constructor
@@ -45,6 +49,9 @@ public class SuperiorTeamFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_superior_team, container, false);
+
+        spinKitView = view.findViewById(R.id.spin_kit_view);
+
 
         dbRef = FirebaseDatabase.getInstance().getReference().child("SuperiorTeam");
         storageRef = FirebaseStorage.getInstance().getReference().child("TeamMember");
@@ -60,14 +67,13 @@ public class SuperiorTeamFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        showProgressLoadData();
+
         loadDataFromFirebaseDB();
     }
 
     private void loadDataFromFirebaseDB() {
 //        For this you have to create two other classes, One is viewHolder (to display data) and second
 //        model class ( refers to name of nodes from where you are fetching data ).
-
         FirebaseRecyclerAdapter<SuperiorTeamModel, TeamViewHolder> adapter = new
                 FirebaseRecyclerAdapter<SuperiorTeamModel, TeamViewHolder>
                         (SuperiorTeamModel.class,
@@ -77,33 +83,23 @@ public class SuperiorTeamFragment extends Fragment {
 
                     @Override
                     protected void populateViewHolder(TeamViewHolder viewHolder, SuperiorTeamModel model, int position) {
+
+                        spinKitView.setVisibility(View.GONE);
+
                         viewHolder.setName(model.getName());
                         viewHolder.setDesignation(model.getDesignation());
                         viewHolder.setMessage(model.getMessage());
                         viewHolder.setImage(model.getImage());
 
-                        progressDialogLoad.dismiss();
-
-//                        Get Id or Key of user on Recycler Clicked Item.
-//                        getRef() ==> Will Get DatabaseReference then we will get the current user key or id.
-
                         final String userKey = getRef(position).getKey();
                         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Toast.makeText(getContext(), "View Clicked Key" + userKey, Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(getContext(), "View Clicked Key" + userKey, Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
                 };
         recyclerViewTeam.setAdapter(adapter);
-    }
-
-    private void showProgressLoadData() {
-        progressDialogLoad = new ProgressDialog(getContext());
-        progressDialogLoad.setTitle("Loading");
-        progressDialogLoad.setMessage("Loading Data, Plz wait...");
-        progressDialogLoad.setCancelable(false);
-        progressDialogLoad.show();
     }
 }

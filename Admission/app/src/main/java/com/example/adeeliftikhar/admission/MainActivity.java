@@ -17,7 +17,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.example.adeeliftikhar.admission.Internet.CheckInternetConnectivity;
 import com.example.adeeliftikhar.admission.SessionsManager.LoginSessionManager;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -62,58 +64,94 @@ public class MainActivity extends AppCompatActivity {
                 int id = menuItem.getItemId();
                 switch (id) {
                     case R.id.chairman_message:
-                        Intent intentMessage = new Intent(MainActivity.this, FragmentsContainerActivity.class);
-                        String message = "message";
-                        intentMessage.putExtra("id", message);
-                        startActivity(intentMessage);
+                        if (!CheckInternetConnectivity.isConnected(MainActivity.this)) {
+                            Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Intent intentMessage = new Intent(MainActivity.this, FragmentsContainerActivity.class);
+                            String message = "message";
+                            intentMessage.putExtra("id", message);
+                            startActivity(intentMessage);
+                        }
                         break;
                     case R.id.team:
-                        Intent intentTeam = new Intent(MainActivity.this, FragmentsContainerActivity.class);
-                        String team = "team";
-                        intentTeam.putExtra("id", team);
-                        startActivity(intentTeam);
+                        if (!CheckInternetConnectivity.isConnected(MainActivity.this)) {
+                            Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Intent intentTeam = new Intent(MainActivity.this, FragmentsContainerActivity.class);
+                            String team = "team";
+                            intentTeam.putExtra("id", team);
+                            startActivity(intentTeam);
+                        }
                         break;
                     case R.id.history:
-                        Intent intentHistory = new Intent(MainActivity.this, FragmentsContainerActivity.class);
-                        String history = "history";
-                        intentHistory.putExtra("id", history);
-                        startActivity(intentHistory);
+                        if (!CheckInternetConnectivity.isConnected(MainActivity.this)) {
+                            Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Intent intentHistory = new Intent(MainActivity.this, FragmentsContainerActivity.class);
+                            String history = "history";
+                            intentHistory.putExtra("id", history);
+                            startActivity(intentHistory);
+                        }
                         break;
                     case R.id.schedule:
-                        Intent intentSchedule = new Intent(MainActivity.this, FragmentsContainerActivity.class);
-                        String schedule = "schedule";
-                        intentSchedule.putExtra("id", schedule);
-                        startActivity(intentSchedule);
+                        if (!CheckInternetConnectivity.isConnected(MainActivity.this)) {
+                            Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Intent intentSchedule = new Intent(MainActivity.this, FragmentsContainerActivity.class);
+                            String schedule = "schedule";
+                            intentSchedule.putExtra("id", schedule);
+                            startActivity(intentSchedule);
+                        }
                         break;
                     case R.id.rules:
-                        Intent intentRules = new Intent(MainActivity.this, FragmentsContainerActivity.class);
-                        String rules = "rules";
-                        intentRules.putExtra("id", rules);
-                        startActivity(intentRules);
+                        if (!CheckInternetConnectivity.isConnected(MainActivity.this)) {
+                            Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Intent intentRules = new Intent(MainActivity.this, FragmentsContainerActivity.class);
+                            String rules = "rules";
+                            intentRules.putExtra("id", rules);
+                            startActivity(intentRules);
+                        }
                         break;
                     case R.id.facility:
-                        Intent intentFacility = new Intent(MainActivity.this, FragmentsContainerActivity.class);
-                        String facility = "facility";
-                        intentFacility.putExtra("id", facility);
-                        startActivity(intentFacility);
+                        if (!CheckInternetConnectivity.isConnected(MainActivity.this)) {
+                            Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Intent intentFacility = new Intent(MainActivity.this, FragmentsContainerActivity.class);
+                            String facility = "facility";
+                            intentFacility.putExtra("id", facility);
+                            startActivity(intentFacility);
+                        }
                         break;
                     case R.id.activities:
-                        Intent intentActivities = new Intent(MainActivity.this, FragmentsContainerActivity.class);
-                        String activities = "activities";
-                        intentActivities.putExtra("id", activities);
-                        startActivity(intentActivities);
+                        if (!CheckInternetConnectivity.isConnected(MainActivity.this)) {
+                            Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Intent intentActivities = new Intent(MainActivity.this, FragmentsContainerActivity.class);
+                            String activities = "activities";
+                            intentActivities.putExtra("id", activities);
+                            startActivity(intentActivities);
+                        }
                         break;
                     case R.id.fee_information:
-                        Intent intentInformation = new Intent(MainActivity.this, FragmentsContainerActivity.class);
-                        String information = "information";
-                        intentInformation.putExtra("id", information);
-                        startActivity(intentInformation);
+                        if (!CheckInternetConnectivity.isConnected(MainActivity.this)) {
+                            Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Intent intentInformation = new Intent(MainActivity.this, FragmentsContainerActivity.class);
+                            String information = "information";
+                            intentInformation.putExtra("id", information);
+                            startActivity(intentInformation);
+                        }
                         break;
                     case R.id.merit_list:
-                        Intent intentList = new Intent(MainActivity.this, MeritListsActivity.class);
-                        String list = "list";
-                        intentList.putExtra("id", list);
-                        startActivity(intentList);
+                        if (!CheckInternetConnectivity.isConnected(MainActivity.this)) {
+                            Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Intent intentList = new Intent(MainActivity.this, MeritListsActivity.class);
+                            String list = "list";
+                            intentList.putExtra("id", list);
+                            startActivity(intentList);
+                        }
                         break;
                 }
                 return true;
@@ -139,16 +177,24 @@ public class MainActivity extends AppCompatActivity {
                         int id = item.getItemId();
                         switch (id) {
                             case R.id.fsc_medical:
-                                Intent intentMedical = new Intent(MainActivity.this, AdmissionFormActivity.class);
-                                String programMedical = "Pre_Medical";
-                                intentMedical.putExtra("idProgram", programMedical);
-                                startActivity(intentMedical);
+                                if (!CheckInternetConnectivity.isConnected(MainActivity.this)) {
+                                    Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Intent intentMedical = new Intent(MainActivity.this, AdmissionFormActivity.class);
+                                    String programMedical = "Pre_Medical";
+                                    intentMedical.putExtra("idProgram", programMedical);
+                                    startActivity(intentMedical);
+                                }
                                 break;
                             case R.id.fsc_engineering:
-                                Intent intentEngineering = new Intent(MainActivity.this, AdmissionFormActivity.class);
-                                String programEngineering = "Pre_Engineering";
-                                intentEngineering.putExtra("idProgram", programEngineering);
-                                startActivity(intentEngineering);
+                                if (!CheckInternetConnectivity.isConnected(MainActivity.this)) {
+                                    Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Intent intentEngineering = new Intent(MainActivity.this, AdmissionFormActivity.class);
+                                    String programEngineering = "Pre_Engineering";
+                                    intentEngineering.putExtra("idProgram", programEngineering);
+                                    startActivity(intentEngineering);
+                                }
                                 break;
                         }
                         return true;
@@ -163,16 +209,24 @@ public class MainActivity extends AppCompatActivity {
                         int id = item.getItemId();
                         switch (id) {
                             case R.id.ics_physics:
-                                Intent intentPhysics = new Intent(MainActivity.this, AdmissionFormActivity.class);
-                                String programPhysics = "Physics";
-                                intentPhysics.putExtra("idProgram", programPhysics);
-                                startActivity(intentPhysics);
+                                if (!CheckInternetConnectivity.isConnected(MainActivity.this)) {
+                                    Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Intent intentPhysics = new Intent(MainActivity.this, AdmissionFormActivity.class);
+                                    String programPhysics = "Physics";
+                                    intentPhysics.putExtra("idProgram", programPhysics);
+                                    startActivity(intentPhysics);
+                                }
                                 break;
                             case R.id.ics_state:
-                                Intent intentState = new Intent(MainActivity.this, AdmissionFormActivity.class);
-                                String programState = "States";
-                                intentState.putExtra("idProgram", programState);
-                                startActivity(intentState);
+                                if (!CheckInternetConnectivity.isConnected(MainActivity.this)) {
+                                    Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Intent intentState = new Intent(MainActivity.this, AdmissionFormActivity.class);
+                                    String programState = "States";
+                                    intentState.putExtra("idProgram", programState);
+                                    startActivity(intentState);
+                                }
                                 break;
                         }
                         return true;
@@ -187,16 +241,24 @@ public class MainActivity extends AppCompatActivity {
                         int id = item.getItemId();
                         switch (id) {
                             case R.id.icom_banking:
-                                Intent intentBanking = new Intent(MainActivity.this, AdmissionFormActivity.class);
-                                String programBanking = "Banking";
-                                intentBanking.putExtra("idProgram", programBanking);
-                                startActivity(intentBanking);
+                                if (!CheckInternetConnectivity.isConnected(MainActivity.this)) {
+                                    Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Intent intentBanking = new Intent(MainActivity.this, AdmissionFormActivity.class);
+                                    String programBanking = "Banking";
+                                    intentBanking.putExtra("idProgram", programBanking);
+                                    startActivity(intentBanking);
+                                }
                                 break;
                             case R.id.icom_second:
-                                Intent intentSecond = new Intent(MainActivity.this, AdmissionFormActivity.class);
-                                String programSecond = "Commerce";
-                                intentSecond.putExtra("idProgram", programSecond);
-                                startActivity(intentSecond);
+                                if (!CheckInternetConnectivity.isConnected(MainActivity.this)) {
+                                    Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Intent intentSecond = new Intent(MainActivity.this, AdmissionFormActivity.class);
+                                    String programSecond = "Commerce";
+                                    intentSecond.putExtra("idProgram", programSecond);
+                                    startActivity(intentSecond);
+                                }
                                 break;
                         }
                         return true;
@@ -211,16 +273,24 @@ public class MainActivity extends AppCompatActivity {
                         int id = item.getItemId();
                         switch (id) {
                             case R.id.fa_it:
-                                Intent intentIT = new Intent(MainActivity.this, AdmissionFormActivity.class);
-                                String programIT = "IT";
-                                intentIT.putExtra("idProgram", programIT);
-                                startActivity(intentIT);
+                                if (!CheckInternetConnectivity.isConnected(MainActivity.this)) {
+                                    Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Intent intentIT = new Intent(MainActivity.this, AdmissionFormActivity.class);
+                                    String programIT = "IT";
+                                    intentIT.putExtra("idProgram", programIT);
+                                    startActivity(intentIT);
+                                }
                                 break;
                             case R.id.fa_education:
-                                Intent intentEducation = new Intent(MainActivity.this, AdmissionFormActivity.class);
-                                String programEducation = "Education";
-                                intentEducation.putExtra("idProgram", programEducation);
-                                startActivity(intentEducation);
+                                if (!CheckInternetConnectivity.isConnected(MainActivity.this)) {
+                                    Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Intent intentEducation = new Intent(MainActivity.this, AdmissionFormActivity.class);
+                                    String programEducation = "Education";
+                                    intentEducation.putExtra("idProgram", programEducation);
+                                    startActivity(intentEducation);
+                                }
                                 break;
                         }
                         return true;
@@ -255,12 +325,16 @@ public class MainActivity extends AppCompatActivity {
     private void logoutAlertBox() {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("Logout");
-        builder.setMessage("Do you want to logout?");
-        builder.setPositiveButton("logout", new DialogInterface.OnClickListener() {
+        builder.setMessage("Are you sure to Logout?");
+        builder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dialogBoxLogout();
-                logout();
+                if (!CheckInternetConnectivity.isConnected(MainActivity.this)) {
+                    Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                } else {
+                    dialogBoxLogout();
+                    logout();
+                }
             }
         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override

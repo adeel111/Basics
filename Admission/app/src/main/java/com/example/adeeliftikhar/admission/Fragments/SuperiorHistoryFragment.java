@@ -6,8 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.example.adeeliftikhar.admission.R;
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +26,9 @@ public class SuperiorHistoryFragment extends Fragment {
     JustifyTextView superiorHistory;
     private DatabaseReference dbRef;
 
+    SpinKitView spinKitView;
+    LinearLayout linearLayoutHistory;
+
     public SuperiorHistoryFragment() {
         // Required empty public constructor
     }
@@ -35,7 +40,13 @@ public class SuperiorHistoryFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_superior_history, container, false);
 
+        linearLayoutHistory = view.findViewById(R.id.linear_layout_history);
+        spinKitView = view.findViewById(R.id.spin_kit_view_history);
         superiorHistory = view.findViewById(R.id.superior_history);
+
+        linearLayoutHistory.setVisibility(View.GONE);
+        spinKitView.setVisibility(View.VISIBLE);
+
         dbRef = FirebaseDatabase.getInstance().getReference().child("History");
         loadHistoryFromDB();
         return view;
@@ -46,6 +57,8 @@ public class SuperiorHistoryFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String history = dataSnapshot.child("history").getValue().toString();
+                spinKitView.setVisibility(View.GONE);
+                linearLayoutHistory.setVisibility(View.VISIBLE);
                 superiorHistory.setText(history);
             }
 

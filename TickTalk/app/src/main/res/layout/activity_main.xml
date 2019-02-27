@@ -28,7 +28,7 @@
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="#FF5722">
+            android:background="@color/colorPrimary">
 
             <android.support.design.widget.TabItem
                 android:id="@+id/tabItem"

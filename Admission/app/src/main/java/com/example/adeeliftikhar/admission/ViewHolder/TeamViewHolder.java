@@ -9,13 +9,14 @@ import android.widget.TextView;
 import com.example.adeeliftikhar.admission.R;
 import com.squareup.picasso.Picasso;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import me.biubiubiu.justifytext.library.JustifyTextView;
 
 public class TeamViewHolder extends RecyclerView.ViewHolder {
     private View view;
     private TextView textViewName, textViewDesignation;
     private JustifyTextView textViewMessage;
-    private ImageView imageViewTeamMember;
+    private CircleImageView imageViewTeamMember;
 
     public TeamViewHolder(@NonNull View itemView) {
         super(itemView);

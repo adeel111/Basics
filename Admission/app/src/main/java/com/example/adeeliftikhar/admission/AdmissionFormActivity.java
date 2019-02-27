@@ -1,6 +1,8 @@
 package com.example.adeeliftikhar.admission;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -23,6 +25,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.adeeliftikhar.admission.Internet.CheckInternetConnectivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -266,22 +269,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                         if (!studentMetricResultCardImage || !studentFatherIDCardImage) {
                             showSnackBar();
                         } else {
-                            submitTextForm();
-                            submitAllImages();
-                            showProgressDialogSubmit();
+                            if (!CheckInternetConnectivity.isConnected(AdmissionFormActivity.this)) {
+//                                Toast.makeText(this, "" + CheckInternetConnectivity.isConnected(AdmissionFormActivity.this), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                            } else {
+                                submitTextForm();
+                                submitAllImages();
+                                showProgressDialogSubmit();
 //                            Toast.makeText(this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
 
 //                            Now clear fields and images..
-                            clearTextFields();
-                            imageViewStudent.setImageResource(R.drawable.student_place_holder);
-                            imageViewMetricResultCard.setImageResource(R.drawable.metric_rc_place_holder);
-                            imageViewFatherIdCard.setImageResource(R.drawable.father_id_card_place_holder);
+                                clearTextFields();
+                                imageViewStudent.setImageResource(R.drawable.student_place_holder);
+                                imageViewMetricResultCard.setImageResource(R.drawable.metric_rc_place_holder);
+                                imageViewFatherIdCard.setImageResource(R.drawable.father_id_card_place_holder);
 
 //                            Now Send Data to Database...
 //                            Visibility Gone and on.
-                            buttonSubmitForm.setVisibility(View.GONE);
-                            buttonEditForm.setVisibility(View.VISIBLE);
-                            buttonDeleteForm.setVisibility(View.VISIBLE);
+                                buttonSubmitForm.setVisibility(View.GONE);
+                                buttonEditForm.setVisibility(View.VISIBLE);
+                                buttonDeleteForm.setVisibility(View.VISIBLE);
+                            }
                         }
                         break;
                     case "Needy Based":
@@ -289,23 +297,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                                 !studentElectricityBillImage || !studentSalarySlipImage) {
                             showSnackBar();
                         } else {
-                            showProgressDialogSubmit();
-                            submitTextForm();
-                            submitAllImages();
+                            if (!CheckInternetConnectivity.isConnected(AdmissionFormActivity.this)) {
+                                Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                            } else {
+                                showProgressDialogSubmit();
+                                submitTextForm();
+                                submitAllImages();
 //                            Toast.makeText(this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
 
 //                            Now clear fields and images..
-                            clearTextFields();
-                            imageViewStudent.setImageResource(R.drawable.student_place_holder);
-                            imageViewMetricResultCard.setImageResource(R.drawable.metric_rc_place_holder);
-                            imageViewFatherIdCard.setImageResource(R.drawable.father_id_card_place_holder);
-                            imageViewBill.setImageResource(R.drawable.bill_place_holder);
-                            imageViewSalary.setImageResource(R.drawable.salary_slip_place_holder);
+                                clearTextFields();
+                                imageViewStudent.setImageResource(R.drawable.student_place_holder);
+                                imageViewMetricResultCard.setImageResource(R.drawable.metric_rc_place_holder);
+                                imageViewFatherIdCard.setImageResource(R.drawable.father_id_card_place_holder);
+                                imageViewBill.setImageResource(R.drawable.bill_place_holder);
+                                imageViewSalary.setImageResource(R.drawable.salary_slip_place_holder);
 //                            Now Send Data to Database...
 //                            Visibility Gone and on...
-                            buttonSubmitForm.setVisibility(View.GONE);
-                            buttonEditForm.setVisibility(View.VISIBLE);
-                            buttonDeleteForm.setVisibility(View.VISIBLE);
+                                buttonSubmitForm.setVisibility(View.GONE);
+                                buttonEditForm.setVisibility(View.VISIBLE);
+                                buttonDeleteForm.setVisibility(View.VISIBLE);
+                            }
                         }
                         break;
                 }
@@ -336,6 +348,7 @@ public class AdmissionFormActivity extends AppCompatActivity {
 
     private void submitTextForm() {
 //        HashMap to send values...
+
         HashMap<String, String> hashMapFormNo = new HashMap<>();
         HashMap<String, String> hashMap = new HashMap<>();
 
@@ -1675,13 +1688,18 @@ public class AdmissionFormActivity extends AppCompatActivity {
 //    Retrieve the Form...
 
     public void buttonEditForm(View view) {
-        a = 1;
-        retrieveDataFromDB();
-        showProgressDialog();
 
-        buttonEditForm.setVisibility(View.GONE);
-        buttonUpdateForm.setVisibility(View.VISIBLE);
-        buttonDeleteForm.setVisibility(View.VISIBLE);
+        if (!CheckInternetConnectivity.isConnected(AdmissionFormActivity.this)) {
+            Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+        } else {
+            a = 1;
+            retrieveDataFromDB();
+            showProgressDialog();
+
+            buttonEditForm.setVisibility(View.GONE);
+            buttonUpdateForm.setVisibility(View.VISIBLE);
+            buttonDeleteForm.setVisibility(View.VISIBLE);
+        }
     }
 
     private void retrieveDataFromDB() {
@@ -1848,18 +1866,23 @@ public class AdmissionFormActivity extends AppCompatActivity {
                         if (!studentMetricResultCardImage || !studentFatherIDCardImage) {
                             showSnackBar();
                         } else {
-                            submitTextForm();
-                            submitAllImages();
-                            showProgressDialogUpdate();
+                            if (!CheckInternetConnectivity.isConnected(AdmissionFormActivity.this)) {
+//                                Toast.makeText(this, "" + CheckInternetConnectivity.isConnected(AdmissionFormActivity.this), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                            } else {
+                                submitTextForm();
+                                submitAllImages();
+                                showProgressDialogUpdate();
 
-                            imageViewStudent.setImageResource(R.drawable.student_place_holder);
-                            imageViewMetricResultCard.setImageResource(R.drawable.metric_rc_place_holder);
-                            imageViewFatherIdCard.setImageResource(R.drawable.father_id_card_place_holder);
-                            clearTextFields();
+                                imageViewStudent.setImageResource(R.drawable.student_place_holder);
+                                imageViewMetricResultCard.setImageResource(R.drawable.metric_rc_place_holder);
+                                imageViewFatherIdCard.setImageResource(R.drawable.father_id_card_place_holder);
+                                clearTextFields();
 
-                            buttonUpdateForm.setVisibility(View.GONE);
-                            buttonEditForm.setVisibility(View.VISIBLE);
-                            buttonDeleteForm.setVisibility(View.VISIBLE);
+                                buttonUpdateForm.setVisibility(View.GONE);
+                                buttonEditForm.setVisibility(View.VISIBLE);
+                                buttonDeleteForm.setVisibility(View.VISIBLE);
+                            }
                         }
                         break;
                     case "Needy Based":
@@ -1867,20 +1890,26 @@ public class AdmissionFormActivity extends AppCompatActivity {
                                 !studentElectricityBillImage || !studentSalarySlipImage) {
                             showSnackBar();
                         } else {
-                            submitTextForm();
-                            submitAllImages();
-                            showProgressDialogUpdate();
+                            if (!CheckInternetConnectivity.isConnected(AdmissionFormActivity.this)) {
+//                                Toast.makeText(this, "" + CheckInternetConnectivity.isConnected(AdmissionFormActivity.this), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                            } else {
 
-                            imageViewStudent.setImageResource(R.drawable.student_place_holder);
-                            imageViewMetricResultCard.setImageResource(R.drawable.metric_rc_place_holder);
-                            imageViewFatherIdCard.setImageResource(R.drawable.father_id_card_place_holder);
-                            imageViewBill.setImageResource(R.drawable.bill_place_holder);
-                            imageViewSalary.setImageResource(R.drawable.salary_slip_place_holder);
-                            clearTextFields();
+                                submitTextForm();
+                                submitAllImages();
+                                showProgressDialogUpdate();
 
-                            buttonUpdateForm.setVisibility(View.GONE);
-                            buttonEditForm.setVisibility(View.VISIBLE);
-                            buttonDeleteForm.setVisibility(View.VISIBLE);
+                                imageViewStudent.setImageResource(R.drawable.student_place_holder);
+                                imageViewMetricResultCard.setImageResource(R.drawable.metric_rc_place_holder);
+                                imageViewFatherIdCard.setImageResource(R.drawable.father_id_card_place_holder);
+                                imageViewBill.setImageResource(R.drawable.bill_place_holder);
+                                imageViewSalary.setImageResource(R.drawable.salary_slip_place_holder);
+                                clearTextFields();
+
+                                buttonUpdateForm.setVisibility(View.GONE);
+                                buttonEditForm.setVisibility(View.VISIBLE);
+                                buttonDeleteForm.setVisibility(View.VISIBLE);
+                            }
                         }
                         break;
                     default:
@@ -1892,13 +1921,34 @@ public class AdmissionFormActivity extends AppCompatActivity {
     }
 
     public void buttonDeleteForm(View view) {
-        deleteForm();
-        b = 1;
-        Toast.makeText(this, "Form is Deleted", Toast.LENGTH_SHORT).show();
-        buttonSubmitForm.setVisibility(View.VISIBLE);
-        buttonEditForm.setVisibility(View.GONE);
-        buttonUpdateForm.setVisibility(View.GONE);
-        buttonDeleteForm.setVisibility(View.GONE);
+        if (!CheckInternetConnectivity.isConnected(AdmissionFormActivity.this)) {
+            Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+        } else {
+            deleteFormAlertDialog();
+        }
+    }
+
+    private void deleteFormAlertDialog() {
+        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(AdmissionFormActivity.this);
+        builder.setTitle("Delete");
+        builder.setMessage("Do you want to Delete your Admission?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                deleteForm();
+                b = 1;
+                buttonSubmitForm.setVisibility(View.VISIBLE);
+                buttonEditForm.setVisibility(View.GONE);
+                buttonUpdateForm.setVisibility(View.GONE);
+                buttonDeleteForm.setVisibility(View.GONE);
+                Toast.makeText(AdmissionFormActivity.this, "Form is Deleted", Toast.LENGTH_SHORT).show();
+            }
+        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        builder.show();
     }
 
     private void deleteForm() {
@@ -2227,7 +2277,7 @@ public class AdmissionFormActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 //                if (dataSnapshot.hasChild("form_noo")) {
                 getFormNo = Integer.parseInt(dataSnapshot.child("total").getValue().toString());
-                Toast.makeText(AdmissionFormActivity.this, "Form no is " + getFormNo, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(AdmissionFormActivity.this, "Form no is " + getFormNo, Toast.LENGTH_SHORT).show();
             }
 // else {
 //                    formNo.setText("1");

@@ -1,25 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:context=".Fragments.SuperiorHistoryFragment">
 
-    <me.biubiubiu.justifytext.library.JustifyTextView
-        android:id="@+id/superior_history"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="5dp"
-        android:text="Superior History"
-        android:textSize="16sp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".Fragments.SuperiorHistoryFragment">
 
-</LinearLayout>
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/spin_kit_view_history"
+            style="@style/SpinKitView.Small.FadingCircle"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            app:SpinKit_Color="@color/colorPrimaryDark" />
+
+        <LinearLayout
+            android:id="@+id/linear_layout_history"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <me.biubiubiu.justifytext.library.JustifyTextView
+                android:id="@+id/superior_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:text="Superior History"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </FrameLayout>
 </ScrollView>

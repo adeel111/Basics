@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.adeeliftikhar.admission.Internet.CheckInternetConnectivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -68,8 +69,12 @@ public class RegisterActivity extends AppCompatActivity {
         if (!response) {
             showSnackBar();
         } else {
-            showProgressDialog();
-            signUp();
+            if (!CheckInternetConnectivity.isConnected(RegisterActivity.this)) {
+                Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+            } else {
+                showProgressDialog();
+                signUp();
+            }
         }
     }
 
@@ -95,7 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });
         View snackBarView = snackbar.getView();
-        snackBarView.setBackgroundColor(Color.parseColor("#009688"));
+        snackBarView.setBackgroundColor(Color.parseColor("#BF360C"));
         snackbar.show();
     }
 

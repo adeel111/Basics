@@ -9,10 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.adeeliftikhar.admission.R;
+import com.github.ybq.android.spinkit.style.FadingCircle;
+import com.github.ybq.android.spinkit.style.ThreeBounce;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,7 +37,10 @@ public class ChairmanMessageFragment extends Fragment {
     ImageView chairmanImage;
     TextView chairmanName;
     JustifyTextView chairmanMessage;
-    ProgressDialog progressDialog;
+
+    LinearLayout linearLayoutSpinKitMessage, linearLayoutMessage;
+    ProgressBar progressBar;
+    FadingCircle fadingCircle;
 
     private DatabaseReference dbRef;
     private StorageReference storageRef;
@@ -48,6 +55,15 @@ public class ChairmanMessageFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_chairman_message, container, false);
 
+        progressBar = view.findViewById(R.id.spin_kit_view);
+        fadingCircle = new FadingCircle();
+        progressBar.setIndeterminateDrawable(fadingCircle);
+
+        linearLayoutSpinKitMessage = view.findViewById(R.id.linear_layout_spin_kit_message);
+        linearLayoutMessage = view.findViewById(R.id.linear_layout_message);
+
+        linearLayoutMessage.setVisibility(View.GONE);
+
         chairmanImage = view.findViewById(R.id.chairman_image);
         chairmanName = view.findViewById(R.id.chairman_name);
         chairmanMessage = view.findViewById(R.id.chairman_message);
@@ -61,11 +77,10 @@ public class ChairmanMessageFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        getDataFromFirebse();
-        showProgressDialog();
+        getDataFromFirebase();
     }
 
-    private void getDataFromFirebse() {
+    private void getDataFromFirebase() {
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -78,12 +93,14 @@ public class ChairmanMessageFragment extends Fragment {
                 Picasso.get().load(chairmanPic).placeholder(R.drawable.place_holder).into(chairmanImage, new Callback() {
                     @Override
                     public void onSuccess() {
-                        progressDialog.dismiss();
+                        linearLayoutSpinKitMessage.setVisibility(View.GONE);
+                        linearLayoutMessage.setVisibility(View.VISIBLE);
                     }
 
                     @Override
                     public void onError(Exception e) {
-                        progressDialog.dismiss();
+                        linearLayoutSpinKitMessage.setVisibility(View.GONE);
+                        linearLayoutMessage.setVisibility(View.VISIBLE);
                         Picasso.get().load(chairmanPic).placeholder(R.drawable.place_holder).into(chairmanImage);
                     }
                 });
@@ -94,13 +111,5 @@ public class ChairmanMessageFragment extends Fragment {
 
             }
         });
-    }
-
-    private void showProgressDialog() {
-        progressDialog = new ProgressDialog(getContext());
-        progressDialog.setTitle("Loading");
-        progressDialog.setMessage("Loading Data, Plz wait...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
     }
 }

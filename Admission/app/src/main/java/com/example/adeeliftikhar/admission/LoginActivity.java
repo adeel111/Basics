@@ -9,12 +9,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.adeeliftikhar.admission.Internet.CheckInternetConnectivity;
 import com.example.adeeliftikhar.admission.SessionsManager.LoginSessionManager;
+import com.github.ybq.android.spinkit.style.FadingCircle;
+import com.github.ybq.android.spinkit.style.ThreeBounce;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -25,11 +30,12 @@ public class LoginActivity extends AppCompatActivity {
     EditText editTextLoginEmail, editTextLoginPassword;
     String incomingLoginEmail, incomingLoginPassword;
     CheckBox checkBoxRememberMe;
-    LinearLayout linearLayout;
-    ProgressDialog progressDialog;
+    LinearLayout linearLayout, linearLayoutSpinKit, linearLayoutMaterial, linearLayoutMaterialOne;
     FirebaseAuth mAuth;
 
     LoginSessionManager loginSessionManager;
+    ProgressBar progressBar;
+    ThreeBounce threeBounce;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +46,22 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initializer() {
+
+        progressBar = findViewById(R.id.spin_kit_view);
+        threeBounce = new ThreeBounce();
+        progressBar.setIndeterminateDrawable(threeBounce);
+//        progressBar.setVisibility(View.GONE);
+
+        linearLayout = findViewById(R.id.linear_layout);
+        linearLayoutSpinKit = findViewById(R.id.linear_layout_spin_kit);
+        linearLayoutMaterial = findViewById(R.id.linear_layout_material);
+        linearLayoutMaterialOne = findViewById(R.id.linear_layout_materialOne);
+
+        linearLayoutSpinKit.setVisibility(View.GONE);
+
         editTextLoginEmail = findViewById(R.id.edit_text_login_email);
         editTextLoginPassword = findViewById(R.id.edit_text_login_password);
         checkBoxRememberMe = findViewById(R.id.checkbox_remember_me);
-        linearLayout = findViewById(R.id.linear_layout);
         loginSessionManager = new LoginSessionManager(LoginActivity.this);
         checkLoginSession();
     }
@@ -59,15 +77,25 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void buttonLoginUser(View view) {
+//        How to use SpinKitView in Button...
+//        Button buttonLogin = view.findViewById(R.id.button_login);
+//        buttonLogin.setCompoundDrawables(null, null, fadingCircle, null);
+
         boolean response = validateTheData();
         if (!response) {
             showSnackBar();
         } else {
-            showProgressDialog();
-            if (checkBoxRememberMe.isChecked()) {
-                RememberLogin();
+            if (!CheckInternetConnectivity.isConnected(LoginActivity.this)) {
+                Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
             } else {
-                simpleLogin();
+                linearLayoutSpinKit.setVisibility(View.VISIBLE);
+                linearLayoutMaterial.setVisibility(View.GONE);
+                linearLayoutMaterialOne.setVisibility(View.GONE);
+                if (checkBoxRememberMe.isChecked()) {
+                    RememberLogin();
+                } else {
+                    simpleLogin();
+                }
             }
         }
     }
@@ -91,16 +119,8 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
         View snackBarView = snackbar.getView();
-        snackBarView.setBackgroundColor(Color.parseColor("#009688"));
+        snackBarView.setBackgroundColor(Color.parseColor("#BF360C"));
         snackbar.show();
-    }
-
-    private void showProgressDialog() {
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Login");
-        progressDialog.setMessage("Login in Progress, Plz Wait.");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
     }
 
     private void RememberLogin() {
@@ -109,16 +129,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    progressDialog.dismiss();
-                    Toast.makeText(LoginActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                     loginSessionManager.loginTheUser(true, incomingLoginEmail, incomingLoginPassword);
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                 } else {
-                    progressDialog.hide();
                     FirebaseAuthException e = (FirebaseAuthException) task.getException();
-                    Toast.makeText(LoginActivity.this, "Something Went Wrong!", Toast.LENGTH_SHORT).show();
+                    linearLayoutSpinKit.setVisibility(View.GONE);
+                    linearLayoutMaterial.setVisibility(View.VISIBLE);
+                    linearLayoutMaterialOne.setVisibility(View.VISIBLE);
+                    Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -130,15 +150,19 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    progressDialog.dismiss();
+                    linearLayoutSpinKit.setVisibility(View.GONE);
+                    linearLayoutMaterial.setVisibility(View.VISIBLE);
+                    linearLayoutMaterialOne.setVisibility(View.VISIBLE);
                     Toast.makeText(LoginActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                 } else {
-                    progressDialog.hide();
                     FirebaseAuthException e = (FirebaseAuthException) task.getException();
-                    Toast.makeText(LoginActivity.this, "Something Went Wrong!", Toast.LENGTH_SHORT).show();
+                    linearLayoutSpinKit.setVisibility(View.GONE);
+                    linearLayoutMaterial.setVisibility(View.VISIBLE);
+                    linearLayoutMaterialOne.setVisibility(View.VISIBLE);
+                    Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                 }
             }
         });
