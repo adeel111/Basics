@@ -15,6 +15,7 @@ import com.example.adeeliftikhar.admission.Model.FacilityModel;
 import com.example.adeeliftikhar.admission.R;
 import com.example.adeeliftikhar.admission.ViewHolder.FacilityViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -27,10 +28,8 @@ import java.util.ArrayList;
  */
 public class CampusFacilityFragment extends Fragment {
     RecyclerView recyclerViewFacility;
-    RecyclerView.Adapter adapter;
-    RecyclerView.LayoutManager layoutManager;
 
-    ProgressDialog progressDialogLoad;
+    SpinKitView spinKitViewFacility;
 
     private DatabaseReference dbRef;
     private StorageReference storageRef;
@@ -45,6 +44,8 @@ public class CampusFacilityFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_campus_facility, container, false);
 
+        spinKitViewFacility = view.findViewById(R.id.spin_kit_view_facility);
+
         dbRef = FirebaseDatabase.getInstance().getReference().child("Facilities");
         dbRef.keepSynced(true);
         storageRef = FirebaseStorage.getInstance().getReference().child("Facilities");
@@ -53,18 +54,9 @@ public class CampusFacilityFragment extends Fragment {
         recyclerViewFacility.setHasFixedSize(true);
         recyclerViewFacility.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        showProgressLoadData();
         loadDataFromFirebaseDB();
 
         return view;
-    }
-
-    private void showProgressLoadData() {
-        progressDialogLoad = new ProgressDialog(getContext());
-        progressDialogLoad.setTitle("Loading");
-        progressDialogLoad.setMessage("Loading Data, Plz wait...");
-        progressDialogLoad.setCancelable(false);
-        progressDialogLoad.show();
     }
 
     private void loadDataFromFirebaseDB() {
@@ -78,11 +70,12 @@ public class CampusFacilityFragment extends Fragment {
 
                     @Override
                     protected void populateViewHolder(FacilityViewHolder viewHolder, FacilityModel model, int position) {
+
+                        spinKitViewFacility.setVisibility(View.GONE);
+
                         viewHolder.setName(model.getName());
                         viewHolder.setDescription(model.getDescription());
                         viewHolder.setImage(model.getImage());
-
-                        progressDialogLoad.dismiss();
 
 //                        Get Id or Key of user on Recycler Clicked Item.
 //                        getRef() ==> Will Get DatabaseReference then we will get the current user key or id.

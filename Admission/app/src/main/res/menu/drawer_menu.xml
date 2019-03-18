@@ -12,9 +12,11 @@
                 android:title="Chairman Message" />
             <item
                 android:id="@+id/team"
+                android:icon="@drawable/team_icon"
                 android:title="Superior Team" />
             <item
                 android:id="@+id/history"
+                android:icon="@drawable/history_icon"
                 android:title="Superior History" />
         </menu>
     </item>
@@ -27,6 +29,7 @@
                 android:title="Admission Schedule" />
             <item
                 android:id="@+id/rules"
+                android:icon="@drawable/rules_icon"
                 android:title="Rules and Regulations" />
         </menu>
     </item>
@@ -39,6 +42,7 @@
                 android:title="Campus Facility" />
             <item
                 android:id="@+id/activities"
+                android:icon="@drawable/activity_icon"
                 android:title="Curricular Activities" />
         </menu>
     </item>

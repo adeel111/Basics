@@ -1,330 +1,349 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/linear_layout"
+    <RelativeLayout
+        android:id="@+id/relative_layout_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:context=".Fragments.SuperiorHistoryFragment">
 
-        <LinearLayout
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/spin_kit_view_form"
+            style="@style/SpinKitView.Small.FadingCircle"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="30dp"
+            app:SpinKit_Color="@color/colorPrimaryDark" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/linear_layout_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/image_view_student"
-                android:layout_width="120dp"
-                android:layout_height="140dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:contentDescription="@string/content_description"
-                android:scaleType="centerCrop"
-                android:src="@drawable/student_place_holder" />
+            android:orientation="vertical"
+            tools:context=".Fragments.SuperiorHistoryFragment">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="17dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/image_view_student"
+                    android:layout_width="120dp"
+                    android:layout_height="140dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:contentDescription="@string/content_description"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/student_place_holder" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17dp"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/form_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:hint="Form No"
+                        android:inputType="number"
+                        android:textColor="@color/colorBlack"
+                        tools:ignore="Autofill,HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:hint="Date"
+                        android:inputType="date"
+                        tools:ignore="Autofill,HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/study_program"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:hint="Study Program"
+                        android:inputType="text"
+                        tools:ignore="Autofill,HardcodedText" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/form_no"
+                    android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:hint="Form No"
-                    android:inputType="number"
-                    android:textColor="@color/colorBlack"
-                    tools:ignore="Autofill,HardcodedText" />
-
-                <EditText
-                    android:id="@+id/date"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:hint="Date"
-                    android:inputType="date"
-                    tools:ignore="Autofill,HardcodedText" />
-
-                <EditText
-                    android:id="@+id/study_program"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:hint="Study Program"
+                    android:hint="Name"
                     android:inputType="text"
                     tools:ignore="Autofill,HardcodedText" />
+
+                <EditText
+                    android:id="@+id/father_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:hint="Father's Name"
+                    android:inputType="text"
+                    tools:ignore="Autofill,HardcodedText" />
+
+
+                <EditText
+                    android:id="@+id/father_occupation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:hint="Father's Occupation"
+                    android:inputType="text"
+                    tools:ignore="Autofill,HardcodedText" />
+
+                <EditText
+                    android:id="@+id/monthly_income"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:hint="Monthly Income"
+                    android:inputType="number"
+                    tools:ignore="Autofill,HardcodedText" />
+
+                <EditText
+                    android:id="@+id/phone_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:hint="Phone No."
+                    android:inputType="phone"
+                    tools:ignore="Autofill,HardcodedText" />
+
+                <EditText
+                    android:id="@+id/mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:hint="Mobile"
+                    android:inputType="phone"
+                    tools:ignore="Autofill,HardcodedText" />
+
+                <EditText
+                    android:id="@+id/student_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    tools:ignore="Autofill,HardcodedText" />
+
+                <EditText
+                    android:id="@+id/postal_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:hint="Address"
+                    android:inputType="text"
+                    tools:ignore="Autofill,HardcodedText" />
+
+                <EditText
+                    android:id="@+id/cnic_or_by_form_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:hint="Student's CNIC or Bay Form No."
+                    android:inputType="phone"
+                    tools:ignore="Autofill,HardcodedText" />
+
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:entries="@array/spinner_items" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:id="@+id/image_view_metric_result_card"
+                        android:layout_width="200dp"
+                        android:layout_height="250dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/content_description"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/metric_rc_place_holder"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/image_view_father_id_card"
+                        android:layout_width="200dp"
+                        android:layout_height="250dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/content_description"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/father_id_card_place_holder"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:id="@+id/image_view_bill"
+                        android:layout_width="200dp"
+                        android:layout_height="250dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/content_description"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bill_place_holder"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/image_view_salary"
+                        android:layout_width="200dp"
+                        android:layout_height="250dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/content_description"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/salary_slip_place_holder"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/button_submit_form"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/common_button_design"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="buttonSubmitForm"
+                    android:padding="11dp"
+                    android:text="Submit Form"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"
+                    tools:ignore="HardcodedText" />
+
+                <Button
+                    android:id="@+id/button_edit_form"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/common_button_design"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="buttonEditForm"
+                    android:padding="11dp"
+                    android:text="Edit Form"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"
+                    android:visibility="gone"
+                    tools:ignore="HardcodedText" />
+
+                <Button
+                    android:id="@+id/button_update_form"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/common_button_design"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="buttonUpdateForm"
+                    android:padding="11dp"
+                    android:text="Update Form"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"
+                    android:visibility="gone"
+                    tools:ignore="HardcodedText" />
+
+                <Button
+                    android:id="@+id/button_delete_form"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/common_button_design"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="buttonDeleteForm"
+                    android:padding="11dp"
+                    android:text="Delete Form"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"
+                    android:visibility="gone"
+                    tools:ignore="HardcodedText" />
+
             </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
-                android:hint="Name"
-                android:inputType="text"
-                tools:ignore="Autofill,HardcodedText" />
-
-            <EditText
-                android:id="@+id/father_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:hint="Father's Name"
-                android:inputType="text"
-                tools:ignore="Autofill,HardcodedText" />
-
-
-            <EditText
-                android:id="@+id/father_occupation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:hint="Father's Occupation"
-                android:inputType="text"
-                tools:ignore="Autofill,HardcodedText" />
-
-            <EditText
-                android:id="@+id/monthly_income"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:hint="Monthly Income"
-                android:inputType="number"
-                tools:ignore="Autofill,HardcodedText" />
-
-            <EditText
-                android:id="@+id/phone_no"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:hint="Phone No."
-                android:inputType="phone"
-                tools:ignore="Autofill,HardcodedText" />
-
-            <EditText
-                android:id="@+id/mobile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:hint="Mobile"
-                android:inputType="phone"
-                tools:ignore="Autofill,HardcodedText" />
-
-            <EditText
-                android:id="@+id/student_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                tools:ignore="Autofill,HardcodedText" />
-
-            <EditText
-                android:id="@+id/postal_code"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:hint="Address"
-                android:inputType="text"
-                tools:ignore="Autofill,HardcodedText" />
-
-            <EditText
-                android:id="@+id/cnic_or_by_form_no"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:hint="Student's CNIC or Bay Form No."
-                android:inputType="phone"
-                tools:ignore="Autofill,HardcodedText" />
-
-
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:entries="@array/spinner_items" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <ImageView
-                    android:id="@+id/image_view_metric_result_card"
-                    android:layout_width="200dp"
-                    android:layout_height="250dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/content_description"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/metric_rc_place_holder"
-                    android:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/image_view_father_id_card"
-                    android:layout_width="200dp"
-                    android:layout_height="250dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/content_description"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/father_id_card_place_holder"
-                    android:visibility="gone" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <ImageView
-                    android:id="@+id/image_view_bill"
-                    android:layout_width="200dp"
-                    android:layout_height="250dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/content_description"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/bill_place_holder"
-                    android:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/image_view_salary"
-                    android:layout_width="200dp"
-                    android:layout_height="250dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/content_description"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/salary_slip_place_holder"
-                    android:visibility="gone" />
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/button_submit_form"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="15dp"
-                android:background="@drawable/common_button_design"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="buttonSubmitForm"
-                android:padding="11dp"
-                android:text="Submit Form"
-                android:textAllCaps="false"
-                android:textColor="@color/colorWhite"
-                android:textSize="20sp"
-                tools:ignore="HardcodedText" />
-
-            <Button
-                android:id="@+id/button_edit_form"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="25dp"
-                android:background="@drawable/common_button_design"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="buttonEditForm"
-                android:padding="11dp"
-                android:text="Edit Form"
-                android:textAllCaps="false"
-                android:textColor="@color/colorWhite"
-                android:textSize="20sp"
-                android:visibility="gone"
-                tools:ignore="HardcodedText" />
-
-            <Button
-                android:id="@+id/button_update_form"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="25dp"
-                android:background="@drawable/common_button_design"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="buttonUpdateForm"
-                android:padding="11dp"
-                android:text="Update Form"
-                android:textAllCaps="false"
-                android:textColor="@color/colorWhite"
-                android:textSize="20sp"
-                android:visibility="gone"
-                tools:ignore="HardcodedText" />
-
-            <Button
-                android:id="@+id/button_delete_form"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="25dp"
-                android:background="@drawable/common_button_design"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="buttonDeleteForm"
-                android:padding="11dp"
-                android:text="Delete Form"
-                android:textAllCaps="false"
-                android:textColor="@color/colorWhite"
-                android:textSize="20sp"
-                android:visibility="gone"
-                tools:ignore="HardcodedText" />
-
-        </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 </ScrollView>

@@ -9,11 +9,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.adeeliftikhar.admission.Internet.CheckInternetConnectivity;
+import com.github.ybq.android.spinkit.SpinKitView;
+import com.github.ybq.android.spinkit.style.ThreeBounce;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -31,10 +35,14 @@ public class RegisterActivity extends AppCompatActivity {
             editTextRegisterAddress, editTextRegisterPassword;
     String incomingName, incomingEmail, incomingPhoneNo, incomingAddress, incomingPassword;
     TextView textViewGotoLoginPage;
-    LinearLayout linearLayout;
+    FrameLayout frameLayoutReg;
     FirebaseAuth mAuth;
     DatabaseReference dbRef;
-    ProgressDialog progressDialog;
+
+    SpinKitView spinKitViewReg;
+    LinearLayout linearLayoutReg;
+    ProgressBar progressBar;
+    ThreeBounce threeBounce;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +53,23 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void initializer() {
+
+        progressBar = findViewById(R.id.spin_kit_view_reg);
+        threeBounce = new ThreeBounce();
+        progressBar.setIndeterminateDrawable(threeBounce);
+
+        spinKitViewReg = findViewById(R.id.spin_kit_view_reg);
+        linearLayoutReg = findViewById(R.id.linear_layout_reg);
+        frameLayoutReg = findViewById(R.id.frame_layout_reg);
+
+        spinKitViewReg.setVisibility(View.GONE);
+
         editTextRegisterName = findViewById(R.id.edit_text_register_name);
         editTextRegisterEmail = findViewById(R.id.edit_text_register_email);
         editTextRegisterPhoneNo = findViewById(R.id.edit_text_register_phone_no);
         editTextRegisterAddress = findViewById(R.id.edit_text_register_address);
         editTextRegisterPassword = findViewById(R.id.edit_text_register_password);
         textViewGotoLoginPage = findViewById(R.id.text_view_goto_login_page);
-        linearLayout = findViewById(R.id.linear_layout);
         FirebaseApp.initializeApp(this);
 
 //        Goto Login Page...
@@ -72,8 +90,9 @@ public class RegisterActivity extends AppCompatActivity {
             if (!CheckInternetConnectivity.isConnected(RegisterActivity.this)) {
                 Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
             } else {
-                showProgressDialog();
                 signUp();
+                linearLayoutReg.setVisibility(View.GONE);
+                spinKitViewReg.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -92,7 +111,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void showSnackBar() {
-        Snackbar snackbar = Snackbar.make(linearLayout, "Please Fill All Fields", Snackbar.LENGTH_SHORT)
+        Snackbar snackbar = Snackbar.make(frameLayoutReg, "Please Fill All Fields", Snackbar.LENGTH_SHORT)
                 .setActionTextColor(Color.WHITE).setAction("Ok", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -102,14 +121,6 @@ public class RegisterActivity extends AppCompatActivity {
         View snackBarView = snackbar.getView();
         snackBarView.setBackgroundColor(Color.parseColor("#BF360C"));
         snackbar.show();
-    }
-
-    private void showProgressDialog() {
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Registration");
-        progressDialog.setMessage("Registration in Progress, Plz Wait.");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
     }
 
     private void signUp() {
@@ -136,13 +147,13 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                progressDialog.dismiss();
-                                Toast.makeText(RegisterActivity.this, "Registered Successfully, Now Login", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                Toast.makeText(RegisterActivity.this, "Registered Successfully, Plz Login Now", Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
                                 finish();
                             } else {
-                                progressDialog.hide();
+                                spinKitViewReg.setVisibility(View.GONE);
+                                linearLayoutReg.setVisibility(View.VISIBLE);
                                 FirebaseAuthException e = (FirebaseAuthException) task.getException();
                                 Toast.makeText(RegisterActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                             }

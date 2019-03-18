@@ -34,7 +34,6 @@ public class NotesRVAdapter extends RecyclerView.Adapter<NotesRVAdapter.NotesVie
     private Cursor myCursor;
     private static SQLiteDatabase sqLiteDB;
     private DatabaseOperations databaseOperations;
-    int adapterPosition;
 
     private ArrayList<String> myListData = new ArrayList<>();
     private ArrayList<String> myListFullData;
@@ -169,24 +168,9 @@ public class NotesRVAdapter extends RecyclerView.Adapter<NotesRVAdapter.NotesVie
                     String title = cursor.getString(1);
                     String date = cursor.getString(2);
                     String note = cursor.getString(3);
+
                     final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
                     View view = LayoutInflater.from(context).inflate(R.layout.alert_dialog_box_design, null);
-
-//                    ImageView buttonCancel = view.findViewById(R.id.cancel_button);
-
-//                    buttonCancel.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-//                                @Override
-//                                public void onDismiss(DialogInterface dialog) {
-//                                    dialog.dismiss();
-//                                    Toast.makeText(context, "Cancel Button Clicked", Toast.LENGTH_SHORT).show();
-//                                }
-//                            });
-//                        }
-//                    });
 
                     TextView textViewTitle = view.findViewById(R.id.text_view_dialog_title);
                     textViewTitle.setText(title);
@@ -203,9 +187,8 @@ public class NotesRVAdapter extends RecyclerView.Adapter<NotesRVAdapter.NotesVie
 
                         }
                     });
-
-                    builder.setCancelable(false);
                     builder.setView(view);
+                    builder.setCancelable(false);
                     builder.show();
                 } while (cursor.moveToNext());
             }

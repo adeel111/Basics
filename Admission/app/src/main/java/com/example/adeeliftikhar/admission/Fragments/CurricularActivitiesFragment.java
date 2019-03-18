@@ -19,6 +19,7 @@ import com.example.adeeliftikhar.admission.Model.FacilityModel;
 import com.example.adeeliftikhar.admission.R;
 import com.example.adeeliftikhar.admission.ViewHolder.ActivityViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -28,9 +29,10 @@ import com.google.firebase.storage.StorageReference;
  * A simple {@link Fragment} subclass.
  */
 public class CurricularActivitiesFragment extends Fragment {
-    ProgressDialog progressDialogLoad;
 
     RecyclerView recyclerViewActivity;
+
+    SpinKitView spinKitViewActivity;
 
     private DatabaseReference dbRef;
     private StorageReference storageRef;
@@ -46,6 +48,8 @@ public class CurricularActivitiesFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_curricular_activities, container, false);
 
+        spinKitViewActivity = view.findViewById(R.id.spin_kit_view_activity);
+
         dbRef = FirebaseDatabase.getInstance().getReference().child("Activities");
         dbRef.keepSynced(true);
         storageRef = FirebaseStorage.getInstance().getReference().child("Activities");
@@ -55,17 +59,8 @@ public class CurricularActivitiesFragment extends Fragment {
         recyclerViewActivity.setLayoutManager(new LinearLayoutManager(getContext()));
 
 //      Load Data from Firebase Database...
-        showProgressLoadData();
         loadDataFromFirebaseDB();
         return view;
-    }
-
-    private void showProgressLoadData() {
-        progressDialogLoad = new ProgressDialog(getContext());
-        progressDialogLoad.setTitle("Loading");
-        progressDialogLoad.setMessage("Loading Data, Plz wait...");
-        progressDialogLoad.setCancelable(false);
-        progressDialogLoad.show();
     }
 
     private void loadDataFromFirebaseDB() {
@@ -79,11 +74,12 @@ public class CurricularActivitiesFragment extends Fragment {
 
                     @Override
                     protected void populateViewHolder(ActivityViewHolder viewHolder, ActivityModel model, int position) {
+
+                        spinKitViewActivity.setVisibility(View.GONE);
+
                         viewHolder.setName(model.getName());
                         viewHolder.setDescription(model.getDescription());
                         viewHolder.setImage(model.getImage());
-
-                        progressDialogLoad.dismiss();
 
 //                        Get Id or Key of user on Recycler Clicked Item.
 //                        getRef() ==> Will Get DatabaseReference then we will get the current user key or id.

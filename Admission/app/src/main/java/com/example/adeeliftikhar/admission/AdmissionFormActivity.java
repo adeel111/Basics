@@ -21,11 +21,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.adeeliftikhar.admission.Internet.CheckInternetConnectivity;
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -76,8 +78,11 @@ public class AdmissionFormActivity extends AppCompatActivity {
     private int galleryPic = 1;
     private int a = 1;
     private int b = 1;
-    private LinearLayout linearLayout;
     private Spinner spinner;
+
+    private RelativeLayout relativeLayoutForm;
+    private SpinKitView spinKitViewForm;
+    private LinearLayout linearLayoutForm;
 
     private FirebaseAuth mAuth;
     private DatabaseReference dbRefAdmissions;
@@ -104,7 +109,6 @@ public class AdmissionFormActivity extends AppCompatActivity {
 
     private void initializer() {
 //        Initializing EditText...
-        showProgressDialog();
         formNo = findViewById(R.id.form_no);
         date = findViewById(R.id.date);
         name = findViewById(R.id.name);
@@ -169,7 +173,11 @@ public class AdmissionFormActivity extends AppCompatActivity {
 //        Initializing Spinner...
         spinner = findViewById(R.id.spinner);
 
-        linearLayout = findViewById(R.id.linear_layout);
+        relativeLayoutForm = findViewById(R.id.relative_layout_form);
+        spinKitViewForm = findViewById(R.id.spin_kit_view_form);
+        linearLayoutForm = findViewById(R.id.linear_layout_form);
+
+        linearLayoutForm.setVisibility(View.GONE);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -237,10 +245,13 @@ public class AdmissionFormActivity extends AppCompatActivity {
 //                Toast.makeText(AdmissionFormActivity.this, "After ==> " + incrementedFormNo, Toast.LENGTH_SHORT).show();
                 String num = String.valueOf(incrementedFormNo);
                 formNo.setText(num);
-                progressDialog.dismiss();
+                spinKitViewForm.setVisibility(View.GONE);
+                linearLayoutForm.setVisibility(View.VISIBLE);
             }
 // else {
 //                    formNo.setText("1");
+//                    spinKitViewForm.setVisibility(View.GONE);
+//                    linearLayoutForm.setVisibility(View.VISIBLE);
 //                }
 //            }
 
@@ -252,6 +263,7 @@ public class AdmissionFormActivity extends AppCompatActivity {
     }
 
     public void buttonSubmitForm(View view) {
+        b = 1;
 //        First make sure that fields are not empty and correctly filled along with images inserted.
         Boolean response = validateTextData();
         if (!response) {
@@ -1597,7 +1609,7 @@ public class AdmissionFormActivity extends AppCompatActivity {
     }
 
     private void showSnackBar() {
-        Snackbar mySnackbar = Snackbar.make(linearLayout, "Plz Fill All Fields & Insert Images", Snackbar.LENGTH_SHORT)
+        Snackbar mySnackbar = Snackbar.make(relativeLayoutForm, "Plz Fill All Fields & Insert Images", Snackbar.LENGTH_SHORT)
                 .setActionTextColor(Color.WHITE).setAction("Ok", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -1846,6 +1858,7 @@ public class AdmissionFormActivity extends AppCompatActivity {
 //    Update the Form...
 
     public void buttonUpdateForm(View view) {
+        b = 0;
         updateForm();
     }
 
@@ -1941,7 +1954,7 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 buttonEditForm.setVisibility(View.GONE);
                 buttonUpdateForm.setVisibility(View.GONE);
                 buttonDeleteForm.setVisibility(View.GONE);
-                Toast.makeText(AdmissionFormActivity.this, "Form is Deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdmissionFormActivity.this, "Form is Deleted Successfully", Toast.LENGTH_SHORT).show();
             }
         }).setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
@@ -2302,35 +2315,22 @@ public class AdmissionFormActivity extends AppCompatActivity {
 
     private void showProgressDialog() {
         progressDialog = new ProgressDialog(AdmissionFormActivity.this);
-        progressDialog.setTitle("Loading");
-        progressDialog.setMessage("Loading Admission Form, Plz wait...");
+        progressDialog.setMessage("Retrieving Form...");
         progressDialog.setCancelable(false);
         progressDialog.show();
     }
 
     private void showProgressDialogSubmit() {
         progressDialogSubmit = new ProgressDialog(AdmissionFormActivity.this);
-        progressDialogSubmit.setTitle("Submitting");
-        progressDialogSubmit.setMessage("Submitting Admission Form, Plz wait...");
+        progressDialogSubmit.setMessage("Submitting Form...");
         progressDialogSubmit.setCancelable(false);
         progressDialogSubmit.show();
     }
 
     private void showProgressDialogUpdate() {
         progressDialogUpdate = new ProgressDialog(AdmissionFormActivity.this);
-        progressDialogUpdate.setTitle("Updating");
-        progressDialogUpdate.setMessage("Updating Admission Form, Plz wait...");
+        progressDialogUpdate.setMessage("Updating Form...");
         progressDialogUpdate.setCancelable(false);
         progressDialogUpdate.show();
-    }
-
-    public void onPause() {
-        super.onPause();
-        b = 1;
-    }
-
-    public void onStop() {
-        super.onStop();
-        b = 1;
     }
 }

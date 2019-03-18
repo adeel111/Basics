@@ -52,7 +52,6 @@ public class SuperiorTeamFragment extends Fragment {
 
         spinKitView = view.findViewById(R.id.spin_kit_view);
 
-
         dbRef = FirebaseDatabase.getInstance().getReference().child("SuperiorTeam");
         storageRef = FirebaseStorage.getInstance().getReference().child("TeamMember");
 

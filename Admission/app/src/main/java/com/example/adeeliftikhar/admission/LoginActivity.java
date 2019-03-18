@@ -150,10 +150,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    linearLayoutSpinKit.setVisibility(View.GONE);
-                    linearLayoutMaterial.setVisibility(View.VISIBLE);
-                    linearLayoutMaterialOne.setVisibility(View.VISIBLE);
-                    Toast.makeText(LoginActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(LoginActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
