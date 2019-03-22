@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<UOS>
+    <Administration>
+        <AccountOffice>Account Office</AccountOffice>
+        <ExaminationOffice>Examination Office</ExaminationOffice>
+        <TreasureOffice>Treasure Office</TreasureOffice>
+    </Administration>
+
+    <Departments>
+        <CSIT> CS and IT </CSIT>
+        <Urdu> Urdu </Urdu>
+        <Physics> Physics </Physics>
+        <Chemistry> Chemistry </Chemistry>
+    </Departments>
+
+</UOS>

@@ -1,19 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    android:fillViewport="true">
 
-    <TextView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Tab One Fragment"
-        android:gravity="center"
-        android:textStyle="italic"
-        android:textSize="25sp"
-        android:fontFamily="serif"
-        android:textColor="@color/colorPrimary"
-        tools:ignore="HardcodedText" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".HomeFragment">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:text="Tab One Fragment"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:textStyle="italic"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:text="Tab One Fragment"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:textStyle="italic"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:text="Tab One Fragment"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:textStyle="italic"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:text="Tab One Fragment"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:textStyle="italic"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:text="Tab One Fragment"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:textStyle="italic"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:text="Tab One Fragment"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:textStyle="italic"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:text="Tab One Fragment"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:textStyle="italic"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:text="Tab One Fragment"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:textStyle="italic"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:text="Tab One Fragment"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:textStyle="italic"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:text="Tab One Fragment"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:textStyle="italic"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:text="Tab One Fragment"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:textStyle="italic"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+</ScrollView>

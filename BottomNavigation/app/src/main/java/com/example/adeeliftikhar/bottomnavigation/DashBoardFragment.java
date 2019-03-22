@@ -27,8 +27,8 @@ public class DashBoardFragment extends Fragment {
     BottomSheetBehavior sheetBehavior;
     View bottomSheetDialogView;
 
-    public DashBoardFragment() {
-        // Required empty public constructor
+    public static DashBoardFragment newInstance() {
+        return new DashBoardFragment();
     }
 
     @Override

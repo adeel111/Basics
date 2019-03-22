@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="UOS" type="UOSType"/>
+  <xs:complexType name="AdministrationType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="AccountOffice"/>
+      <xs:element type="xs:string" name="ExaminationOffice"/>
+      <xs:element type="xs:string" name="TreasureOffice"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UOSType">
+    <xs:sequence>
+      <xs:element type="AdministrationType" name="Administration"/>
+      <xs:element type="DepartmentsType" name="Departments"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DepartmentsType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="CSIT"/>
+      <xs:element type="xs:string" name="Urdu"/>
+      <xs:element type="xs:string" name="Physics"/>
+      <xs:element type="xs:string" name="Chemistry"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

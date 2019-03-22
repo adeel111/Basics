@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Student" type="StudentType"/>
+  <xs:complexType name="MarksType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="CGPA"/>
+      <xs:element type="xs:string" name="Grade"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AdressType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="Street"/>
+      <xs:element type="xs:string" name="City"/>
+      <xs:element type="xs:string" name="Country"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NameType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="FirstName"/>
+      <xs:element type="xs:string" name="SecondName"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StudentType">
+    <xs:sequence>
+      <xs:element type="NameType" name="Name"/>
+      <xs:element type="ClassType" name="Class"/>
+      <xs:element type="xs:string" name="RollNo"/>
+      <xs:element type="AdressType" name="Adress"/>
+      <xs:element type="MarksType" name="Marks"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ClassType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="Program"/>
+      <xs:element type="xs:string" name="Semester"/>
+      <xs:element type="xs:string" name="Timing"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

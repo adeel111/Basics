@@ -14,8 +14,8 @@ import android.view.ViewGroup;
 public class TabThreeFragment extends Fragment {
 
 
-    public TabThreeFragment() {
-        // Required empty public constructor
+    public static TabThreeFragment newInstance() {
+        return new TabThreeFragment();
     }
 
 

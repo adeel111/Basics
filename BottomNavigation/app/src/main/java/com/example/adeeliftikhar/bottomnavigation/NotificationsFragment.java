@@ -14,8 +14,8 @@ import android.view.ViewGroup;
 public class NotificationsFragment extends Fragment {
 
 
-    public NotificationsFragment() {
-        // Required empty public constructor
+    public static NotificationsFragment newInstance() {
+        return new NotificationsFragment();
     }
 
 

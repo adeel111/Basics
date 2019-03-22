@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <TchrInfo>
+    <Teacher>
+        <tchr_CNIC> 001 </tchr_CNIC>
+        <tchr_name> 3 </tchr_name>
+        <specializaton> 400 </specializaton>
+    </Teacher>
+
+    <Teacher>
+        <tchr_CNIC> 001 </tchr_CNIC>
+        <tchr_name> 3 </tchr_name>
+        <specializaton> 400 </specializaton>
+    </Teacher>
+    <Teacher>
+        <tchr_CNIC> 001 </tchr_CNIC>
+        <tchr_name> 3 </tchr_name>
+        <specializaton> 400 </specializaton>
+    </Teacher>
+</TchrInfo>

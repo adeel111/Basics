@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Employee" type="EmployeeType"/>
+  <xs:complexType name="ExperienceType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="start"/>
+      <xs:element type="xs:string" name="current"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QualificationType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="matric"/>
+      <xs:element type="xs:string" name="master"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AdressType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="Street"/>
+      <xs:element type="xs:string" name="City"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NameType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="FirstName"/>
+      <xs:element type="xs:string" name="SecondName"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EmployeeType">
+    <xs:sequence>
+      <xs:element type="NameType" name="Name"/>
+      <xs:element type="QualificationType" name="Qualification"/>
+      <xs:element type="xs:string" name="hobby"/>
+      <xs:element type="AdressType" name="Adress"/>
+      <xs:element type="ExperienceType" name="Experience"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

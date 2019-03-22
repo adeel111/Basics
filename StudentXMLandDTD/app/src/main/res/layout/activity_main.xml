@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Student >
+
+    <Name>
+
+        <FirstName>Adeel</FirstName>
+
+        <SecondName>Iftikhar</SecondName>
+    </Name>
+
+    <Class>
+
+        <Program>BSSE</Program>
+
+        <Semester>8</Semester>
+
+        <Timing>Morning</Timing>
+    </Class>
+
+    <RollNo>BSEF15M023</RollNo>
+
+    <Adress>
+        <Street> Satellite Town</Street>
+        <City> Sargodha </City>
+        <Country> Pakistan </Country>
+    </Adress>
+
+    <Marks>
+        <CGPA> 2.88 </CGPA>
+        <Grade> B </Grade>
+    </Marks>
+</Student>

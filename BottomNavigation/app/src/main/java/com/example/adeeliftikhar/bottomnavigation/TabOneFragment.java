@@ -2,7 +2,10 @@ package com.example.adeeliftikhar.bottomnavigation;
 
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +16,8 @@ import android.view.ViewGroup;
  */
 public class TabOneFragment extends Fragment {
 
-
-    public TabOneFragment() {
-        // Required empty public constructor
+    public static TabOneFragment newInstance() {
+        return new TabOneFragment();
     }
 
 
