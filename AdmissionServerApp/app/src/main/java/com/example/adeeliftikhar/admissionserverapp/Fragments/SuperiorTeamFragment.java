@@ -69,18 +69,19 @@ import static android.app.Activity.RESULT_OK;
  */
 public class SuperiorTeamFragment extends Fragment {
 
-    FloatingActionButton fabButtonAdd;
     ImageView imageViewTeamMember;
     EditText editTextName, editTextDesignation, editTextMessage;
     Button buttonAddMember, buttonDismiss;
     int galleryPic = 1;
+    int count = 1;
     String imageURI;
     boolean gotImage;
 
-    RelativeLayout relativeLayout;
-    RelativeLayout relativeLayoutFab;
+    private RelativeLayout relativeLayoutTeam;
     private SpinKitView spinKitViewTeam;
-    RecyclerView recyclerViewTeam;
+    private RecyclerView recyclerViewTeam;
+    private RelativeLayout relativeLayoutTeamFabButton;
+    FloatingActionButton fabButtonAddTeam;
 
     private DatabaseReference dbRef;
     private DatabaseReference dbRefSpecificUser;
@@ -101,19 +102,17 @@ public class SuperiorTeamFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_superior_team, container, false);
 
-        fabButtonAdd = view.findViewById(R.id.fab_button_add);
+        relativeLayoutTeam = view.findViewById(R.id.relative_layout_team);
+        spinKitViewTeam = view.findViewById(R.id.spin_kit_view_team);
+        relativeLayoutTeamFabButton = view.findViewById(R.id.relative_layout_team_fab_button);
 
-        fabButtonAdd.setOnClickListener(new View.OnClickListener() {
+        fabButtonAddTeam = view.findViewById(R.id.fab_button_add_team);
+        fabButtonAddTeam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openAlertDialogBoxAdd();
             }
         });
-
-        spinKitViewTeam = view.findViewById(R.id.spin_kit_view_team);
-
-        relativeLayout = view.findViewById(R.id.relativelayout);
-        relativeLayoutFab = view.findViewById(R.id.relative_layout_fab);
 
         dbRef = FirebaseDatabase.getInstance().getReference().child("SuperiorTeam");
         dbRef.keepSynced(true);
@@ -124,15 +123,11 @@ public class SuperiorTeamFragment extends Fragment {
         recyclerViewTeam.setLayoutManager(new LinearLayoutManager(getContext()));
         dbRef.keepSynced(true);
 
-        relativeLayoutFab.setVisibility(View.GONE);
+//      Load Data from Fire_base Database...
 
-        return view;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
+        relativeLayoutTeamFabButton.setVisibility(View.GONE);
         loadDataFromFirebaseDB();
+        return view;
     }
 
     public void openAlertDialogBoxAdd() {
@@ -341,13 +336,13 @@ public class SuperiorTeamFragment extends Fragment {
                     @Override
                     protected void populateViewHolder(TeamViewHolder viewHolder, SuperiorTeamModel model, int position) {
 
-                        spinKitViewTeam.setVisibility(View.GONE);
-                        relativeLayoutFab.setVisibility(View.VISIBLE);
-
                         viewHolder.setName(model.getName());
                         viewHolder.setDesignation(model.getDesignation());
                         viewHolder.setMessage(model.getMessage());
                         viewHolder.setImage(model.getImage());
+
+                        spinKitViewTeam.setVisibility(View.GONE);
+                        relativeLayoutTeamFabButton.setVisibility(View.VISIBLE);
 
                         final String userKey = getRef(position).getKey();
 
@@ -385,6 +380,7 @@ public class SuperiorTeamFragment extends Fragment {
     public boolean onContextItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == 0) {
+            count = 1;
             loadSpecificUserFromFirebaseDB();
             gotImage = true;
             return true;
@@ -401,12 +397,16 @@ public class SuperiorTeamFragment extends Fragment {
         dbRefSpecificUser.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String name = dataSnapshot.child("name").getValue().toString();
-                String designation = dataSnapshot.child("designation").getValue().toString();
-                String message = dataSnapshot.child("message").getValue().toString();
-                String image = dataSnapshot.child("image").getValue().toString();
+                if (count == 1) {
+//                    This count variable will prevent unnecessary calls to onDataChange
+                    count = 2;
+                    String name = dataSnapshot.child("name").getValue().toString();
+                    String designation = dataSnapshot.child("designation").getValue().toString();
+                    String message = dataSnapshot.child("message").getValue().toString();
+                    String image = dataSnapshot.child("image").getValue().toString();
 
-                showAlertDialogBoxUpdate(name, designation, message, image);
+                    showAlertDialogBoxUpdate(name, designation, message, image);
+                }
             }
 
             @Override
@@ -458,7 +458,7 @@ public class SuperiorTeamFragment extends Fragment {
     }
 
     private void showSnackBar() {
-        Snackbar mySnackbar = Snackbar.make(relativeLayout, "Please Fill All Fields", Snackbar.LENGTH_SHORT);
+        Snackbar mySnackbar = Snackbar.make(relativeLayoutTeam, "Please Fill All Fields", Snackbar.LENGTH_SHORT);
         View snackBarView = mySnackbar.getView();
         TextView textView = snackBarView.findViewById(android.support.design.R.id.snackbar_text);
         textView.setTextColor(Color.WHITE);

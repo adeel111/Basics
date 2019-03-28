@@ -34,6 +34,7 @@ import com.example.adeeliftikhar.admissionserverapp.Model.FacilityModel;
 import com.example.adeeliftikhar.admissionserverapp.R;
 import com.example.adeeliftikhar.admissionserverapp.ViewHolder.FacilityViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuthException;
@@ -71,8 +72,10 @@ public class CurricularActivitiesFragment extends Fragment {
     ProgressDialog progressDialogLoad;
     ProgressDialog progressDialogSend;
 
+    RelativeLayout relativeLayoutActivity;
+    SpinKitView spinKitViewActivity;
+    RelativeLayout relativeLayoutActivityFabButton;
     RecyclerView recyclerViewActivity;
-    RelativeLayout relativeLayout;
 
     private DatabaseReference dbRef;
     private StorageReference storageRef;
@@ -88,13 +91,12 @@ public class CurricularActivitiesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_curricular_activities, container, false);
-        dbRef = FirebaseDatabase.getInstance().getReference().child("Activities");
-        dbRef.keepSynced(true);
-        storageRef = FirebaseStorage.getInstance().getReference().child("Activities");
-        relativeLayout = view.findViewById(R.id.relativelayout);
+
+        relativeLayoutActivity = view.findViewById(R.id.relative_layout_activity);
+        spinKitViewActivity = view.findViewById(R.id.spin_kit_view_activity);
+        relativeLayoutActivityFabButton = view.findViewById(R.id.relative_layout_activity_fab_button);
 
         fabButtonAddActivity = view.findViewById(R.id.fab_button_add_activity);
-
         fabButtonAddActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,12 +104,17 @@ public class CurricularActivitiesFragment extends Fragment {
             }
         });
 
+        dbRef = FirebaseDatabase.getInstance().getReference().child("Activities");
+        dbRef.keepSynced(true);
+        storageRef = FirebaseStorage.getInstance().getReference().child("Activities");
+
         recyclerViewActivity = view.findViewById(R.id.recycler_view_activity);
         recyclerViewActivity.setHasFixedSize(true);
         recyclerViewActivity.setLayoutManager(new LinearLayoutManager(getContext()));
 
 //      Load Data from Firebase Database...
-        showProgressLoadData();
+
+        relativeLayoutActivityFabButton.setVisibility(View.GONE);
         loadDataFromFirebaseDB();
         return view;
     }
@@ -299,7 +306,9 @@ public class CurricularActivitiesFragment extends Fragment {
                         viewHolder.setDescription(model.getDescription());
                         viewHolder.setImage(model.getImage());
 
-                        progressDialogLoad.dismiss();
+                        spinKitViewActivity.setVisibility(View.GONE);
+                        relativeLayoutActivityFabButton.setVisibility(View.VISIBLE);
+
 //                        get the key of each item at which data is store in Firebase Database...
                         final String userKey = getRef(position).getKey();
                         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -313,24 +322,15 @@ public class CurricularActivitiesFragment extends Fragment {
         recyclerViewActivity.setAdapter(adapter);
     }
 
-    private void showProgressLoadData() {
-        progressDialogLoad = new ProgressDialog(getContext());
-        progressDialogLoad.setTitle("Loading");
-        progressDialogLoad.setMessage("Loading Data, Plz wait...");
-        progressDialogLoad.setCancelable(false);
-        progressDialogLoad.show();
-    }
-
     private void showProgressDialogSend() {
         progressDialogSend = new ProgressDialog(getContext());
-        progressDialogSend.setTitle("Uploading");
-        progressDialogSend.setMessage("Uploading Data, Plz wait...");
+        progressDialogSend.setMessage("Uploading Data...");
         progressDialogSend.setCancelable(false);
         progressDialogSend.show();
     }
 
     private void showCnackBar() {
-        Snackbar mySnackbar = Snackbar.make(relativeLayout, "Please Fill All Fields and Insert Image", Snackbar.LENGTH_SHORT);
+        Snackbar mySnackbar = Snackbar.make(relativeLayoutActivity, "Please Fill All Fields and Insert Image", Snackbar.LENGTH_SHORT);
         View snackBarView = mySnackbar.getView();
         TextView textView = snackBarView.findViewById(android.support.design.R.id.snackbar_text);
         textView.setTextColor(Color.WHITE);

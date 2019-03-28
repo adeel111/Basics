@@ -35,6 +35,7 @@ import com.example.adeeliftikhar.admissionserverapp.R;
 import com.example.adeeliftikhar.admissionserverapp.ViewHolder.FacilityViewHolder;
 import com.example.adeeliftikhar.admissionserverapp.ViewHolder.TeamViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuthException;
@@ -62,19 +63,19 @@ import static android.app.Activity.RESULT_OK;
  */
 public class CampusFacilityFragment extends Fragment {
 
-    FloatingActionButton fabButtonAddFacility;
     ImageView imageViewFacility;
     EditText editTextFacilityName, editTextFacilityDesc;
     Button buttonAddFacility, buttonDismiss;
     int galleryPic = 1;
     String imageURI;
     boolean gotImage;
-
-    ProgressDialog progressDialogLoad;
     ProgressDialog progressDialogSend;
 
-    RecyclerView recyclerViewFacility;
-    RelativeLayout relativeLayout;
+    private RelativeLayout relativeLayoutFacility;
+    private SpinKitView spinKitViewFacility;
+    private RecyclerView recyclerViewFacility;
+    private RelativeLayout relativeLayoutFabButton;
+    private FloatingActionButton fabButtonAddFacility;
 
     private DatabaseReference dbRef;
     private StorageReference storageRef;
@@ -92,13 +93,11 @@ public class CampusFacilityFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_campus_facility, container, false);
 
-        dbRef = FirebaseDatabase.getInstance().getReference().child("Facilities");
-        dbRef.keepSynced(true);
-        storageRef = FirebaseStorage.getInstance().getReference().child("Facilities");
-        relativeLayout = view.findViewById(R.id.relativelayout);
+        relativeLayoutFacility = view.findViewById(R.id.relative_layout_facility);
+        spinKitViewFacility = view.findViewById(R.id.spin_kit_view_facility);
+        relativeLayoutFabButton = view.findViewById(R.id.relative_layout_fab_button);
 
         fabButtonAddFacility = view.findViewById(R.id.fab_button_add_facility);
-
         fabButtonAddFacility.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,13 +105,17 @@ public class CampusFacilityFragment extends Fragment {
             }
         });
 
+        dbRef = FirebaseDatabase.getInstance().getReference().child("Facilities");
+        dbRef.keepSynced(true);
+        storageRef = FirebaseStorage.getInstance().getReference().child("Facilities");
+
         recyclerViewFacility = view.findViewById(R.id.recycler_view_facility);
         recyclerViewFacility.setHasFixedSize(true);
         recyclerViewFacility.setLayoutManager(new LinearLayoutManager(getContext()));
 
+//      Load Data from Fire_base Database...
 
-//      Load Data from Firebase Database...
-        showProgressLoadData();
+        relativeLayoutFabButton.setVisibility(View.GONE);
         loadDataFromFirebaseDB();
         return view;
     }
@@ -273,7 +276,6 @@ public class CampusFacilityFragment extends Fragment {
         });
     }
 
-
     private void clearAllFields() {
         editTextFacilityName.setText("");
         editTextFacilityDesc.setText("");
@@ -291,11 +293,13 @@ public class CampusFacilityFragment extends Fragment {
 
                     @Override
                     protected void populateViewHolder(FacilityViewHolder viewHolder, FacilityModel model, int position) {
+
                         viewHolder.setName(model.getName());
                         viewHolder.setDescription(model.getDescription());
                         viewHolder.setImage(model.getImage());
 
-                        progressDialogLoad.dismiss();
+                        spinKitViewFacility.setVisibility(View.GONE);
+                        relativeLayoutFabButton.setVisibility(View.VISIBLE);
 
 //                        Get Id or Key of user on Recycler Clicked Item.
 //                        getRef() ==> Will Get DatabaseReference then we will get the current user key or id.
@@ -312,24 +316,15 @@ public class CampusFacilityFragment extends Fragment {
         recyclerViewFacility.setAdapter(adapter);
     }
 
-    private void showProgressLoadData() {
-        progressDialogLoad = new ProgressDialog(getContext());
-        progressDialogLoad.setTitle("Loading");
-        progressDialogLoad.setMessage("Loading Data, Plz wait...");
-        progressDialogLoad.setCancelable(false);
-        progressDialogLoad.show();
-    }
-
     private void showProgressDialogSend() {
         progressDialogSend = new ProgressDialog(getContext());
-        progressDialogSend.setTitle("Uploading");
-        progressDialogSend.setMessage("Uploading Data, Plz wait...");
+        progressDialogSend.setMessage("Uploading Data...");
         progressDialogSend.setCancelable(false);
         progressDialogSend.show();
     }
 
     private void showCnackBar() {
-        Snackbar mySnackbar = Snackbar.make(relativeLayout, "Please Fill All Fields and Insert Image", Snackbar.LENGTH_SHORT);
+        Snackbar mySnackbar = Snackbar.make(relativeLayoutFacility, "Please Fill All Fields and Insert Image", Snackbar.LENGTH_SHORT);
         View snackBarView = mySnackbar.getView();
         TextView textView = snackBarView.findViewById(android.support.design.R.id.snackbar_text);
         textView.setTextColor(Color.WHITE);
