@@ -3,6 +3,7 @@ package com.example.adeeliftikhar.admissionserverapp.Fragments;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,7 +17,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -38,11 +41,16 @@ import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -64,13 +72,14 @@ public class CurricularActivitiesFragment extends Fragment {
     FloatingActionButton fabButtonAddActivity;
     ImageView imageViewActivity;
     EditText editTextActivityName, editTextActivityDesc;
-    Button buttonAddActivity, buttonDismiss;
+    Button buttonAddActivity, buttonDismissActivity;
     int galleryPic = 1;
+    private int count = 1;
     String imageURI;
     boolean gotImage;
 
-    ProgressDialog progressDialogLoad;
     ProgressDialog progressDialogSend;
+    AlertDialog.Builder alertDialogDelete;
 
     RelativeLayout relativeLayoutActivity;
     SpinKitView spinKitViewActivity;
@@ -78,6 +87,7 @@ public class CurricularActivitiesFragment extends Fragment {
     RecyclerView recyclerViewActivity;
 
     private DatabaseReference dbRef;
+    private DatabaseReference dbRefSpecificUser;
     private StorageReference storageRef;
 
     ActivityModel activityModel;
@@ -133,7 +143,7 @@ public class CurricularActivitiesFragment extends Fragment {
         editTextActivityName = view.findViewById(R.id.edit_text_activity_name);
         editTextActivityDesc = view.findViewById(R.id.edit_text_activity_desc);
         buttonAddActivity = view.findViewById(R.id.button_add_activity);
-        buttonDismiss = view.findViewById(R.id.button_dismiss_activity);
+        buttonDismissActivity = view.findViewById(R.id.button_dismiss_activity);
 
         buttonAddActivity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,7 +159,7 @@ public class CurricularActivitiesFragment extends Fragment {
         builder.setView(view);
         builder.setCancelable(false);
         final AlertDialog alertDialog = builder.show();
-        buttonDismiss.setOnClickListener(new View.OnClickListener() {
+        buttonDismissActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
@@ -259,20 +269,38 @@ public class CurricularActivitiesFragment extends Fragment {
 
         activityModel = new ActivityModel(stringName, stringDescription, imageURI);
 
-        dbRef.push().setValue(activityModel).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    progressDialogSend.dismiss();
-                    Toast.makeText(getContext(), "Data Upload Successfully", Toast.LENGTH_SHORT).show();
+        if (buttonAddActivity.getText().equals("Add Activity")) {
+            dbRef.push().setValue(activityModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        progressDialogSend.dismiss();
+                        Toast.makeText(getContext(), "Data Uploaded Successfully", Toast.LENGTH_SHORT).show();
 //                    Now clear all fields...
-                    clearAllFields();
-                } else {
-                    FirebaseAuthException e = (FirebaseAuthException) task.getException();
-                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        clearAllFields();
+                    } else {
+                        FirebaseAuthException e = (FirebaseAuthException) task.getException();
+                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
+            });
+        }
+        if (buttonAddActivity.getText().equals("Update")) {
+            dbRefSpecificUser.setValue(activityModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        progressDialogSend.dismiss();
+                        Toast.makeText(getContext(), "Data Updated Successfully", Toast.LENGTH_SHORT).show();
+//                    Now clear all fields...
+                        clearAllFields();
+                    } else {
+                        FirebaseAuthException e = (FirebaseAuthException) task.getException();
+                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
     }
 
     private void clearAllFields() {
@@ -311,15 +339,165 @@ public class CurricularActivitiesFragment extends Fragment {
 
 //                        get the key of each item at which data is store in Firebase Database...
                         final String userKey = getRef(position).getKey();
-                        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                        viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                             @Override
-                            public void onClick(View v) {
-                                Toast.makeText(getContext(), "View Clicked Key" + userKey, Toast.LENGTH_SHORT).show();
+                            public boolean onLongClick(View view) {
+//                                Toast.makeText(getContext(), "View Clicked Key" + userKey, Toast.LENGTH_SHORT).show();
+                                dbRefSpecificUser = FirebaseDatabase.getInstance().getReference().child("Activities").child(userKey);
+//                                Register context menu (Give view, by clicking this view, it will appear)...
+
+                                registerForContextMenu(view);
+                                return false;
                             }
                         });
                     }
                 };
         recyclerViewActivity.setAdapter(adapter);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        menu.setHeaderTitle("Select Action");
+        menu.add(0, 0, 0, "Update");//groupId, itemId, order, title
+        menu.add(0, 1, 1, "Delete");
+
+//        Way to use Context Menu in Fragments...
+//        MenuInflater inflater = getActivity().getMenuInflater();
+//        inflater.inflate(R.menu.team_menu, menu);
+//        menu.setHeaderTitle("Choose one");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == 0) {
+            count = 1;
+            loadSpecificUserFromFirebaseDB();
+            gotImage = true;
+            return true;
+        }
+        if (id == 1) {
+            showAlertDialogDelete();
+            return true;
+        }
+        return true;
+    }
+
+    private void loadSpecificUserFromFirebaseDB() {
+
+        dbRefSpecificUser.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (count == 1) {
+//                    This count variable will prevent unnecessary calls to onDataChange
+                    count = 2;
+                    String name = dataSnapshot.child("name").getValue().toString();
+                    String description = dataSnapshot.child("description").getValue().toString();
+                    String image = dataSnapshot.child("image").getValue().toString();
+
+                    showAlertDialogBoxUpdate(name, description, image);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void showAlertDialogDelete() {
+        alertDialogDelete = new AlertDialog.Builder(getContext());
+        alertDialogDelete.setTitle("Delete");
+        alertDialogDelete.setMessage("Do you want to Delete this Activity...");
+        alertDialogDelete.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+//                Call DeleteMember method to delete member from firebase...
+                if (!CheckInternetConnectivity.isConnected(getContext())) {
+                    Toast.makeText(getContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+                } else {
+                    deleteMember();
+                }
+            }
+        });
+        alertDialogDelete.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        alertDialogDelete.setCancelable(false);
+        alertDialogDelete.show();
+    }
+
+    private void deleteMember() {
+        dbRefSpecificUser.removeValue(new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                Toast.makeText(getContext(), "Activity is Deleted", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void showAlertDialogBoxUpdate(String name, String description, final String image) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.activity_alert_dialog_design, null);
+
+        imageViewActivity = view.findViewById(R.id.image_view_activity);
+
+        if (!image.equals("false")) {
+            Picasso.get().load(image).placeholder(R.drawable.common_pic_place_holder).into(imageViewActivity, new Callback() {
+                @Override
+                public void onSuccess() {
+//                    getImage();
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    Picasso.get().load(image).placeholder(R.drawable.common_pic_place_holder).into(imageViewActivity);
+                }
+            });
+        }
+
+        imageViewActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getImage();
+            }
+        });
+
+        editTextActivityName = view.findViewById(R.id.edit_text_activity_name);
+        editTextActivityDesc = view.findViewById(R.id.edit_text_activity_desc);
+        buttonAddActivity = view.findViewById(R.id.button_add_activity);
+        buttonDismissActivity = view.findViewById(R.id.button_dismiss_activity);
+
+        buttonAddActivity.setText("Update");
+
+        editTextActivityName.setText(name);
+        editTextActivityDesc.setText(description);
+
+        buttonAddActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadData();
+            }
+        });
+
+        builder.setView(view);
+        builder.setCancelable(false);
+
+//        This is the way to dismiss AlertDialog by Custom button instead of setPositive or
+//        setNegative Button...
+        final AlertDialog alertDialog = builder.show();
+        buttonDismissActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
     }
 
     private void showProgressDialogSend() {

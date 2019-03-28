@@ -73,7 +73,7 @@ public class SuperiorTeamFragment extends Fragment {
     EditText editTextName, editTextDesignation, editTextMessage;
     Button buttonAddMember, buttonDismiss;
     int galleryPic = 1;
-    int count = 1;
+    private int count = 1;
     String imageURI;
     boolean gotImage;
 
@@ -81,7 +81,7 @@ public class SuperiorTeamFragment extends Fragment {
     private SpinKitView spinKitViewTeam;
     private RecyclerView recyclerViewTeam;
     private RelativeLayout relativeLayoutTeamFabButton;
-    FloatingActionButton fabButtonAddTeam;
+    private FloatingActionButton fabButtonAddTeam;
 
     private DatabaseReference dbRef;
     private DatabaseReference dbRefSpecificUser;
@@ -426,7 +426,7 @@ public class SuperiorTeamFragment extends Fragment {
     private void showAlertDialogDelete() {
         alertDialogDelete = new AlertDialog.Builder(getContext());
         alertDialogDelete.setTitle("Delete");
-        alertDialogDelete.setMessage("Do you want to Delete Team Member...");
+        alertDialogDelete.setMessage("Do you want to Delete your Team Member...");
         alertDialogDelete.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
