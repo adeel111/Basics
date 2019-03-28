@@ -16,8 +16,6 @@
         android:layout_height="80dp"
         app:SpinKit_Color="@color/colorPrimaryDark" />
 
-
-
     <LinearLayout
         android:id="@+id/linear_layout_team"
         android:layout_width="match_parent"

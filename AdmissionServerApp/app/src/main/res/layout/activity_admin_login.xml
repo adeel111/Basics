@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true">
-
 
     <LinearLayout
         android:id="@+id/linear_layout"
@@ -16,7 +16,25 @@
         android:weightSum="10"
         tools:context=".LoginActivity">
 
+    <LinearLayout
+        android:id="@+id/linear_layout_spin_kit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="10"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/spin_kit_view"
+            style="@style/SpinKitView.Small.ThreeBounce"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:SpinKit_Color="@color/colorPrimaryDark" />
+
+    </LinearLayout>
+
         <LinearLayout
+            android:id="@+id/linear_layout_material"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
@@ -35,6 +53,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linear_layout_material_one"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="7"

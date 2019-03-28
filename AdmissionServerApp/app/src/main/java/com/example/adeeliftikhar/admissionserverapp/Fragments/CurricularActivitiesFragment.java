@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.adeeliftikhar.admissionserverapp.Adapter.ActivitiesListAdapter;
+import com.example.adeeliftikhar.admissionserverapp.Internet.CheckInternetConnectivity;
 import com.example.adeeliftikhar.admissionserverapp.Model.ActivityModel;
 import com.example.adeeliftikhar.admissionserverapp.Model.FacilityModel;
 import com.example.adeeliftikhar.admissionserverapp.R;
@@ -62,7 +63,7 @@ public class CurricularActivitiesFragment extends Fragment {
     FloatingActionButton fabButtonAddActivity;
     ImageView imageViewActivity;
     EditText editTextActivityName, editTextActivityDesc;
-    Button buttonAddActivity;
+    Button buttonAddActivity, buttonDismiss;
     int galleryPic = 1;
     String imageURI;
     boolean gotImage;
@@ -97,7 +98,7 @@ public class CurricularActivitiesFragment extends Fragment {
         fabButtonAddActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openAlertDialogBox();
+                openAlertDialogBoxAdd();
             }
         });
 
@@ -111,7 +112,7 @@ public class CurricularActivitiesFragment extends Fragment {
         return view;
     }
 
-    public void openAlertDialogBox() {
+    public void openAlertDialogBoxAdd() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         View view = LayoutInflater.from(getContext()).inflate(R.layout.activity_alert_dialog_design, null);
         imageViewActivity = view.findViewById(R.id.image_view_activity);
@@ -125,16 +126,28 @@ public class CurricularActivitiesFragment extends Fragment {
         editTextActivityName = view.findViewById(R.id.edit_text_activity_name);
         editTextActivityDesc = view.findViewById(R.id.edit_text_activity_desc);
         buttonAddActivity = view.findViewById(R.id.button_add_activity);
+        buttonDismiss = view.findViewById(R.id.button_dismiss_activity);
 
         buttonAddActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadData();
+                if (!CheckInternetConnectivity.isConnected(getContext())) {
+                    Toast.makeText(getContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+                } else {
+                    uploadData();
+                }
             }
         });
 
         builder.setView(view);
-        builder.show();
+        builder.setCancelable(false);
+        final AlertDialog alertDialog = builder.show();
+        buttonDismiss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
     }
 
     private void getImage() {
@@ -276,7 +289,7 @@ public class CurricularActivitiesFragment extends Fragment {
                                 FacilityViewHolder.class,
                                 dbRef) {
 
-//         populateViewHolder is used to populate (display) View given to RecyclerView...
+                    //         populateViewHolder is used to populate (display) View given to RecyclerView...
                     @Override
                     protected void populateViewHolder(FacilityViewHolder viewHolder, FacilityModel model, int position) {
 //                        viewHolder ==> holds view...

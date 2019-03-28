@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.example.adeeliftikhar.admissionserverapp.Adapter.FacilityRecyclerAdapter;
 import com.example.adeeliftikhar.admissionserverapp.DataProvider.FacilityDataProvider;
+import com.example.adeeliftikhar.admissionserverapp.Internet.CheckInternetConnectivity;
 import com.example.adeeliftikhar.admissionserverapp.Model.FacilityModel;
 import com.example.adeeliftikhar.admissionserverapp.Model.SuperiorTeamModel;
 import com.example.adeeliftikhar.admissionserverapp.R;
@@ -64,7 +65,7 @@ public class CampusFacilityFragment extends Fragment {
     FloatingActionButton fabButtonAddFacility;
     ImageView imageViewFacility;
     EditText editTextFacilityName, editTextFacilityDesc;
-    Button buttonAddFacility;
+    Button buttonAddFacility, buttonDismiss;
     int galleryPic = 1;
     String imageURI;
     boolean gotImage;
@@ -101,7 +102,7 @@ public class CampusFacilityFragment extends Fragment {
         fabButtonAddFacility.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openAlertDialogBox();
+                openAlertDialogBoxAdd();
             }
         });
 
@@ -116,7 +117,7 @@ public class CampusFacilityFragment extends Fragment {
         return view;
     }
 
-    public void openAlertDialogBox() {
+    public void openAlertDialogBoxAdd() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         View view = LayoutInflater.from(getContext()).inflate(R.layout.facility_alert_dialog_design, null);
         imageViewFacility = view.findViewById(R.id.image_view_facility);
@@ -130,16 +131,28 @@ public class CampusFacilityFragment extends Fragment {
         editTextFacilityName = view.findViewById(R.id.edit_text_facility_name);
         editTextFacilityDesc = view.findViewById(R.id.edit_text_facility_desc);
         buttonAddFacility = view.findViewById(R.id.button_add_facility);
+        buttonDismiss = view.findViewById(R.id.button_dismiss_facility);
 
         buttonAddFacility.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadData();
+                if (!CheckInternetConnectivity.isConnected(getContext())) {
+                    Toast.makeText(getContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+                } else {
+                    uploadData();
+                }
             }
         });
 
         builder.setView(view);
-        builder.show();
+        builder.setCancelable(false);
+        final AlertDialog alertDialog = builder.show();
+        buttonDismiss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
     }
 
     private void getImage() {

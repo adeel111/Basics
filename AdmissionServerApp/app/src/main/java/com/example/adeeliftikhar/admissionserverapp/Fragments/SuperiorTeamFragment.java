@@ -1,6 +1,5 @@
 package com.example.adeeliftikhar.admissionserverapp.Fragments;
 
-
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -27,15 +26,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.adeeliftikhar.admissionserverapp.Internet.CheckInternetConnectivity;
 import com.example.adeeliftikhar.admissionserverapp.Model.SuperiorTeamModel;
 import com.example.adeeliftikhar.admissionserverapp.R;
 import com.example.adeeliftikhar.admissionserverapp.ViewHolder.TeamViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuthException;
@@ -69,22 +72,22 @@ public class SuperiorTeamFragment extends Fragment {
     FloatingActionButton fabButtonAdd;
     ImageView imageViewTeamMember;
     EditText editTextName, editTextDesignation, editTextMessage;
-    Button buttonAddMember, buttonDissmiss;
+    Button buttonAddMember, buttonDismiss;
     int galleryPic = 1;
     String imageURI;
     boolean gotImage;
+
     RelativeLayout relativeLayout;
+    RelativeLayout relativeLayoutFab;
+    private SpinKitView spinKitViewTeam;
+    RecyclerView recyclerViewTeam;
 
     private DatabaseReference dbRef;
     private DatabaseReference dbRefSpecificUser;
     private StorageReference storageRef;
 
-    ProgressDialog progressDialogLoad;
     ProgressDialog progressDialogSend;
-
     AlertDialog.Builder alertDialogDelete;
-
-    RecyclerView recyclerViewTeam;
 
     SuperiorTeamModel teamModel;
 
@@ -92,18 +95,11 @@ public class SuperiorTeamFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_superior_team, container, false);
-
-
-        dbRef = FirebaseDatabase.getInstance().getReference().child("SuperiorTeam");
-        dbRef.keepSynced(true);
-        storageRef = FirebaseStorage.getInstance().getReference().child("TeamMember");
-        relativeLayout = view.findViewById(R.id.relativelayout);
 
         fabButtonAdd = view.findViewById(R.id.fab_button_add);
 
@@ -114,15 +110,29 @@ public class SuperiorTeamFragment extends Fragment {
             }
         });
 
+        spinKitViewTeam = view.findViewById(R.id.spin_kit_view_team);
+
+        relativeLayout = view.findViewById(R.id.relativelayout);
+        relativeLayoutFab = view.findViewById(R.id.relative_layout_fab);
+
+        dbRef = FirebaseDatabase.getInstance().getReference().child("SuperiorTeam");
+        dbRef.keepSynced(true);
+        storageRef = FirebaseStorage.getInstance().getReference().child("TeamMember");
+
         recyclerViewTeam = view.findViewById(R.id.recycler_view_team);
         recyclerViewTeam.setHasFixedSize(true);
         recyclerViewTeam.setLayoutManager(new LinearLayoutManager(getContext()));
+        dbRef.keepSynced(true);
 
-//      Load Data from Firebase Database...
-        showProgressLoadData();
-        loadDataFromFirebaseDB();
+        relativeLayoutFab.setVisibility(View.GONE);
 
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        loadDataFromFirebaseDB();
     }
 
     public void openAlertDialogBoxAdd() {
@@ -140,7 +150,7 @@ public class SuperiorTeamFragment extends Fragment {
         editTextDesignation = view.findViewById(R.id.team_mate_designation);
         editTextMessage = view.findViewById(R.id.team_mate_message);
         buttonAddMember = view.findViewById(R.id.button_add_member);
-        buttonDissmiss = view.findViewById(R.id.button_dismiss);
+        buttonDismiss = view.findViewById(R.id.button_dismiss);
 
         buttonAddMember.setText("Add Member");
 
@@ -154,7 +164,7 @@ public class SuperiorTeamFragment extends Fragment {
         builder.setView(view);
         builder.setCancelable(false);
         final AlertDialog alertDialog = builder.show();
-        buttonDissmiss.setOnClickListener(new View.OnClickListener() {
+        buttonDismiss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
@@ -222,9 +232,13 @@ public class SuperiorTeamFragment extends Fragment {
         if (!result || !gotImage) {
             showSnackBar();
         } else {
-            showProgressDialogSend();
+            if (!CheckInternetConnectivity.isConnected(getContext())) {
+                Toast.makeText(getContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+            } else {
+                showProgressDialogSend();
 //        First get image URI, then call sendAllData() method on its onSuccessListener...
-            getImageUri();
+                getImageUri();
+            }
         }
     }
 
@@ -327,12 +341,13 @@ public class SuperiorTeamFragment extends Fragment {
                     @Override
                     protected void populateViewHolder(TeamViewHolder viewHolder, SuperiorTeamModel model, int position) {
 
+                        spinKitViewTeam.setVisibility(View.GONE);
+                        relativeLayoutFab.setVisibility(View.VISIBLE);
+
                         viewHolder.setName(model.getName());
                         viewHolder.setDesignation(model.getDesignation());
                         viewHolder.setMessage(model.getMessage());
                         viewHolder.setImage(model.getImage());
-
-                        progressDialogLoad.dismiss();
 
                         final String userKey = getRef(position).getKey();
 
@@ -401,18 +416,9 @@ public class SuperiorTeamFragment extends Fragment {
         });
     }
 
-    private void showProgressLoadData() {
-        progressDialogLoad = new ProgressDialog(getContext());
-        progressDialogLoad.setTitle("Loading");
-        progressDialogLoad.setMessage("Loading Data, Plz wait...");
-        progressDialogLoad.setCancelable(false);
-        progressDialogLoad.show();
-    }
-
     private void showProgressDialogSend() {
         progressDialogSend = new ProgressDialog(getContext());
-        progressDialogSend.setTitle("Uploading");
-        progressDialogSend.setMessage("Uploading Data, Plz wait...");
+        progressDialogSend.setMessage("Uploading Data...");
         progressDialogSend.setCancelable(false);
         progressDialogSend.show();
     }
@@ -425,7 +431,11 @@ public class SuperiorTeamFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 //                Call DeleteMember method to delete member from firebase...
-                deleteMember();
+                if (!CheckInternetConnectivity.isConnected(getContext())) {
+                    Toast.makeText(getContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+                } else {
+                    deleteMember();
+                }
             }
         });
         alertDialogDelete.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -487,7 +497,7 @@ public class SuperiorTeamFragment extends Fragment {
         editTextDesignation = view.findViewById(R.id.team_mate_designation);
         editTextMessage = view.findViewById(R.id.team_mate_message);
         buttonAddMember = view.findViewById(R.id.button_add_member);
-        buttonDissmiss = view.findViewById(R.id.button_dismiss);
+        buttonDismiss = view.findViewById(R.id.button_dismiss);
 
         buttonAddMember.setText("Update");
 
@@ -508,7 +518,7 @@ public class SuperiorTeamFragment extends Fragment {
 //        This is the way to dismiss AlertDialog by Custom button instead of setPositive or
 //        setNegative Button...
         final AlertDialog alertDialog = builder.show();
-        buttonDissmiss.setOnClickListener(new View.OnClickListener() {
+        buttonDismiss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();

@@ -1,70 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
 
     <LinearLayout
+        android:id="@+id/main_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:context=".AllFragments.ChairmanMessageFragment">
+        tools:context=".Fragments.ChairmanMessageFragment">
 
-        <ImageView
-            android:id="@+id/image_view_chairman"
+        <LinearLayout
+            android:id="@+id/linear_layout_spin_kit_message"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="15dp"
-            android:contentDescription="@string/content_description"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:src="@drawable/common_pic_place_holder" />
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/chairman_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:gravity="center"
-            android:padding="5dp"
-            android:hint="Chairman Name"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText" />
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/spin_kit_view"
+                style="@style/SpinKitView.Small.FadingCircle"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:SpinKit_Color="@color/colorPrimaryDark" />
 
-        <EditText
-            android:id="@+id/chairman_message"
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_layout_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="19dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:hint="Chairman Message"
-            android:textSize="16sp"
-            tools:ignore="HardcodedText" />
+            android:orientation="vertical"
+            tools:context=".AllFragments.ChairmanMessageFragment">
 
-        <Button
-            android:id="@+id/button_send_data"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/home_buttons_design"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="updateMessage"
-            android:padding="13dp"
-            android:text="Upload Data"
-            android:textAllCaps="false"
-            android:textColor="@color/colorWhite"
-            android:textSize="20sp"
-            tools:ignore="HardcodedText" />
+            <ImageView
+                android:id="@+id/image_view_chairman"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="15dp"
+                android:contentDescription="@string/content_description"
+                android:gravity="center"
+                android:src="@drawable/common_pic_place_holder" />
+
+            <EditText
+                android:id="@+id/chairman_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:hint="Chairman Name"
+                android:padding="5dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+            <EditText
+                android:id="@+id/chairman_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:hint="Chairman Message"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
+
+            <Button
+                android:id="@+id/button_send_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/home_buttons_design"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="updateMessage"
+                android:padding="13dp"
+                android:text="Upload Data"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

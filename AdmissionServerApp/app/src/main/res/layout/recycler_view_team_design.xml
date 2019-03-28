@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/team_mate_image_design"
         android:layout_width="70dp"
         android:layout_height="70dp"
@@ -43,7 +43,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:text="@string/message"
+        android:text="Team Member Message"
         android:textSize="16sp"
         tools:ignore="HardcodedText" />
 

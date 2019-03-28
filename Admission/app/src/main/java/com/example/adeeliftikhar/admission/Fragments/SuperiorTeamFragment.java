@@ -66,7 +66,6 @@ public class SuperiorTeamFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-
         loadDataFromFirebaseDB();
     }
 

@@ -8,10 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.adeeliftikhar.admissionserverapp.Internet.CheckInternetConnectivity;
 import com.example.adeeliftikhar.admissionserverapp.R;
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +31,9 @@ public class RulesAndRegulationsFragment extends Fragment {
     EditText rules;
     Button buttonUploadRules;
 
+    SpinKitView spinKitViewRules;
+    LinearLayout linearLayoutRules;
+
     private DatabaseReference dbRef;
 
     public RulesAndRegulationsFragment() {
@@ -41,6 +47,12 @@ public class RulesAndRegulationsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_rules_and_regulations, container, false);
 
+        linearLayoutRules = view.findViewById(R.id.linear_layout_rules);
+        spinKitViewRules = view.findViewById(R.id.spin_kit_view_rules);
+
+        linearLayoutRules.setVisibility(View.GONE);
+        spinKitViewRules.setVisibility(View.VISIBLE);
+
         rules = view.findViewById(R.id.rules);
         buttonUploadRules = view.findViewById(R.id.button_upload_rules);
         dbRef = FirebaseDatabase.getInstance().getReference().child("Rules");
@@ -48,7 +60,11 @@ public class RulesAndRegulationsFragment extends Fragment {
         buttonUploadRules.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadRules();
+                if (!CheckInternetConnectivity.isConnected(getContext())) {
+                    Toast.makeText(getContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+                } else {
+                    uploadRules();
+                }
             }
         });
 
@@ -75,6 +91,8 @@ public class RulesAndRegulationsFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String StringRules = dataSnapshot.child("rules").getValue().toString();
+                spinKitViewRules.setVisibility(View.GONE);
+                linearLayoutRules.setVisibility(View.VISIBLE);
                 rules.setText(StringRules);
             }
 

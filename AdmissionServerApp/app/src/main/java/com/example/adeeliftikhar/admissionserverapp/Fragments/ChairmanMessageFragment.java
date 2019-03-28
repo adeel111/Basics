@@ -17,9 +17,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.adeeliftikhar.admissionserverapp.Internet.CheckInternetConnectivity;
 import com.example.adeeliftikhar.admissionserverapp.R;
+import com.github.ybq.android.spinkit.style.FadingCircle;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -57,11 +61,14 @@ public class ChairmanMessageFragment extends Fragment {
     private Button buttonSendData;
     String stringName, stringMessage;
 
+    LinearLayout linearLayoutSpinKitMessage, linearLayoutMessage;
+    ProgressBar progressBar;
+    FadingCircle fadingCircle;
+
     private DatabaseReference dbRef;
     private StorageReference storageRef;
 
     private int galleryPic = 1;
-    ProgressDialog progressDialog;
     ProgressDialog progressDialogSend;
 
     public ChairmanMessageFragment() {
@@ -79,13 +86,21 @@ public class ChairmanMessageFragment extends Fragment {
         imageViewChairman = view.findViewById(R.id.image_view_chairman);
         chairmanName = view.findViewById(R.id.chairman_name);
         chairmanMessage = view.findViewById(R.id.chairman_message);
+
         buttonSendData = view.findViewById(R.id.button_send_data);
+        progressBar = view.findViewById(R.id.spin_kit_view);
+        fadingCircle = new FadingCircle();
+        progressBar.setIndeterminateDrawable(fadingCircle);
+
+        linearLayoutSpinKitMessage = view.findViewById(R.id.linear_layout_spin_kit_message);
+        linearLayoutMessage = view.findViewById(R.id.linear_layout_message);
+
+        linearLayoutMessage.setVisibility(View.GONE);
 
         dbRef = FirebaseDatabase.getInstance().getReference().child("ChairmanMessage");
         storageRef = FirebaseStorage.getInstance().getReference().child("Chairman");
 
         getDataFromFirebase();
-        showProgressDialog();
 
 
         imageViewChairman.setOnClickListener(new View.OnClickListener() {
@@ -160,9 +175,13 @@ public class ChairmanMessageFragment extends Fragment {
 
     //    Sending data to Firebase...
     private void sendDataToFirebase() {
-        showProgressDialogSend();
-        sendTextData();
-        sendImage();
+        if (!CheckInternetConnectivity.isConnected(getContext())) {
+            Toast.makeText(getContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+        } else {
+            showProgressDialogSend();
+            sendTextData();
+            sendImage();
+        }
     }
 
     private void sendTextData() {
@@ -206,7 +225,7 @@ public class ChairmanMessageFragment extends Fragment {
                             @Override
                             public void onSuccess(Object o) {
                                 progressDialogSend.dismiss();
-                                Toast.makeText(getContext(), "Data Upload Successfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "Data Uploaded Successfully", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -229,12 +248,14 @@ public class ChairmanMessageFragment extends Fragment {
                 Picasso.get().load(chairmanPic).placeholder(R.drawable.common_pic_place_holder).into(imageViewChairman, new Callback() {
                     @Override
                     public void onSuccess() {
-                        progressDialog.dismiss();
+                        linearLayoutSpinKitMessage.setVisibility(View.GONE);
+                        linearLayoutMessage.setVisibility(View.VISIBLE);
                     }
 
                     @Override
                     public void onError(Exception e) {
-                        progressDialog.dismiss();
+                        linearLayoutSpinKitMessage.setVisibility(View.GONE);
+                        linearLayoutMessage.setVisibility(View.VISIBLE);
                         Picasso.get().load(chairmanPic).placeholder(R.drawable.common_pic_place_holder).into(imageViewChairman);
                     }
                 });
@@ -247,18 +268,9 @@ public class ChairmanMessageFragment extends Fragment {
         });
     }
 
-    private void showProgressDialog() {
-        progressDialog = new ProgressDialog(getContext());
-        progressDialog.setTitle("Loading");
-        progressDialog.setMessage("Loading previous Data, Plz wait...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-    }
-
     private void showProgressDialogSend() {
         progressDialogSend = new ProgressDialog(getContext());
-        progressDialogSend.setTitle("Uploading");
-        progressDialogSend.setMessage("Uploading Data, Plz wait...");
+        progressDialogSend.setMessage("Uploading Data...");
         progressDialogSend.setCancelable(false);
         progressDialogSend.show();
     }
