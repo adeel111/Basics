@@ -452,7 +452,7 @@ public class SuperiorTeamFragment extends Fragment {
         dbRefSpecificUser.removeValue(new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                Toast.makeText(getContext(), "Member is Deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Team Member is Deleted", Toast.LENGTH_SHORT).show();
             }
         });
     }

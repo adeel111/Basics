@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Messenger</string>
+    <string name="register_button_text">Register</string>
+    <string name="login_button_text">Signin</string>
+    <string name="login_text">Already have an Account? Login</string>
+    <string name="register_text">Not have an Account? Register</string>
+</resources>
