@@ -2,11 +2,12 @@
 <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent" android:layout_height="match_parent"
         android:fillViewport="true">
 
     <LinearLayout
+            android:id="@+id/linear_layout_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -15,28 +16,51 @@
             android:background="@color/colorBackground"
             tools:context=".MainActivity">
 
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="0dp"
-                      android:layout_weight="1"
-                      android:orientation="vertical"
-                      android:gravity="center|bottom">
+        <LinearLayout
+                android:id="@+id/linear_layout_spin_kit_register"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:gravity="center"
+                android:orientation="vertical">
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                    android:id="@+id/spin_kit_view_register"
+                    style="@style/SpinKitView.Small.ThreeBounce"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    app:SpinKit_Color="@color/colorWhite"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/linear_layout_one"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center|bottom">
 
             <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/register_circle_image"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="@color/colorPrimaryDark"
                     android:padding="@dimen/paddingTop"
                     android:layout_marginTop="@dimen/marginTopBottom"
                     android:src="@drawable/common_pic_place_holder"/>
 
         </LinearLayout>
 
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="0dp"
-                      android:layout_weight="3"
-                      android:orientation="vertical"
-                      android:gravity="center|top"
-                      android:layout_marginTop="@dimen/marginStartEnd">
+        <LinearLayout
+                android:id="@+id/linear_layout_two"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:orientation="vertical"
+                android:gravity="center|top"
+                android:layout_marginTop="@dimen/marginStartEnd">
 
             <EditText
                     android:id="@+id/edit_text_register_name"
@@ -117,14 +141,15 @@
             <TextView
                     android:id="@+id/text_view_have_account"
                     android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:text="@string/login_text"
-                      android:textStyle="italic|bold"
-                      android:textColor="@color/colorWhite"
-                      android:textSize="16sp"
-                      android:layout_marginTop="@dimen/marginTopBottom"/>
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_text"
+                    android:textStyle="italic|bold"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:layout_marginTop="@dimen/marginTopBottom"/>
 
         </LinearLayout>
 
     </LinearLayout>
+
 </ScrollView>
