@@ -122,10 +122,11 @@ class RegisterActivity : AppCompatActivity() {
 //                Now upload all Data to Firebase...
 
                 val currentUser = FirebaseAuth.getInstance().currentUser?.uid.toString()
+                val id = currentUser
                 val dbRef = FirebaseDatabase.getInstance().getReference("UsersInfo/$currentUser")
 //                val dbRef = FirebaseDatabase.getInstance().getReference("UsersInfo")
 
-                val registerModel = RegisterModel(name, email, password, downloadImageUri.toString())
+                val registerModel = RegisterModel(id, name, email, password, downloadImageUri.toString())
 
                 dbRef.setValue(registerModel).addOnCompleteListener {
                     if (it.isSuccessful) {

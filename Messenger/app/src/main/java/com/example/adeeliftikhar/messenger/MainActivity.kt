@@ -2,21 +2,104 @@ package com.example.adeeliftikhar.messenger
 
 import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.annotation.DrawableRes
+import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AlertDialog
+import android.support.v7.widget.DividerItemDecoration
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import com.example.adeeliftikhar.messenger.Internet.CheckInternetConnectivity
+import com.example.adeeliftikhar.messenger.Models.ChatMessageModel
+import com.example.adeeliftikhar.messenger.Models.RegisterModel
 import com.example.adeeliftikhar.messenger.SessionsManager.LoginSessionManager
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.Item
+import com.xwray.groupie.ViewHolder
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.latest_message_row.view.*
 
 class MainActivity : AppCompatActivity() {
+    private val adapter = GroupAdapter<ViewHolder>()
+    private val latestMessageMap = HashMap<String, ChatMessageModel>()
+
+    companion object {
+        var currentUser: RegisterModel? = null
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        spin_kit_view_latest_message.visibility = View.VISIBLE
+        recycler_view_latest_messages.adapter = adapter
+        recycler_view_latest_messages.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+
+        adapter.setOnItemClickListener { item, view ->
+            val intent = Intent(this, ChatLogActivity::class.java)
+            val row = item as LatestMessageRow
+            intent.putExtra(NewMessageActivity.USER_KEY, row.chatPartnerUser)
+            startActivity(intent)
+        }
+
+        getLatestMessage()
+        fetchCurrentUser()
+    }
+
+    private fun refreshRecyclerViewMessage() {
+        adapter.clear()
+        latestMessageMap.values.forEach {
+            adapter.add(LatestMessageRow(chatMessage = it))
+        }
+    }
+
+    private fun getLatestMessage() {
+        val fromID = FirebaseAuth.getInstance().uid
+        val dbRef = FirebaseDatabase.getInstance().getReference("/LatestMessage/$fromID")
+        dbRef.keepSynced(true)
+        dbRef.addChildEventListener(object : ChildEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+            }
+
+            override fun onChildMoved(p0: DataSnapshot, p1: String?) {
+            }
+
+            override fun onChildChanged(p0: DataSnapshot, p1: String?) {
+                val chatMessage = p0.getValue(ChatMessageModel::class.java) ?: return
+                latestMessageMap[p0.key!!] = chatMessage
+                refreshRecyclerViewMessage()
+            }
+
+            override fun onChildAdded(p0: DataSnapshot, p1: String?) {
+                val chatMessage = p0.getValue(ChatMessageModel::class.java) ?: return
+                latestMessageMap[p0.key!!] = chatMessage
+                refreshRecyclerViewMessage()
+                spin_kit_view_latest_message.visibility = View.GONE
+            }
+
+            override fun onChildRemoved(p0: DataSnapshot) {
+            }
+        })
+    }
+
+    private fun fetchCurrentUser() {
+        val uid = FirebaseAuth.getInstance().uid
+        val dbRef = FirebaseDatabase.getInstance().getReference("/UsersInfo/$uid")
+        dbRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                currentUser = p0.getValue(RegisterModel::class.java)
+            }
+
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -34,6 +117,9 @@ class MainActivity : AppCompatActivity() {
                     val intent = Intent(this, NewMessageActivity::class.java)
                     startActivity(intent)
                 }
+            }
+            R.id.profile -> {
+                Toast.makeText(this, "Pending Profile", Toast.LENGTH_SHORT).show()
             }
             R.id.logout -> {
                 logoutAlertBox()

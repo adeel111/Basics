@@ -1,9 +1,11 @@
 package com.example.adeeliftikhar.messenger
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
 import android.view.View
 import com.example.adeeliftikhar.messenger.Models.RegisterModel
 import com.google.firebase.database.DataSnapshot
@@ -14,6 +16,7 @@ import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_new_message.*
 import kotlinx.android.synthetic.main.new_msg_rv_design.view.*
 
@@ -56,6 +59,7 @@ class NewMessageActivity : AppCompatActivity() {
                 }
 
                 new_message_rv.adapter = adapter
+                new_message_rv.addItemDecoration(DividerItemDecoration(this@NewMessageActivity, DividerItemDecoration.VERTICAL))
                 spin_kit_view_new_message.visibility = View.GONE
             }
 

@@ -1,5 +1,6 @@
 package com.example.adeeliftikhar.messenger
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
@@ -23,6 +24,8 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        supportActionBar?.title = "Login Here"
 
         val progressBar = spin_kit_view_login
         val threeBounce = ThreeBounce()

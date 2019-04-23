@@ -8,22 +8,21 @@
             android:appComponentFactory="whateverString"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
+            android:roundIcon="@drawable/launcher_icon"
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
             tools:ignore="AllowBackup,GoogleAppIndexingWarning"
             tools:replace="android:appComponentFactory">
         <activity
-                android:name=".MainActivity"
-                android:label="Home">
+                android:name=".MainActivity">
         </activity>
         <activity
                 android:name=".RegisterActivity"
                 android:label="Register Here">
         </activity>
         <activity
-                android:name=".LoginActivity"
-                android:label="Login Here">
+                android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

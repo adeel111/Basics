@@ -25,6 +25,8 @@
 
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/new_message_rv"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
