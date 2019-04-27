@@ -29,6 +29,7 @@ class RegisterActivity : AppCompatActivity() {
     private var password: String = ""
     private var selectedPhotoURI: Uri? = null
     private var downloadImageUri: String? = null
+    var gotImage: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +73,7 @@ class RegisterActivity : AppCompatActivity() {
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoURI)
             val bitmapDrawable = BitmapDrawable(bitmap)
             register_circle_image.setImageDrawable(bitmapDrawable)
+            gotImage = true
         }
     }
 
@@ -80,13 +82,14 @@ class RegisterActivity : AppCompatActivity() {
         name = edit_text_register_name.text.toString().trim()
         email = edit_text_register_email.text.toString().trim()
         password = edit_text_register_password.text.toString().trim()
-        if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
+        if (name.isEmpty() || email.isEmpty() || password.isEmpty() || !gotImage) {
             showSnackBar()
         } else {
 //            Checking Internet Connectivity...
             if (!CheckInternetConnectivity.isConnected(this)) {
                 Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show()
             } else {
+                supportActionBar?.title = "Registering"
                 linear_layout_spin_kit_register.visibility = View.VISIBLE
 
 //            Firebase Authentication...
@@ -99,6 +102,7 @@ class RegisterActivity : AppCompatActivity() {
                     }
                 }
                     .addOnFailureListener {
+                        supportActionBar?.title = "Register Here"
                         linear_layout_spin_kit_register.visibility = View.GONE
 
                         Log.d("Register", "${it.message}")
@@ -112,18 +116,19 @@ class RegisterActivity : AppCompatActivity() {
 
 //        Firstly get downloadImageUri...
 
+        val currentUserID = FirebaseAuth.getInstance().currentUser?.uid.toString()
+        val id = currentUserID
+
         if (selectedPhotoURI == null) return
-        val fileName = UUID.randomUUID().toString()
-        val storageRef = FirebaseStorage.getInstance().getReference("Images/UsersImages/$fileName")
+//        val fileName = UUID.randomUUID().toString()
+        val storageRef = FirebaseStorage.getInstance().getReference("Images/UsersImages/$currentUserID")
         storageRef.putFile(selectedPhotoURI!!).addOnCompleteListener {
             storageRef.downloadUrl.addOnSuccessListener {
                 downloadImageUri = it.toString()
 
 //                Now upload all Data to Firebase...
 
-                val currentUser = FirebaseAuth.getInstance().currentUser?.uid.toString()
-                val id = currentUser
-                val dbRef = FirebaseDatabase.getInstance().getReference("UsersInfo/$currentUser")
+                val dbRef = FirebaseDatabase.getInstance().getReference("UsersInfo/$currentUserID")
 //                val dbRef = FirebaseDatabase.getInstance().getReference("UsersInfo")
 
                 val registerModel = RegisterModel(id, name, email, password, downloadImageUri.toString())
@@ -147,8 +152,9 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun showSnackBar() {
         val linearLayout = linear_layout_register
-        val snackbar = Snackbar.make(linearLayout, "Please Fill All Fields", Snackbar.LENGTH_SHORT)
-            .setActionTextColor(Color.WHITE).setAction("Ok") { }
+        val snackbar =
+            Snackbar.make(linearLayout, "Please Fill All Fields \n And Insert an Image", Snackbar.LENGTH_SHORT)
+                .setActionTextColor(Color.WHITE).setAction("Ok") { }
         val snackBarView = snackbar.view
         snackBarView.setBackgroundColor(Color.parseColor("#BF360C"))
         snackbar.show()

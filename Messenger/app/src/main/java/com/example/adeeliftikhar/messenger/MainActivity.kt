@@ -57,33 +57,49 @@ class MainActivity : AppCompatActivity() {
         latestMessageMap.values.forEach {
             adapter.add(LatestMessageRow(chatMessage = it))
         }
+        if (adapter.itemCount != 0) {
+            spin_kit_view_latest_message.visibility = View.GONE
+        }
     }
 
     private fun getLatestMessage() {
         val fromID = FirebaseAuth.getInstance().uid
         val dbRef = FirebaseDatabase.getInstance().getReference("/LatestMessage/$fromID")
         dbRef.keepSynced(true)
-        dbRef.addChildEventListener(object : ChildEventListener {
-            override fun onCancelled(p0: DatabaseError) {
+        dbRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (!snapshot.exists()) {
+                    text_view_no_chat.visibility = View.VISIBLE
+                    spin_kit_view_latest_message.visibility = View.GONE
+                } else {
+                    dbRef.addChildEventListener(object : ChildEventListener {
+                        override fun onCancelled(p0: DatabaseError) {
+                        }
+
+                        override fun onChildMoved(p0: DataSnapshot, p1: String?) {
+                        }
+
+                        override fun onChildChanged(p0: DataSnapshot, p1: String?) {
+                            val chatMessage = p0.getValue(ChatMessageModel::class.java) ?: return
+                            latestMessageMap[p0.key!!] = chatMessage
+                            refreshRecyclerViewMessage()
+                        }
+
+                        override fun onChildAdded(p0: DataSnapshot, p1: String?) {
+                            val chatMessage = p0.getValue(ChatMessageModel::class.java) ?: return
+                            latestMessageMap[p0.key!!] = chatMessage
+
+                            refreshRecyclerViewMessage()
+                        }
+
+                        override fun onChildRemoved(p0: DataSnapshot) {
+                        }
+                    })
+                }
             }
 
-            override fun onChildMoved(p0: DataSnapshot, p1: String?) {
-            }
+            override fun onCancelled(databaseError: DatabaseError) {
 
-            override fun onChildChanged(p0: DataSnapshot, p1: String?) {
-                val chatMessage = p0.getValue(ChatMessageModel::class.java) ?: return
-                latestMessageMap[p0.key!!] = chatMessage
-                refreshRecyclerViewMessage()
-            }
-
-            override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-                val chatMessage = p0.getValue(ChatMessageModel::class.java) ?: return
-                latestMessageMap[p0.key!!] = chatMessage
-                refreshRecyclerViewMessage()
-                spin_kit_view_latest_message.visibility = View.GONE
-            }
-
-            override fun onChildRemoved(p0: DataSnapshot) {
             }
         })
     }
@@ -119,7 +135,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             R.id.profile -> {
-                Toast.makeText(this, "Pending Profile", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, ProfileActivity::class.java)
+                startActivity(intent)
             }
             R.id.logout -> {
                 logoutAlertBox()

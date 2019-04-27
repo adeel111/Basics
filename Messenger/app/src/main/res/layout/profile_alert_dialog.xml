@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content" xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_margin="5dp"
+              android:gravity="center"
+              android:orientation="vertical">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/colorPrimaryDark"
+            android:gravity="end">
+        <Button
+                android:id="@+id/button_dismiss"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/cross_icon"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@color/colorBackground"
+                android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/image_view_profile_alert"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_margin="20dp"
+                    app:civ_border_width="3dp"
+                    app:civ_border_color="@color/colorPrimaryDark"
+                    android:layout_gravity="center"
+                    android:src="@drawable/common_pic_place_holder"/>
+
+            <EditText
+                    android:id="@+id/edit_text_user_profile_name_alert"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="User Name"
+                    android:textStyle="italic"
+                    android:textColor="@color/colorWhite"
+                    android:textColorHint="@color/colorWhite"
+                    android:textSize="24sp"
+                    tools:ignore="HardcodedText"/>
+
+            <EditText
+                    android:id="@+id/edit_text_user_profile_email_alert"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="User Email"
+                    android:textStyle="italic"
+                    android:textColor="@color/colorWhite"
+                    android:textColorHint="@color/colorWhite"
+                    android:textSize="20sp"
+                    android:layout_marginTop="10dp" tools:ignore="HardcodedText"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+        <Button
+                android:id="@+id/button_update_user_profile_alert"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_design"
+                android:text="Update Now"
+                android:textAllCaps="false"
+                android:layout_margin="25dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText"/>
+
+    </LinearLayout>
+
+</LinearLayout>

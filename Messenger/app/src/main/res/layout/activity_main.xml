@@ -17,6 +17,18 @@
             android:layout_height="80dp"
             app:SpinKit_Color="@color/colorPrimaryDark"/>
 
+    <TextView
+            android:id="@+id/text_view_no_chat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="No Latest Conversations..."
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="italic|bold"
+            android:gravity="center"
+            android:visibility="gone"
+            android:textSize="20sp"
+            tools:ignore="Autofill,HardcodedText"/>
+
     <LinearLayout
             android:id="@+id/linear_layout_new_message"
             android:layout_width="match_parent"

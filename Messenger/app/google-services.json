@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "892646229159",
+    "firebase_url": "https://messenger-babcc.firebaseio.com",
+    "project_id": "messenger-babcc",
+    "storage_bucket": "messenger-babcc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:892646229159:android:5744f2afa85d8bfc",
+        "android_client_info": {
+          "package_name": "com.example.adeeliftikhar.messenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "892646229159-ek2vbe77400ce8vna3lld27m4i5jft7s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIsoAYb90gyaty6yqApuVOLSLc1iwJy5c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "892646229159-ek2vbe77400ce8vna3lld27m4i5jft7s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

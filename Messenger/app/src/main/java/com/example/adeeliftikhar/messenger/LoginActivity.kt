@@ -21,6 +21,11 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
+    companion object {
+        var loginEmail: String = ""
+        var loginPassword: String = ""
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -61,11 +66,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun RememberLogin() {
-
-        val email = edit_text_login_email.text.toString().trim()
-        val password = edit_text_login_password.text.toString().trim()
+        loginEmail = edit_text_login_email.text.toString().trim()
+        loginPassword = edit_text_login_password.text.toString().trim()
 //            Validating Data...
-        if (email.isEmpty() || password.isEmpty()) {
+        if (loginEmail.isEmpty() || loginPassword.isEmpty()) {
             showSnackBar()
         } else {
 //            Checking Internet Connectivity...
@@ -73,12 +77,13 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show()
             } else {
                 linear_layout_spin_kit_login.visibility = View.VISIBLE
+                supportActionBar?.title = "Logging In"
 
 //            Firebase Authentication...
-                FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener {
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(loginEmail, loginPassword).addOnCompleteListener {
                     if (it.isSuccessful) {
                         val loginSessionManager = LoginSessionManager(this)
-                        loginSessionManager.loginTheUser(true, email, password)
+                        loginSessionManager.loginTheUser(true, loginEmail, loginPassword)
                         Log.d("Login", "Login Successfully with id ${it.result?.user?.uid}")
                         Toast.makeText(this, "Login Successfully", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this, MainActivity::class.java)
@@ -89,7 +94,8 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
                     .addOnFailureListener {
-                        Log.d("Register", "Failed to create user:  ${it.message}")
+                        supportActionBar?.title = "Login Here"
+                        Log.d("Login", "Failed to Login user:  ${it.message}")
                         Toast.makeText(this, "Failed to Login:  ${it.message}", Toast.LENGTH_SHORT).show()
                     }
             }
@@ -97,11 +103,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun simpleLogin() {
-
-        val email = edit_text_login_email.text.toString().trim()
-        val password = edit_text_login_password.text.toString().trim()
+        loginEmail = edit_text_login_email.text.toString().trim()
+        loginPassword = edit_text_login_password.text.toString().trim()
 //            Validating Data...
-        if (email.isEmpty() || password.isEmpty()) {
+        if (loginEmail.isEmpty() || loginPassword.isEmpty()) {
             showSnackBar()
         } else {
 //            Checking Internet Connectivity...
@@ -111,7 +116,7 @@ class LoginActivity : AppCompatActivity() {
                 linear_layout_spin_kit_login.visibility = View.VISIBLE
 
 //            Firebase Authentication...
-                FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener {
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(loginEmail, loginPassword).addOnCompleteListener {
                     if (it.isSuccessful) {
                         Log.d("Login", "Login Successfully with id ${it.result?.user?.uid}")
                         Toast.makeText(this, "Login Successfully", Toast.LENGTH_SHORT).show()

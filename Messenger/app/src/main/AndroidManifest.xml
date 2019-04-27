@@ -14,15 +14,13 @@
             android:windowSoftInputMode="stateHidden"
             tools:ignore="AllowBackup,GoogleAppIndexingWarning"
             tools:replace="android:appComponentFactory">
-        <activity
-                android:name=".MainActivity">
+        <activity android:name=".MainActivity">
         </activity>
         <activity
                 android:name=".RegisterActivity"
                 android:label="Register Here">
         </activity>
-        <activity
-                android:name=".LoginActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -41,6 +39,15 @@
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=".NewMessageActivity"/>
         </activity>
+        <activity android:name=".ProfileActivity"
+        android:theme="@style/ProfileTheme">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".NewMessageActivity"/>
+        </activity>
+        <activity
+                android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+                android:theme="@style/Base.Theme.AppCompat" />
     </application>
 
 </manifest>

@@ -27,6 +27,16 @@ class LoginSessionManager
         editor.commit()
     }
 
+    fun getUserEmail(): String {
+        val storeEmail = sharedPreferences.getString("incomingEmail", "")
+        return storeEmail
+    }
+
+    fun getUserPassword(): String {
+        val storePassword = sharedPreferences.getString("incomingPassword", "")
+        return storePassword
+    }
+
     //        Method to check weather the user is already logged in or not...
     fun checkUserLoggedIn(): Boolean {
         return sharedPreferences.getBoolean("userLoginType", isLoggedIn!!)
