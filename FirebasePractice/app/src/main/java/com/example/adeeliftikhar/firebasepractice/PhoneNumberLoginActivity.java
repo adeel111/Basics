@@ -105,6 +105,7 @@ public class PhoneNumberLoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Intent intent = new Intent(PhoneNumberLoginActivity.this, VarifyPhoneNumberActivity.class);
+                    intent.putExtra("name", country);
                     intent.putExtra("number", number);
                     startActivity(intent);
                     finish();

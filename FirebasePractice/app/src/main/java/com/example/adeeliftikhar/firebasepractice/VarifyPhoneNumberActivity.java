@@ -31,7 +31,7 @@ public class VarifyPhoneNumberActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
 
-    private EditText codeDigitOne, codeDigitTwo, codeDigitThree, codeDigitFour;
+    private EditText codeDigitOne, codeDigitTwo, codeDigitThree, codeDigitFour, codeDigitFive, codeDigitSix;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +51,8 @@ public class VarifyPhoneNumberActivity extends AppCompatActivity {
         codeDigitTwo = findViewById(R.id.code_digit_two);
         codeDigitThree = findViewById(R.id.code_digit_three);
         codeDigitFour = findViewById(R.id.code_digit_four);
+        codeDigitFive = findViewById(R.id.code_digit_five);
+        codeDigitSix = findViewById(R.id.code_digit_six);
         progressBar = findViewById(R.id.progress_bar);
     }
 
