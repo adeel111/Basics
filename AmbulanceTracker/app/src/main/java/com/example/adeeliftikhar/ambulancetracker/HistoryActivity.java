@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.adeeliftikhar.ambulancetracker.Models.HelperHistoryModel;
@@ -31,13 +32,14 @@ import java.util.Objects;
 public class HistoryActivity extends AppCompatActivity {
 
     RecyclerView recyclerViewHistory;
+    TextView textViewNoHistory;
 
     FirebaseAuth mAuth;
     String currentUser;
     private DatabaseReference dbRef;
-    private StorageReference storageRef;
 
     SpinKitView spinKitView;
+    int a = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +49,12 @@ public class HistoryActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setTitle("Your Help History");
 
         spinKitView = findViewById(R.id.spin_kit_view_history);
+        textViewNoHistory = findViewById(R.id.text_view_no_history);
+        textViewNoHistory.setVisibility(View.GONE);
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser().getUid();
         dbRef = FirebaseDatabase.getInstance().getReference().child("HelperHistory").child(currentUser);
-        storageRef = FirebaseStorage.getInstance().getReference().child("IncidentImage").child(currentUser);
         dbRef.keepSynced(true);
 
         recyclerViewHistory = findViewById(R.id.recycler_view_history);
@@ -97,7 +100,6 @@ public class HistoryActivity extends AppCompatActivity {
                                 HistoryViewHolder.class,
                                 dbRef) {
 
-
                     @Override
                     protected void populateViewHolder(HistoryViewHolder viewHolder, HelperHistoryModel model, int position) {
                         spinKitView.setVisibility(View.GONE);
@@ -107,6 +109,10 @@ public class HistoryActivity extends AppCompatActivity {
 
                         final String itemKey = getRef(position).getKey();
 
+                        if (itemKey != null) {
+                            spinKitView.setVisibility(View.GONE);
+                            textViewNoHistory.setVisibility(View.GONE);
+                        }
                         ImageView navArrow = viewHolder.itemView.findViewById(R.id.nav_arrow);
                         navArrow.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -119,5 +125,9 @@ public class HistoryActivity extends AppCompatActivity {
                     }
                 };
         recyclerViewHistory.setAdapter(adapter);
+        if (adapter.getItemCount() == 0) {
+            spinKitView.setVisibility(View.GONE);
+            textViewNoHistory.setVisibility(View.VISIBLE);
+        }
     }
 }

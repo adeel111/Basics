@@ -23,6 +23,15 @@
             android:visibility="visible"
             app:SpinKit_Color="@color/colorPrimaryDark" />
 
+        <TextView
+            android:id="@+id/text_view_no_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="No Help History Yet"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
+
         <LinearLayout
             android:id="@+id/linear_layout_history"
             android:layout_width="match_parent"
