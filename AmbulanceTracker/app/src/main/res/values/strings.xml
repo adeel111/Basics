@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Ambulance Tracker</string>
+    <string name="enter_phone_num">Your Phone Number</string>
+    <string name="login_now">Login Now</string>
+    <string name="login">Login Manually</string>
+    <string name="name">Your Name</string>
+    <string name="country_code">+92</string>
+    <string name="wait">Wait for the code We sent to you</string>
+    <string name="instruction">We sent you a code, it will automatically detected but if it is not detected you can put it below manually as well.</string>
+    <string name="note">Note</string>
+    <string name="take_pic_info">By uploading image of accident place or victim, you and rescue team both can track each other location,\nto arrive quickly by saving time and avoid confusion.</string>
+    <string name="call_info">By making simple call about accident place or victim, system will work just like as traditional call system works. You and rescue team can not track incident location which may cause problems.</string>
+    <string name="about">This application is developed to serve the humanity. By using this application you can take the picture of victim or incident place to notify Rescue Team that
+                         something bad is happened. They can get the exact location of incident place to arrive fast as possible as they can. You can also track ambulance
+                         to know where they are right now. You can also make a simple call on Emergency number. Here are some Benefits of this using application,
+    \n \nExact location of incident place will be known.
+    \n \nYou can track ambulance to know where they arrive right now.
+    \n \nTime delay will be minimum by knowing exact location.</string>
+</resources>

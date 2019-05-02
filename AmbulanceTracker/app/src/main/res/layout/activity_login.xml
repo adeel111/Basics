@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="1"
+        tools:context=".PhoneNumberLoginActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.35"
+            android:gravity="bottom|center"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="7dp"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/common_pic_place_holder"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/text_view_no_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="7dp"
+                android:text="Serve Humanity"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.65"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edit_text_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/edit_text_margin"
+                android:background="@drawable/edit_text_background"
+                android:focusable="true"
+                android:hint="@string/name"
+                android:inputType="text"
+                android:padding="@dimen/edit_text_padding"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                tools:ignore="Autofill" />
+
+            <EditText
+                android:id="@+id/edit_text_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/edit_text_margin"
+                android:background="@drawable/edit_text_background"
+                android:hint="@string/enter_phone_num"
+                android:inputType="phone"
+                android:padding="@dimen/edit_text_padding"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                tools:ignore="Autofill" />
+
+            <Button
+                android:id="@+id/button_phone_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/button_margin"
+                android:background="@drawable/button_design"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:onClick="buttonNumberLogin"
+                android:padding="12dp"
+                android:shadowRadius="50"
+                android:text="@string/login_now"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

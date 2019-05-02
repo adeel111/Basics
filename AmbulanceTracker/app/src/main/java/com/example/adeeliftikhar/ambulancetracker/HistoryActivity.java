@@ -2,10 +2,8 @@ package com.example.adeeliftikhar.ambulancetracker;
 
 import android.content.Intent;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.InsetDrawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -18,14 +16,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.adeeliftikhar.ambulancetracker.Models.HelperHistoryModel;
+import com.example.adeeliftikhar.ambulancetracker.SessionsManager.LoginSessionManager;
 import com.example.adeeliftikhar.ambulancetracker.ViewHolders.HistoryViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.Objects;
 
@@ -39,7 +36,9 @@ public class HistoryActivity extends AppCompatActivity {
     private DatabaseReference dbRef;
 
     SpinKitView spinKitView;
-    int a = 1;
+    String a;
+
+    LoginSessionManager loginSessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,19 +47,22 @@ public class HistoryActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Your Help History");
 
+        loginSessionManager = new LoginSessionManager(HistoryActivity.this);
+
         textViewNoHistory = findViewById(R.id.text_view_no_history);
         textViewNoHistory.setVisibility(View.GONE);
         spinKitView = findViewById(R.id.spin_kit_view_history);
         spinKitView.setVisibility(View.VISIBLE);
 
         mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser().getUid();
+        currentUser = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
         dbRef = FirebaseDatabase.getInstance().getReference().child("HelperHistory").child(currentUser);
         dbRef.keepSynced(true);
 
         recyclerViewHistory = findViewById(R.id.recycler_view_history);
         recyclerViewHistory.setHasFixedSize(true);
         recyclerViewHistory.setLayoutManager(new LinearLayoutManager(HistoryActivity.this));
+
 //        DividerItemDecoration divider = new
 //                DividerItemDecoration(HistoryActivity.this, DividerItemDecoration.VERTICAL);
 //        divider.setDrawable(ContextCompat.getDrawable(getBaseContext(), R.drawable.line_divider));
@@ -105,7 +107,7 @@ public class HistoryActivity extends AppCompatActivity {
                     protected void populateViewHolder(HistoryViewHolder viewHolder, HelperHistoryModel model, int position) {
                         spinKitView.setVisibility(View.GONE);
                         textViewNoHistory.setVisibility(View.GONE);
-                        a = 2;
+                        loginSessionManager.savePermanentValue("1");
 
                         viewHolder.setTextViewAmbulanceNumber(model.getAmbulance());
                         viewHolder.setDateTime(model.getDate_time());
@@ -122,8 +124,9 @@ public class HistoryActivity extends AppCompatActivity {
                         });
                     }
                 };
+        a = loginSessionManager.getPermanentValue();
         recyclerViewHistory.setAdapter(adapter);
-        if (adapter.getItemCount() == 0 && a == 1) {
+        if (a.isEmpty()) {
             spinKitView.setVisibility(View.GONE);
             textViewNoHistory.setVisibility(View.VISIBLE);
         }
