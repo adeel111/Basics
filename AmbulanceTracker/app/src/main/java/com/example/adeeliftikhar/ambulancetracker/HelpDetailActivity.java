@@ -35,13 +35,14 @@ public class HelpDetailActivity extends AppCompatActivity {
     private DatabaseReference dbRef;
 
     ProgressBar progressBarHelp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help_detail);
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("Your Help's Detail");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Detail of Help");
 
         getComingData();
     }

@@ -48,9 +48,10 @@ public class HistoryActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Your Help History");
 
-        spinKitView = findViewById(R.id.spin_kit_view_history);
         textViewNoHistory = findViewById(R.id.text_view_no_history);
         textViewNoHistory.setVisibility(View.GONE);
+        spinKitView = findViewById(R.id.spin_kit_view_history);
+        spinKitView.setVisibility(View.VISIBLE);
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser().getUid();
@@ -103,16 +104,13 @@ public class HistoryActivity extends AppCompatActivity {
                     @Override
                     protected void populateViewHolder(HistoryViewHolder viewHolder, HelperHistoryModel model, int position) {
                         spinKitView.setVisibility(View.GONE);
+                        textViewNoHistory.setVisibility(View.GONE);
+                        a = 2;
 
                         viewHolder.setTextViewAmbulanceNumber(model.getAmbulance());
                         viewHolder.setDateTime(model.getDate_time());
 
                         final String itemKey = getRef(position).getKey();
-
-                        if (itemKey != null) {
-                            spinKitView.setVisibility(View.GONE);
-                            textViewNoHistory.setVisibility(View.GONE);
-                        }
                         ImageView navArrow = viewHolder.itemView.findViewById(R.id.nav_arrow);
                         navArrow.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -125,7 +123,7 @@ public class HistoryActivity extends AppCompatActivity {
                     }
                 };
         recyclerViewHistory.setAdapter(adapter);
-        if (adapter.getItemCount() == 0) {
+        if (adapter.getItemCount() == 0 && a == 1) {
             spinKitView.setVisibility(View.GONE);
             textViewNoHistory.setVisibility(View.VISIBLE);
         }
