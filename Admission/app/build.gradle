@@ -5,7 +5,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.adeeliftikhar.admission"
-        minSdkVersion 22
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -32,13 +32,15 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'me.biubiubiu.justifytext:library:1.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.+'
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.0'
     implementation 'id.zelory:compressor:2.1.0'
     implementation 'com.github.ybq:Android-SpinKit:1.2.0'
+    implementation 'com.google.firebase:firebase-core:16.0.9'
 
-    implementation 'com.google.firebase:firebase-auth:11.8.0'
-    implementation 'com.google.firebase:firebase-database:11.8.0'
-    implementation 'com.google.firebase:firebase-storage:11.8.0'
+    implementation 'com.google.firebase:firebase-core:16.0.9'
+    implementation 'com.google.firebase:firebase-auth:17.0.0'
+    implementation 'com.google.firebase:firebase-database:17.0.0'
+    implementation 'com.google.firebase:firebase-storage:17.0.0'
     implementation 'com.firebaseui:firebase-ui-database:1.2.0'
 }
 apply plugin: 'com.google.gms.google-services'

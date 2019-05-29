@@ -6,6 +6,9 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="ANDROID.PERMISSION.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -19,8 +22,7 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-        <activity
-            android:name=".LoginActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,9 +33,18 @@
             android:name=".VerifyPhoneNumberActivity"
             android:theme="@style/RegisterTheme" />
         <activity android:name=".TrackingActivity" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_api_key" />
+
         <activity android:name=".HistoryActivity" />
         <activity android:name=".AboutActivity" />
-        <activity android:name=".HelpDetailActivity"></activity>
+        <activity android:name=".HelpDetailActivity" />
     </application>
 
 </manifest>

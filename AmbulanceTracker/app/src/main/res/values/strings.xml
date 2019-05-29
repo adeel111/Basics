@@ -16,4 +16,16 @@
     \n \nExact location of incident place will be known.
     \n \nYou can track ambulance to know where they arrive right now.
     \n \nTime delay will be minimum by knowing exact location.</string>
+
+    <string name="google_maps_api_key"> AIzaSyCfWU8n-iWvIuwM5rhyodMPD3RhFdcCdm0 </string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No thanks</string>
+    <string name="location_permission_title">Location Permission</string>
+    <string name="location_permission_message">Hi there! We can\'t get Near By Location without location permission, could you please grant it?</string>
+    <string name="website_not_registered_string">Website not Registered</string>
+    <string name="phone_number_not_registered_string">Phone Number not Registered</string>
+    <string name="gps_permission_title">Turn On GPS</string>
+    <string name="gps_permission_message">Hi there! Please turn on GPS to detect current location.</string>
+    <string name="retry">Retry</string>
 </resources>

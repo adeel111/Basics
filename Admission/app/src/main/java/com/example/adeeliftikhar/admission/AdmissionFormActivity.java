@@ -523,22 +523,26 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageMedicalStudent.compress(Bitmap.CompressFormat.JPEG, 100, baosMedicalStudent);
                 final byte[] dataMedicalStudent = baosMedicalStudent.toByteArray();
 
-                StorageReference imageFilepathMedicalStudent = storageRef.child("FSC").child("PreMedical").child(currentUser).child("Student" + ".jpg");
+                final StorageReference imageFilepathMedicalStudent = storageRef.child("FSC").child("PreMedical").child(currentUser).child("Student" + ".jpg");
 //                Now putting image by using this path.
                 imageFilepathMedicalStudent.putBytes(dataMedicalStudent).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("student_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathMedicalStudent.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("student_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -547,23 +551,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageMedicalMetricResultCard.compress(Bitmap.CompressFormat.JPEG, 100, baosMedicalMetricResultCard);
                 final byte[] dataMedicalMetricResultCard = baosMedicalMetricResultCard.toByteArray();
 
-                StorageReference imageFilepathMedicalMetricResultCard = storageRef.child("FSC").child("PreMedical").child(currentUser).child("Metric Result Card" + ".jpg");
+                final StorageReference imageFilepathMedicalMetricResultCard = storageRef.child("FSC").child("PreMedical").child(currentUser).child("Metric Result Card" + ".jpg");
 
 //                Now putting image by using this path.
                 imageFilepathMedicalMetricResultCard.putBytes(dataMedicalMetricResultCard).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("result_card_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathMedicalMetricResultCard.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("result_card_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -572,23 +580,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageMedicalFatherIDCard.compress(Bitmap.CompressFormat.JPEG, 100, baosMedicalFatherIDCard);
                 final byte[] dataMedicalFatherIDCard = baosMedicalFatherIDCard.toByteArray();
 
-                StorageReference imageFilepathMedicalFatherIDCard = storageRef.child("FSC").child("PreMedical").child(currentUser).child("Father's ID Card" + ".jpg");
+                final StorageReference imageFilepathMedicalFatherIDCard = storageRef.child("FSC").child("PreMedical").child(currentUser).child("Father's ID Card" + ".jpg");
 
 //                Now putting image by using this path.
                 imageFilepathMedicalFatherIDCard.putBytes(dataMedicalFatherIDCard).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("father_id_card_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathMedicalFatherIDCard.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("father_id_card_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -597,23 +609,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageMedicalBill.compress(Bitmap.CompressFormat.JPEG, 100, baosMedicalBill);
                 final byte[] dataMedicalBill = baosMedicalBill.toByteArray();
 
-                StorageReference imageFilepathMedicalBill = storageRef.child("FSC").child("PreMedical").child(currentUser).child("Electricity Bill" + ".jpg");
+                final StorageReference imageFilepathMedicalBill = storageRef.child("FSC").child("PreMedical").child(currentUser).child("Electricity Bill" + ".jpg");
 
 //                Now putting image by using that path.
                 imageFilepathMedicalBill.putBytes(dataMedicalBill).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("bill_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathMedicalBill.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("bill_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -622,31 +638,35 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageMedicalSalary.compress(Bitmap.CompressFormat.JPEG, 100, baosMedicalSalary);
                 final byte[] dataMedicalSalary = baosMedicalSalary.toByteArray();
 
-                StorageReference imageFilepathMedicalSalary = storageRef.child("FSC").child("PreMedical").child(currentUser).child("Salary Slip" + ".jpg");
+                final StorageReference imageFilepathMedicalSalary = storageRef.child("FSC").child("PreMedical").child(currentUser).child("Salary Slip" + ".jpg");
 //                Now putting image by using this path.
                 imageFilepathMedicalSalary.putBytes(dataMedicalSalary).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("salary_slip_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
-                                    @Override
-                                    public void onSuccess(Object o) {
-                                        if (b == 1) {
-                                            progressDialogSubmit.dismiss();
-                                            Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
-                                            b = 0;
-                                        } else {
-                                            if (b == 0)
-                                                progressDialogUpdate.dismiss();
-                                            Toast.makeText(AdmissionFormActivity.this, "Form is Updated Successfully", Toast.LENGTH_SHORT).show();
+                            imageFilepathMedicalSalary.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("salary_slip_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
+                                        @Override
+                                        public void onSuccess(Object o) {
+                                            if (b == 1) {
+                                                progressDialogSubmit.dismiss();
+                                                Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
+                                                b = 0;
+                                            } else {
+                                                if (b == 0)
+                                                    progressDialogUpdate.dismiss();
+                                                Toast.makeText(AdmissionFormActivity.this, "Form is Updated Successfully", Toast.LENGTH_SHORT).show();
+                                            }
                                         }
-                                    }
-                                });
-                            }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -658,22 +678,26 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageEngineeringStudent.compress(Bitmap.CompressFormat.JPEG, 100, baosEngineeringStudent);
                 final byte[] dataEngineeringStudent = baosEngineeringStudent.toByteArray();
 
-                StorageReference imageFilepathEngineeringStudent = storageRef.child("FSC").child("PreEngineering").child(currentUser).child("Student" + ".jpg");
+                final StorageReference imageFilepathEngineeringStudent = storageRef.child("FSC").child("PreEngineering").child(currentUser).child("Student" + ".jpg");
 //                Now putting image by using this path.
                 imageFilepathEngineeringStudent.putBytes(dataEngineeringStudent).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("student_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathEngineeringStudent.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("student_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -682,23 +706,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageEngineeringMetricResultCard.compress(Bitmap.CompressFormat.JPEG, 100, baosEngineeringMetricResultCard);
                 final byte[] dataEngineeringMetricResultCard = baosEngineeringMetricResultCard.toByteArray();
 
-                StorageReference imageFilepathEngineeringMetricResultCard = storageRef.child("FSC").child("PreEngineering").child(currentUser).child("Metric Result Card" + ".jpg");
+                final StorageReference imageFilepathEngineeringMetricResultCard = storageRef.child("FSC").child("PreEngineering").child(currentUser).child("Metric Result Card" + ".jpg");
 
 //                Now putting image by using this path.
                 imageFilepathEngineeringMetricResultCard.putBytes(dataEngineeringMetricResultCard).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("result_card_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathEngineeringMetricResultCard.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("result_card_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -707,23 +735,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageEngineeringFatherIDCard.compress(Bitmap.CompressFormat.JPEG, 100, baosEngineeringFatherIDCard);
                 final byte[] dataEngineeringFatherIDCard = baosEngineeringFatherIDCard.toByteArray();
 
-                StorageReference imageFilepathEngineeringFatherIDCard = storageRef.child("FSC").child("PreEngineering").child(currentUser).child("Father's ID Card" + ".jpg");
+                final StorageReference imageFilepathEngineeringFatherIDCard = storageRef.child("FSC").child("PreEngineering").child(currentUser).child("Father's ID Card" + ".jpg");
 
 //                Now putting image by using this path.
                 imageFilepathEngineeringFatherIDCard.putBytes(dataEngineeringFatherIDCard).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("father_id_card_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathEngineeringFatherIDCard.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("father_id_card_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -732,23 +764,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapEngineeringBill.compress(Bitmap.CompressFormat.JPEG, 100, baosEngineeringBill);
                 final byte[] dataEngineeringBill = baosEngineeringBill.toByteArray();
 
-                StorageReference imageFilepathEngineeringBill = storageRef.child("FSC").child("PreEngineering").child(currentUser).child("Electricity Bill" + ".jpg");
+                final StorageReference imageFilepathEngineeringBill = storageRef.child("FSC").child("PreEngineering").child(currentUser).child("Electricity Bill" + ".jpg");
 
 //                Now putting image by using this path.
                 imageFilepathEngineeringBill.putBytes(dataEngineeringBill).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("bill_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathEngineeringBill.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("bill_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -757,31 +793,35 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageEngineeringSalary.compress(Bitmap.CompressFormat.JPEG, 100, baosEngineeringSalary);
                 final byte[] dataEngineeringSalary = baosEngineeringSalary.toByteArray();
 
-                StorageReference imageFilepathEngineeringSalary = storageRef.child("FSC").child("PreEngineering").child(currentUser).child("Salary Slip" + ".jpg");
+                final StorageReference imageFilepathEngineeringSalary = storageRef.child("FSC").child("PreEngineering").child(currentUser).child("Salary Slip" + ".jpg");
 //                Now putting image by using this path.
                 imageFilepathEngineeringSalary.putBytes(dataEngineeringSalary).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("salary_slip_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
-                                    @Override
-                                    public void onSuccess(Object o) {
-                                        if (b == 1) {
-                                            progressDialogSubmit.dismiss();
-                                            Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
-                                            b = 0;
-                                        } else {
-                                            if (b == 0)
-                                                progressDialogUpdate.dismiss();
-                                            Toast.makeText(AdmissionFormActivity.this, "Form is Updated Successfully", Toast.LENGTH_SHORT).show();
+                            imageFilepathEngineeringSalary.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("salary_slip_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
+                                        @Override
+                                        public void onSuccess(Object o) {
+                                            if (b == 1) {
+                                                progressDialogSubmit.dismiss();
+                                                Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
+                                                b = 0;
+                                            } else {
+                                                if (b == 0)
+                                                    progressDialogUpdate.dismiss();
+                                                Toast.makeText(AdmissionFormActivity.this, "Form is Updated Successfully", Toast.LENGTH_SHORT).show();
+                                            }
                                         }
-                                    }
-                                });
-                            }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -793,22 +833,26 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImagePhysicsStudent.compress(Bitmap.CompressFormat.JPEG, 100, baosPhysicsStudent);
                 final byte[] dataPhysicsStudent = baosPhysicsStudent.toByteArray();
 
-                StorageReference imageFilepathPhysicsStudent = storageRef.child("ICS").child("Physics").child(currentUser).child("Student" + ".jpg");
+                final StorageReference imageFilepathPhysicsStudent = storageRef.child("ICS").child("Physics").child(currentUser).child("Student" + ".jpg");
 //                Now putting image by using this path.
                 imageFilepathPhysicsStudent.putBytes(dataPhysicsStudent).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("student_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathPhysicsStudent.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("student_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -817,23 +861,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImagePhysicsMetricResultCard.compress(Bitmap.CompressFormat.JPEG, 100, baosPhysicsMetricResultCard);
                 final byte[] dataPhysicsMetricResultCard = baosPhysicsMetricResultCard.toByteArray();
 
-                StorageReference imageFilepathPhysicsMetricResultCard = storageRef.child("ICS").child("Physics").child(currentUser).child("Metric Result Card" + ".jpg");
+                final StorageReference imageFilepathPhysicsMetricResultCard = storageRef.child("ICS").child("Physics").child(currentUser).child("Metric Result Card" + ".jpg");
 
 //                Now putting image by using this path.
                 imageFilepathPhysicsMetricResultCard.putBytes(dataPhysicsMetricResultCard).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("result_card_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathPhysicsMetricResultCard.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("result_card_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -842,23 +890,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImagePhysicsFatherIDCard.compress(Bitmap.CompressFormat.JPEG, 100, baosPhysicsFatherIDCard);
                 final byte[] dataPhysicsFatherIDCard = baosPhysicsFatherIDCard.toByteArray();
 
-                StorageReference imageFilepathPhysicsFatherIDCard = storageRef.child("ICS").child("Physics").child(currentUser).child("Father's ID Card" + ".jpg");
+                final StorageReference imageFilepathPhysicsFatherIDCard = storageRef.child("ICS").child("Physics").child(currentUser).child("Father's ID Card" + ".jpg");
 
 //                Now putting image by using this path.
                 imageFilepathPhysicsFatherIDCard.putBytes(dataPhysicsFatherIDCard).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("father_id_card_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathPhysicsFatherIDCard.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("father_id_card_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -867,23 +919,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImagePhysicsBill.compress(Bitmap.CompressFormat.JPEG, 100, baosPhysicsBill);
                 final byte[] dataPhysicsBill = baosPhysicsBill.toByteArray();
 
-                StorageReference imageFilepathPhysicsBill = storageRef.child("ICS").child("Physics").child(currentUser).child("Electricity Bill" + ".jpg");
+                final StorageReference imageFilepathPhysicsBill = storageRef.child("ICS").child("Physics").child(currentUser).child("Electricity Bill" + ".jpg");
 
 //                Now putting image by using this path.
                 imageFilepathPhysicsBill.putBytes(dataPhysicsBill).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("bill_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathPhysicsBill.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("bill_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -892,31 +948,35 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImagePhysicsSalary.compress(Bitmap.CompressFormat.JPEG, 100, baosPhysicsSalary);
                 final byte[] dataPhysicsSalary = baosPhysicsSalary.toByteArray();
 
-                StorageReference imageFilepathPhysicsSalary = storageRef.child("ICS").child("Physics").child(currentUser).child("Salary Slip" + ".jpg");
+                final StorageReference imageFilepathPhysicsSalary = storageRef.child("ICS").child("Physics").child(currentUser).child("Salary Slip" + ".jpg");
 //                Now putting image by using this path.
                 imageFilepathPhysicsSalary.putBytes(dataPhysicsSalary).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("salary_slip_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
-                                    @Override
-                                    public void onSuccess(Object o) {
-                                        if (b == 1) {
-                                            progressDialogSubmit.dismiss();
-                                            Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
-                                            b = 0;
-                                        } else {
-                                            if (b == 0)
-                                                progressDialogUpdate.dismiss();
-                                            Toast.makeText(AdmissionFormActivity.this, "Form is Updated Successfully", Toast.LENGTH_SHORT).show();
+                            imageFilepathPhysicsSalary.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("salary_slip_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
+                                        @Override
+                                        public void onSuccess(Object o) {
+                                            if (b == 1) {
+                                                progressDialogSubmit.dismiss();
+                                                Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
+                                                b = 0;
+                                            } else {
+                                                if (b == 0)
+                                                    progressDialogUpdate.dismiss();
+                                                Toast.makeText(AdmissionFormActivity.this, "Form is Updated Successfully", Toast.LENGTH_SHORT).show();
+                                            }
                                         }
-                                    }
-                                });
-                            }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -928,22 +988,26 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageStatesStudent.compress(Bitmap.CompressFormat.JPEG, 100, baosStatesStudent);
                 final byte[] dataStatesStudent = baosStatesStudent.toByteArray();
 
-                StorageReference imageFilepathStatesStudent = storageRef.child("ICS").child("States").child(currentUser).child("Student" + ".jpg");
+                final StorageReference imageFilepathStatesStudent = storageRef.child("ICS").child("States").child(currentUser).child("Student" + ".jpg");
 //                Now putting image by using this path.
                 imageFilepathStatesStudent.putBytes(dataStatesStudent).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("student_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathStatesStudent.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("student_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -952,23 +1016,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageStatesMetricResultCard.compress(Bitmap.CompressFormat.JPEG, 100, baosStatesMetricResultCard);
                 final byte[] dataStatesMetricResultCard = baosStatesMetricResultCard.toByteArray();
 
-                StorageReference imageFilepathStatesMetricResultCard = storageRef.child("ICS").child("States").child(currentUser).child("Metric Result Card" + ".jpg");
+                final StorageReference imageFilepathStatesMetricResultCard = storageRef.child("ICS").child("States").child(currentUser).child("Metric Result Card" + ".jpg");
 
 //                Now putting image by using this path.
                 imageFilepathStatesMetricResultCard.putBytes(dataStatesMetricResultCard).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("result_card_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathStatesMetricResultCard.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("result_card_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -977,23 +1045,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageStatesFatherIDCard.compress(Bitmap.CompressFormat.JPEG, 100, baosStatesFatherIDCard);
                 final byte[] dataStatesFatherIDCard = baosStatesFatherIDCard.toByteArray();
 
-                StorageReference imageFilepathStatesFatherIDCard = storageRef.child("ICS").child("States").child(currentUser).child("Father's ID Card" + ".jpg");
+                final StorageReference imageFilepathStatesFatherIDCard = storageRef.child("ICS").child("States").child(currentUser).child("Father's ID Card" + ".jpg");
 
 //                Now putting image by using this path.
                 imageFilepathStatesFatherIDCard.putBytes(dataStatesFatherIDCard).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("father_id_card_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathStatesFatherIDCard.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("father_id_card_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -1002,23 +1074,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageStatesBill.compress(Bitmap.CompressFormat.JPEG, 100, baosStatesBill);
                 final byte[] dataStatesBill = baosStatesBill.toByteArray();
 
-                StorageReference imageFilepathStatesBill = storageRef.child("ICS").child("States").child(currentUser).child("Electricity Bill" + ".jpg");
+                final StorageReference imageFilepathStatesBill = storageRef.child("ICS").child("States").child(currentUser).child("Electricity Bill" + ".jpg");
 
 //                Now putting image by using this path.
                 imageFilepathStatesBill.putBytes(dataStatesBill).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("bill_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathStatesBill.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("bill_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -1027,31 +1103,35 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageStatesSalary.compress(Bitmap.CompressFormat.JPEG, 100, baosStatesSalary);
                 final byte[] dataStatesSalary = baosStatesSalary.toByteArray();
 
-                StorageReference imageFilepathStatesSalary = storageRef.child("ICS").child("States").child(currentUser).child("Salary Slip" + ".jpg");
+                final StorageReference imageFilepathStatesSalary = storageRef.child("ICS").child("States").child(currentUser).child("Salary Slip" + ".jpg");
 //                Now putting image by using this path.
                 imageFilepathStatesSalary.putBytes(dataStatesSalary).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("salary_slip_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
-                                    @Override
-                                    public void onSuccess(Object o) {
-                                        if (b == 1) {
-                                            progressDialogSubmit.dismiss();
-                                            Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
-                                            b = 0;
-                                        } else {
-                                            if (b == 0)
-                                                progressDialogUpdate.dismiss();
-                                            Toast.makeText(AdmissionFormActivity.this, "Form is Updated Successfully", Toast.LENGTH_SHORT).show();
+                            imageFilepathStatesSalary.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("salary_slip_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
+                                        @Override
+                                        public void onSuccess(Object o) {
+                                            if (b == 1) {
+                                                progressDialogSubmit.dismiss();
+                                                Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
+                                                b = 0;
+                                            } else {
+                                                if (b == 0)
+                                                    progressDialogUpdate.dismiss();
+                                                Toast.makeText(AdmissionFormActivity.this, "Form is Updated Successfully", Toast.LENGTH_SHORT).show();
+                                            }
                                         }
-                                    }
-                                });
-                            }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -1062,22 +1142,26 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageBankingStudent.compress(Bitmap.CompressFormat.JPEG, 100, baosBankingStudent);
                 final byte[] dataBankingStudent = baosBankingStudent.toByteArray();
 
-                StorageReference imageFilepathBankingStudent = storageRef.child("ICOM").child("Banking").child(currentUser).child("Student" + ".jpg");
+                final StorageReference imageFilepathBankingStudent = storageRef.child("ICOM").child("Banking").child(currentUser).child("Student" + ".jpg");
 //                Now putting image by using this path.
                 imageFilepathBankingStudent.putBytes(dataBankingStudent).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("student_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathBankingStudent.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("student_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -1086,23 +1170,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageBankingMetricResultCard.compress(Bitmap.CompressFormat.JPEG, 100, baosBankingMetricResultCard);
                 final byte[] dataBankingMetricResultCard = baosBankingMetricResultCard.toByteArray();
 
-                StorageReference imageFilepathBankingMetricResultCard = storageRef.child("ICOM").child("Banking").child(currentUser).child("Metric Result Card" + ".jpg");
+                final StorageReference imageFilepathBankingMetricResultCard = storageRef.child("ICOM").child("Banking").child(currentUser).child("Metric Result Card" + ".jpg");
 
 //                Now putting image by using this path.
                 imageFilepathBankingMetricResultCard.putBytes(dataBankingMetricResultCard).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("result_card_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathBankingMetricResultCard.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("result_card_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -1111,23 +1199,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageBankingFatherIDCard.compress(Bitmap.CompressFormat.JPEG, 100, baosBankingFatherIDCard);
                 final byte[] dataBankingFatherIDCard = baosBankingFatherIDCard.toByteArray();
 
-                StorageReference imageFilepathBankingFatherIDCard = storageRef.child("ICOM").child("Banking").child(currentUser).child("Father's ID Card" + ".jpg");
+                final StorageReference imageFilepathBankingFatherIDCard = storageRef.child("ICOM").child("Banking").child(currentUser).child("Father's ID Card" + ".jpg");
 
 //                Now putting image by using this path.
                 imageFilepathBankingFatherIDCard.putBytes(dataBankingFatherIDCard).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("father_id_card_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathBankingFatherIDCard.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("father_id_card_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -1136,23 +1228,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageBankingBill.compress(Bitmap.CompressFormat.JPEG, 100, baosBankingBill);
                 final byte[] dataBankingBill = baosBankingBill.toByteArray();
 
-                StorageReference imageFilepathBankingBill = storageRef.child("ICOM").child("Banking").child(currentUser).child("Electricity Bill" + ".jpg");
+                final StorageReference imageFilepathBankingBill = storageRef.child("ICOM").child("Banking").child(currentUser).child("Electricity Bill" + ".jpg");
 
 //                Now putting image by using this path.
                 imageFilepathBankingBill.putBytes(dataBankingBill).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("bill_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathBankingBill.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("bill_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -1161,31 +1257,35 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageBankingSalary.compress(Bitmap.CompressFormat.JPEG, 100, baosBankingSalary);
                 final byte[] dataBankingSalary = baosBankingSalary.toByteArray();
 
-                StorageReference imageFilepathBankingSalary = storageRef.child("ICOM").child("Banking").child(currentUser).child("Salary Slip" + ".jpg");
+                final StorageReference imageFilepathBankingSalary = storageRef.child("ICOM").child("Banking").child(currentUser).child("Salary Slip" + ".jpg");
 //                Now putting image by using this path.
                 imageFilepathBankingSalary.putBytes(dataBankingSalary).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("salary_slip_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
-                                    @Override
-                                    public void onSuccess(Object o) {
-                                        if (b == 1) {
-                                            progressDialogSubmit.dismiss();
-                                            Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
-                                            b = 0;
-                                        } else {
-                                            if (b == 0)
-                                                progressDialogUpdate.dismiss();
-                                            Toast.makeText(AdmissionFormActivity.this, "Form is Updated Successfully", Toast.LENGTH_SHORT).show();
+                            imageFilepathBankingSalary.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("salary_slip_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
+                                        @Override
+                                        public void onSuccess(Object o) {
+                                            if (b == 1) {
+                                                progressDialogSubmit.dismiss();
+                                                Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
+                                                b = 0;
+                                            } else {
+                                                if (b == 0)
+                                                    progressDialogUpdate.dismiss();
+                                                Toast.makeText(AdmissionFormActivity.this, "Form is Updated Successfully", Toast.LENGTH_SHORT).show();
+                                            }
                                         }
-                                    }
-                                });
-                            }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -1197,22 +1297,26 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageCommerceStudent.compress(Bitmap.CompressFormat.JPEG, 100, baosCommerceStudent);
                 final byte[] dataCommerceStudent = baosCommerceStudent.toByteArray();
 
-                StorageReference imageFilepathCommerceStudent = storageRef.child("ICOM").child("Commerce").child(currentUser).child("Student" + ".jpg");
+                final StorageReference imageFilepathCommerceStudent = storageRef.child("ICOM").child("Commerce").child(currentUser).child("Student" + ".jpg");
 //                Now putting image by using this path.
                 imageFilepathCommerceStudent.putBytes(dataCommerceStudent).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("student_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathCommerceStudent.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("student_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -1221,23 +1325,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageCommerceMetricResultCard.compress(Bitmap.CompressFormat.JPEG, 100, baosCommerceMetricResultCard);
                 final byte[] dataCommerceMetricResultCard = baosCommerceMetricResultCard.toByteArray();
 
-                StorageReference imageFilepathCommerceMetricResultCard = storageRef.child("ICOM").child("Commerce").child(currentUser).child("Metric Result Card" + ".jpg");
+                final StorageReference imageFilepathCommerceMetricResultCard = storageRef.child("ICOM").child("Commerce").child(currentUser).child("Metric Result Card" + ".jpg");
 
 //                Now putting image by using this path.
                 imageFilepathCommerceMetricResultCard.putBytes(dataCommerceMetricResultCard).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("result_card_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathCommerceMetricResultCard.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("result_card_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -1246,23 +1354,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageCommerceFatherIDCard.compress(Bitmap.CompressFormat.JPEG, 100, baosCommerceFatherIDCard);
                 final byte[] dataCommerceFatherIDCard = baosCommerceFatherIDCard.toByteArray();
 
-                StorageReference imageFilepathCommerceFatherIDCard = storageRef.child("ICOM").child("Commerce").child(currentUser).child("Father's ID Card" + ".jpg");
+                final StorageReference imageFilepathCommerceFatherIDCard = storageRef.child("ICOM").child("Commerce").child(currentUser).child("Father's ID Card" + ".jpg");
 
 //                Now putting image by using this path.
                 imageFilepathCommerceFatherIDCard.putBytes(dataCommerceFatherIDCard).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("father_id_card_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathCommerceFatherIDCard.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("father_id_card_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -1271,23 +1383,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageCommerceBill.compress(Bitmap.CompressFormat.JPEG, 100, baosCommerceBill);
                 final byte[] dataCommerceBill = baosCommerceBill.toByteArray();
 
-                StorageReference imageFilepathCommerceBill = storageRef.child("ICOM").child("Commerce").child(currentUser).child("Electricity Bill" + ".jpg");
+                final StorageReference imageFilepathCommerceBill = storageRef.child("ICOM").child("Commerce").child(currentUser).child("Electricity Bill" + ".jpg");
 
 //                Now putting image by using this path.
                 imageFilepathCommerceBill.putBytes(dataCommerceBill).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("bill_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathCommerceBill.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("bill_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -1296,31 +1412,35 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageCommerceSalary.compress(Bitmap.CompressFormat.JPEG, 100, baosCommerceSalary);
                 final byte[] dataCommerceSalary = baosCommerceSalary.toByteArray();
 
-                StorageReference imageFilepathCommerceSalary = storageRef.child("ICOM").child("Commerce").child(currentUser).child("Salary Slip" + ".jpg");
+                final StorageReference imageFilepathCommerceSalary = storageRef.child("ICOM").child("Commerce").child(currentUser).child("Salary Slip" + ".jpg");
 //                Now putting image by using this path.
                 imageFilepathCommerceSalary.putBytes(dataCommerceSalary).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("salary_slip_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
-                                    @Override
-                                    public void onSuccess(Object o) {
-                                        if (b == 1) {
-                                            progressDialogSubmit.dismiss();
-                                            Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
-                                            b = 0;
-                                        } else {
-                                            if (b == 0)
-                                                progressDialogUpdate.dismiss();
-                                            Toast.makeText(AdmissionFormActivity.this, "Form is Updated Successfully", Toast.LENGTH_SHORT).show();
+                            imageFilepathCommerceSalary.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("salary_slip_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
+                                        @Override
+                                        public void onSuccess(Object o) {
+                                            if (b == 1) {
+                                                progressDialogSubmit.dismiss();
+                                                Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
+                                                b = 0;
+                                            } else {
+                                                if (b == 0)
+                                                    progressDialogUpdate.dismiss();
+                                                Toast.makeText(AdmissionFormActivity.this, "Form is Updated Successfully", Toast.LENGTH_SHORT).show();
+                                            }
                                         }
-                                    }
-                                });
-                            }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -1331,22 +1451,26 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageITStudent.compress(Bitmap.CompressFormat.JPEG, 100, baosITStudent);
                 final byte[] dataITStudent = baosITStudent.toByteArray();
 
-                StorageReference imageFilepathITStudent = storageRef.child("FA").child("IT").child(currentUser).child("Student" + ".jpg");
+                final StorageReference imageFilepathITStudent = storageRef.child("FA").child("IT").child(currentUser).child("Student" + ".jpg");
 //                Now putting image by using this path.
                 imageFilepathITStudent.putBytes(dataITStudent).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("student_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathITStudent.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("student_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -1355,23 +1479,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageITMetricResultCard.compress(Bitmap.CompressFormat.JPEG, 100, baosITMetricResultCard);
                 final byte[] dataITMetricResultCard = baosITMetricResultCard.toByteArray();
 
-                StorageReference imageFilepathITMetricResultCard = storageRef.child("FA").child("IT").child(currentUser).child("Metric Result Card" + ".jpg");
+                final StorageReference imageFilepathITMetricResultCard = storageRef.child("FA").child("IT").child(currentUser).child("Metric Result Card" + ".jpg");
 
 //                Now putting image by using this path.
                 imageFilepathITMetricResultCard.putBytes(dataITMetricResultCard).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("result_card_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathITMetricResultCard.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("result_csard_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -1380,23 +1508,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageITFatherIDCard.compress(Bitmap.CompressFormat.JPEG, 100, baosITFatherIDCard);
                 final byte[] dataITFatherIDCard = baosITFatherIDCard.toByteArray();
 
-                StorageReference imageFilepathITFatherIDCard = storageRef.child("FA").child("IT").child(currentUser).child("Father's ID Card" + ".jpg");
+                final StorageReference imageFilepathITFatherIDCard = storageRef.child("FA").child("IT").child(currentUser).child("Father's ID Card" + ".jpg");
 
 //                Now putting image by using this path.
                 imageFilepathITFatherIDCard.putBytes(dataITFatherIDCard).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("father_id_card_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathITFatherIDCard.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("father_result_card_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -1405,23 +1537,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageITBill.compress(Bitmap.CompressFormat.JPEG, 100, baosITBill);
                 final byte[] dataITBill = baosITBill.toByteArray();
 
-                StorageReference imageFilepathITBill = storageRef.child("FA").child("IT").child(currentUser).child("Electricity Bill" + ".jpg");
+                final StorageReference imageFilepathITBill = storageRef.child("FA").child("IT").child(currentUser).child("Electricity Bill" + ".jpg");
 
 //                Now putting image by using this path.
                 imageFilepathITBill.putBytes(dataITBill).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("bill_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathITBill.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("bill_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -1430,31 +1566,35 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageITSalary.compress(Bitmap.CompressFormat.JPEG, 100, baosITSalary);
                 final byte[] dataITSalary = baosITSalary.toByteArray();
 
-                StorageReference imageFilepathITSalary = storageRef.child("FA").child("IT").child(currentUser).child("Salary Slip" + ".jpg");
+                final StorageReference imageFilepathITSalary = storageRef.child("FA").child("IT").child(currentUser).child("Salary Slip" + ".jpg");
 //                Now putting image by using this path.
                 imageFilepathITSalary.putBytes(dataITSalary).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("salary_slip_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
-                                    @Override
-                                    public void onSuccess(Object o) {
-                                        if (b == 1) {
-                                            progressDialogSubmit.dismiss();
-                                            Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
-                                            b = 0;
-                                        } else {
-                                            if (b == 0)
-                                                progressDialogUpdate.dismiss();
-                                            Toast.makeText(AdmissionFormActivity.this, "Form is Updated Successfully", Toast.LENGTH_SHORT).show();
+                            imageFilepathITSalary.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("salary_slip_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
+                                        @Override
+                                        public void onSuccess(Object o) {
+                                            if (b == 1) {
+                                                progressDialogSubmit.dismiss();
+                                                Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
+                                                b = 0;
+                                            } else {
+                                                if (b == 0)
+                                                    progressDialogUpdate.dismiss();
+                                                Toast.makeText(AdmissionFormActivity.this, "Form is Updated Successfully", Toast.LENGTH_SHORT).show();
+                                            }
                                         }
-                                    }
-                                });
-                            }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -1465,22 +1605,26 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageEducationStudent.compress(Bitmap.CompressFormat.JPEG, 100, baosEducationStudent);
                 final byte[] dataEducationStudent = baosEducationStudent.toByteArray();
 
-                StorageReference imageFilepathEducationStudent = storageRef.child("FA").child("Education").child(currentUser).child("Student" + ".jpg");
+                final StorageReference imageFilepathEducationStudent = storageRef.child("FA").child("Education").child(currentUser).child("Student" + ".jpg");
 //                Now putting image by using this path.
                 imageFilepathEducationStudent.putBytes(dataEducationStudent).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("student_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathEducationStudent.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("student_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -1489,23 +1633,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageEducationMetricResultCard.compress(Bitmap.CompressFormat.JPEG, 100, baosEducationMetricResultCard);
                 final byte[] dataEducationMetricResultCard = baosEducationMetricResultCard.toByteArray();
 
-                StorageReference imageFilepathEducationMetricResultCard = storageRef.child("FA").child("Education").child(currentUser).child("Metric Result Card" + ".jpg");
+                final StorageReference imageFilepathEducationMetricResultCard = storageRef.child("FA").child("Education").child(currentUser).child("Metric Result Card" + ".jpg");
 
 //                Now putting image by using this path.
                 imageFilepathEducationMetricResultCard.putBytes(dataEducationMetricResultCard).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("result_card_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathEducationMetricResultCard.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("result_card_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -1514,23 +1662,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageEducationFatherIDCard.compress(Bitmap.CompressFormat.JPEG, 100, baosEducationFatherIDCard);
                 final byte[] dataEducationFatherIDCard = baosEducationFatherIDCard.toByteArray();
 
-                StorageReference imageFilepathEducationFatherIDCard = storageRef.child("FA").child("Education").child(currentUser).child("Father's ID Card" + ".jpg");
+                final StorageReference imageFilepathEducationFatherIDCard = storageRef.child("FA").child("Education").child(currentUser).child("Father's ID Card" + ".jpg");
 
 //                Now putting image by using this path.
                 imageFilepathEducationFatherIDCard.putBytes(dataEducationFatherIDCard).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("father_id_card_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathEducationFatherIDCard.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("father_id_card_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -1539,23 +1691,27 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageEducationBill.compress(Bitmap.CompressFormat.JPEG, 100, baosEducationBill);
                 final byte[] dataEducationBill = baosEducationBill.toByteArray();
 
-                StorageReference imageFilepathEducationBill = storageRef.child("FA").child("Education").child(currentUser).child("Electricity Bill" + ".jpg");
+                final StorageReference imageFilepathEducationBill = storageRef.child("FA").child("Education").child(currentUser).child("Electricity Bill" + ".jpg");
 
 //                Now putting image by using this path.
                 imageFilepathEducationBill.putBytes(dataEducationBill).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("bill_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                    }
-                                });
-                            }
+                            imageFilepathEducationBill.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("bill_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnCompleteListener(new OnCompleteListener() {
+                                        @Override
+                                        public void onComplete(@NonNull Task task) {
+                                        }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
@@ -1564,31 +1720,35 @@ public class AdmissionFormActivity extends AppCompatActivity {
                 bitmapImageEducationSalary.compress(Bitmap.CompressFormat.JPEG, 100, baosEducationSalary);
                 final byte[] dataEducationSalary = baosEducationSalary.toByteArray();
 
-                StorageReference imageFilepathEducationSalary = storageRef.child("FA").child("Education").child(currentUser).child("Salary Slip" + ".jpg");
+                final StorageReference imageFilepathEducationSalary = storageRef.child("FA").child("Education").child(currentUser).child("Salary Slip" + ".jpg");
 //                Now putting image by using this path.
                 imageFilepathEducationSalary.putBytes(dataEducationSalary).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
-                            if (task.isSuccessful()) {
-                                Map updateHashMap = new HashMap();
-                                updateHashMap.put("salary_slip_image", imageDownloadLink);
-                                dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
-                                    @Override
-                                    public void onSuccess(Object o) {
-                                        if (b == 1) {
-                                            progressDialogSubmit.dismiss();
-                                            Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
-                                            b = 0;
-                                        } else {
-                                            if (b == 0)
-                                                progressDialogUpdate.dismiss();
-                                            Toast.makeText(AdmissionFormActivity.this, "Form is Updated Successfully", Toast.LENGTH_SHORT).show();
+                            imageFilepathEducationSalary.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final Uri imageDownloadLink = uri;
+//                                    final String imageDownloadLink = task.getResult().getDownloadUrl().toString();
+                                    Map updateHashMap = new HashMap();
+                                    updateHashMap.put("salary_slip_image", imageDownloadLink);
+                                    dbRefAdmissions.updateChildren(updateHashMap).addOnSuccessListener(new OnSuccessListener() {
+                                        @Override
+                                        public void onSuccess(Object o) {
+                                            if (b == 1) {
+                                                progressDialogSubmit.dismiss();
+                                                Toast.makeText(AdmissionFormActivity.this, "Form is Submitted Successfully", Toast.LENGTH_SHORT).show();
+                                                b = 0;
+                                            } else {
+                                                if (b == 0)
+                                                    progressDialogUpdate.dismiss();
+                                                Toast.makeText(AdmissionFormActivity.this, "Form is Updated Successfully", Toast.LENGTH_SHORT).show();
+                                            }
                                         }
-                                    }
-                                });
-                            }
+                                    });
+                                }
+                            });
                         }
                     }
                 });
