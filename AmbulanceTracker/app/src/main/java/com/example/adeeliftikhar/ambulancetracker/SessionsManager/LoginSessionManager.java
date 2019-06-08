@@ -2,10 +2,6 @@ package com.example.adeeliftikhar.ambulancetracker.SessionsManager;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.Intent;
-
-import com.example.adeeliftikhar.ambulancetracker.MainActivity;
-import com.example.adeeliftikhar.ambulancetracker.MainActivity;
 
 public class LoginSessionManager {
 

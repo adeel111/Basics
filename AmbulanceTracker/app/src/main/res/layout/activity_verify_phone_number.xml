@@ -13,7 +13,7 @@
         android:fitsSystemWindows="true"
         android:scaleType="centerCrop"
         android:layout_margin="7dp"
-        android:src="@drawable/rescue1122"
+        android:src="@drawable/ambulance_tracker_logo"
         tools:ignore="ContentDescription" />
 
     <TextView

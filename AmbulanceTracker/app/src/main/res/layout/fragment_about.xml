@@ -47,5 +47,6 @@
                 android:text="@string/about"
                 android:textSize="16sp" />
         </android.support.v7.widget.CardView>
+
     </LinearLayout>
 </ScrollView>

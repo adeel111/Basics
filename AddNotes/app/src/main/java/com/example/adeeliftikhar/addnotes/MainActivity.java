@@ -20,7 +20,6 @@ import android.widget.Toast;
 import com.example.adeeliftikhar.addnotes.Adapters.NotesRVAdapter;
 import com.example.adeeliftikhar.addnotes.SQLiteDatabase.DatabaseOperations;
 
-
 public class MainActivity extends AppCompatActivity {
 
     private static DatabaseOperations databaseOperations;

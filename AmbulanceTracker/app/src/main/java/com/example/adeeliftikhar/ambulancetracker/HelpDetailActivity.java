@@ -51,7 +51,7 @@ public class HelpDetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent intent = new Intent(HelpDetailActivity.this, HistoryActivity.class);
+                Intent intent = new Intent(HelpDetailActivity.this, HistoryFragment.class);
                 startActivity(intent);
                 return true;
             default:

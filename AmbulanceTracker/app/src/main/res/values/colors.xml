@@ -6,4 +6,6 @@
     <color name="colorWhite">#ffffff</color>
     <color name="colorBlack">#000000</color>
     <color name="colorEditText">#EF9A9A</color>
+    <color name="bgBottomNavigation">#fe485a</color>
+    <color name="colorLightBrown">#A1887F</color>
 </resources>
