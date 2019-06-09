@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#004d40</color>
+    <color name="colorPrimaryDark">#00251a</color>
+    <color name="colorAccent">#39796b</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorBlack">#000000</color>
+
+    <color name="btnSignup">#39796b</color>
+    <color name="btnSignupActive">#A9d440</color>
+
+
+
+    <color name="overlayBackroound">#7f333639</color>
+    <color name="overlayActionBar">#004d40</color>
+    <color name="spinkitColor">#F44336</color>
+    <color name="snackRed">#EE1E0E</color>
+    <color name="snackGreen">#457A2F</color>
+    <color name="bottomSheet">#E0E0E0</color>
+
+
+
+    <color name="color_primary_text">#212121</color>
+    <color name="color_secondary_text">#757575</color>
+    <color name="color_icons">#FFFFFF</color>
+    <color name="color_divider">#BDBDBD</color>
+    <color name="dusk_yellow">#A69D62</color>
+    <color name="light_gray">#D3D3D3</color>
+
+
+
+
+</resources>

@@ -18,7 +18,7 @@
     \n \nYou can track ambulance to know where they arrive right now.
     \n \nTime delay will be minimum by knowing exact location.</string>
 
-    <string name="google_maps_api_key"> AIzaSyCfWU8n-iWvIuwM5rhyodMPD3RhFdcCdm0 </string>
+    <string name="google_maps_api_key">AIzaSyCfWU8n-iWvIuwM5rhyodMPD3RhFdcCdm0</string>
 
     <string name="yes">Yes</string>
     <string name="no">No thanks</string>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="bottom"
+    android:id="@+id/custom_toast">
+
+    <LinearLayout
+        android:background="@drawable/custom_toast_background"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="80dp">
+        <TextView
+            android:id="@+id/custom_toast_txt_vu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="No Internet Connection"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="@color/colorWhite"
+            />
+    </LinearLayout>
+
+</LinearLayout>

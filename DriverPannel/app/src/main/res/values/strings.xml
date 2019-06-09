@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">DriverPannel</string>
+
+  <!--AIzaSyD2B4DJQLoMQFGd5ga0ovgq378bM_9tHPM haseeb account-->
+
+  <!-- AIzaSyCfWU8n-iWvIuwM5rhyodMPD3RhFdcCdm0 ihtisam jogari-->
+
+    <string name="map_api_key">AIzaSyD2B4DJQLoMQFGd5ga0ovgq378bM_9tHPM</string>
+
+
+    <string name="menu_search">Search Place</string>
+    <string name="search_hint">Hotel, Bakery, Hair Care</string>
+    <string name="search_result_string">Search Result</string>
+    <string name="about_string">ABOUT</string>
+    <string name="review_string">REVIEW</string>
+    <string name="call_permission_title">Call Permission</string>
+    <string name="call_permission_message">Hi there! We can\'t call anyone without the call permission, could you please grant it?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No thanks</string>
+    <string name="location_permission_title">Location Permission</string>
+    <string name="location_permission_message">Hi there! We can\'t get Near By Location without location permission, could you please grant it?</string>
+    <string name="website_not_registered_string">Website not Registered</string>
+    <string name="phone_number_not_registered_string">Phone Number not Registered</string>
+    <string name="favourite_place_list_string">Favourite Place List</string>
+    <string name="share_link_string">Share Link</string>
+    <string name="turn_on_gps_message">Please Turn on GPS</string>
+    <string name="launcher_icon">Launcher Icon</string>
+    <string name="no_connection_string">No Internet Connection</string>
+    <string name="feedback">Feedback</string>
+    <string name="about">About</string>
+    <string name="version_text">Version 1.0</string>
+    <string name="developed_by_text">Developed By: Chandan Sharma</string>
+
+    <string name="gps_permission_title">Turn On GPS</string>
+    <string name="gps_permission_message">Hi there! Please turn on GPS to detect current location.</string>
+    <string name="retry">Retry</string>
+</resources>

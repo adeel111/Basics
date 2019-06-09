@@ -1,0 +1,19 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:navigationBarColor">@android:color/white</item>
+        <item name="android:textColorPrimary">@android:color/black</item>
+    </style>
+
+    <style name="ExpandedAppBar" parent="@android:style/TextAppearance.Material.Title">
+
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textStyle">normal</item>
+
+
+    </style>
+</resources>

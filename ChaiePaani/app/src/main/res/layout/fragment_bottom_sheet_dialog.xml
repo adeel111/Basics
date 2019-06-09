@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="8dp"
+    android:gravity="center"
+    android:padding="40dp"
+    android:background="@color/bottomSheet"
+    android:paddingTop="8dp">
+
+    <!-- NOTE: This list should be displayed in a list
+    instead of nested layouts -->
+
+    <TextView
+        android:id="@+id/txt_vu_place_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Location Name"
+        android:textColor="@color/colorBlack"
+        android:textSize="22sp"
+
+        android:gravity="center"
+        android:paddingStart="20sp"
+        android:textStyle="normal"/>
+
+
+
+
+</LinearLayout>

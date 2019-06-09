@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "157453796433",
+    "firebase_url": "https://eatit-444ed.firebaseio.com",
+    "project_id": "eatit-444ed",
+    "storage_bucket": "eatit-444ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157453796433:android:a2308318bd50a182",
+        "android_client_info": {
+          "package_name": "com.example.muhammadashfaq.eatit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "157453796433-7p23vhu9qt8giihervhgv6thf5oquepb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.muhammadashfaq.eatit",
+            "certificate_hash": "75183563072f3966bd2673cccfa0178ba9cb2d20"
+          }
+        },
+        {
+          "client_id": "157453796433-54qi6van7gck6vhc8dfk2og9qgjbj11t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUVc6A1A9Mi83bAKpo4UhgKzXnxHDvzGM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "157453796433-54qi6van7gck6vhc8dfk2og9qgjbj11t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

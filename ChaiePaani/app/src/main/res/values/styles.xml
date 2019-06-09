@@ -1,0 +1,46 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@android:color/black</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="Theme.AppCompat.Light.DarkActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="Theme.AppCompat.Light" />
+
+    <style name="CollapsedAppBar" parent="@android:style/TextAppearance.Medium">
+        
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">normal</item>
+
+        
+    </style>
+
+    <style name="ExpandedAppBar" parent="@android:style/TextAppearance.Medium">
+
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    
+    <style name="RatingDailogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/colorWhite</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/RatingDailogButtonStyle</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/RatingDailogButtonStyle</item>
+    </style>
+    <style name="RatingDailogButtonStyle" parent="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
+    <style name="RatingDailogFadeAnimation" parent="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+</resources>

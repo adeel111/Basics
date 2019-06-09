@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">BusTracker</string>
+    <string name="notification_text">Tracking, tap to cancel</string>
+    <string name="transport_id" translatable="false">123</string>
+    <string name="firebase_path" translatable="false">locations</string>
+    <string name="firebase_email" translatable="false">test@gmail.com</string>
+    <string name="firebase_password" translatable="false">test123</string>
+
+    <string name="location_permission_title">Location Permission</string>
+    <string name="location_permission_message">Hi there! We can\'t get Near By Location without location permission, could you please grant it?</string>
+    <string name="website_not_registered_string">Website not Registered</string>
+    <string name="phone_number_not_registered_string">Phone Number not Registered</string>
+    <string name="share_link_string">Share Link</string>
+    <string name="yes">Yes</string>
+    <string name="no">No thanks</string>
+    <string name="turn_on_gps_message">Please Turn on GPS</string>
+    <string name="launcher_icon">Launcher Icon</string>
+    <string name="no_connection_string">No Internet Connection</string>
+    <string name="feedback">Feedback</string>
+    <string name="about">About</string>
+    <string name="version_text">Version 1.0</string>
+    <string name="developed_by_text">Developed By: Chandan Sharma</string>
+
+    <string name="gps_permission_title">Turn On GPS</string>
+    <string name="gps_permission_message">Hi there! Please turn on GPS to detect current location.</string>
+    <string name="retry">Retry</string>
+</resources>

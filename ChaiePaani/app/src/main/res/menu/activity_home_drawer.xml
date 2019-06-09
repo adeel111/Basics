@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_menu"
+            android:icon="@drawable/ic_restaurant_menu_black_24dp"
+            android:title="Menu"
+            android:iconTint="@drawable/ic_restaurant_menu_black_24dp"/>
+        <item
+            android:id="@+id/nav_cart"
+            android:icon="@drawable/ic_shopping_cart_black_24dp"
+            android:title="Cart"
+            android:iconTint="@drawable/ic_shopping_cart_black_24dp"/>
+        <item
+            android:id="@+id/nav_orders"
+            android:icon="@drawable/ic_access_time_black_24dp"
+            android:title="Orders"
+            android:iconTint="@drawable/ic_access_time_black_24dp"/>
+        <item
+            android:id="@+id/nav_nearby_resturants"
+            android:icon="@drawable/ic_location_on_white_24dp"
+            android:title="Nearby Resturants"
+            android:iconTint="@drawable/ic_access_time_black_24dp"/>
+        <item
+            android:id="@+id/nav_add_resturants"
+            android:icon="@drawable/ic_add_location_white_24dp"
+            android:title="Add Resturant"
+            android:iconTint="@drawable/ic_access_time_black_24dp"/>
+        <item
+            android:id="@+id/nav_added_res_resturants"
+            android:icon="@drawable/ic_add_location_white_24dp"
+            android:title="RecentlyAdded Resturants"
+            android:iconTint="@drawable/ic_access_time_black_24dp"/>
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_rotate_90_degrees_ccw_black_24dp"
+            android:title="Logout"
+            android:iconTint="@drawable/ic_rotate_90_degrees_ccw_black_24dp"/>
+
+
+
+    </group>
+
+</menu>
