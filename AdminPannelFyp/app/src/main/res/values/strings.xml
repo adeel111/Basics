@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">AdminPannel</string>
+
+    <string-array name="spinner_items">
+        <item>Recognize Severity</item>
+        <item>Critical</item>
+        <item>Medium</item>
+        <item>Normal</item>
+    </string-array>
+
+</resources>

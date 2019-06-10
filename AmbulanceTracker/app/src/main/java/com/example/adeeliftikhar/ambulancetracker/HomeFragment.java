@@ -473,6 +473,7 @@ public class HomeFragment extends Fragment
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("current_id", currentUserID);
         hashMap.put("victim_image", imageURI);
+        hashMap.put("status", "1");
         dbRef.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

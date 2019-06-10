@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="7dp"
+            android:elevation="4dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="4dp"
+            tools:targetApi="lollipop">
+
+            <ImageView
+                android:id="@+id/victim_image"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/common_pic_place_holder"
+                tools:ignore="ContentDescription" />
+        </android.support.v7.widget.CardView>
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/spin_kit_view_image"
+            style="@style/SpinKitView.Small.FadingCircle"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:visibility="visible"
+            app:SpinKit_Color="@color/colorPrimaryDark" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:entries="@array/spinner_items"
+            android:padding="15dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/text_view_driver_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:layout_weight="0.60"
+                android:background="@drawable/edit_text_background"
+                android:focusable="true"
+                android:hint="Driver Name"
+                android:padding="10dp"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                tools:ignore="Autofill,HardcodedText" />
+
+            <Button
+                android:id="@+id/button_select_driver"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:layout_weight="0.40"
+                android:background="@drawable/button_design"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:onClick="buttonSelectDriver"
+                android:padding="10dp"
+                android:shadowRadius="50"
+                android:text="Select Driver"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_notify_driver"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/button_design"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:onClick="buttonNotifyDriver"
+            android:padding="12dp"
+            android:shadowRadius="50"
+            android:text="Notify Driver"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+</ScrollView>

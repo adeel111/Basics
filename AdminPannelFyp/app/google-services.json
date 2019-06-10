@@ -1,0 +1,122 @@
+{
+  "project_info": {
+    "project_number": "846401053998",
+    "firebase_url": "https://ambulance-tracker-eca85.firebaseio.com",
+    "project_id": "ambulance-tracker-eca85",
+    "storage_bucket": "ambulance-tracker-eca85.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846401053998:android:6402638165fa805e",
+        "android_client_info": {
+          "package_name": "com.app.adminpannel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "846401053998-q0g4aipf19a3f8274ev5qu2r6giji3vg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.adminpannel",
+            "certificate_hash": "75183563072f3966bd2673cccfa0178ba9cb2d20"
+          }
+        },
+        {
+          "client_id": "846401053998-qrl3n7qomhilmq2u2ips337sdclmfsdq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDS4VvagXlDJ7jEaBPGhyWQ-mYgvi989rI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "846401053998-qrl3n7qomhilmq2u2ips337sdclmfsdq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846401053998:android:3bd4e2c9813da7b1",
+        "android_client_info": {
+          "package_name": "com.app.driverpannel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "846401053998-t0illglfh03krvd6d8e7mn0j6aae2j05.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.driverpannel",
+            "certificate_hash": "75183563072f3966bd2673cccfa0178ba9cb2d20"
+          }
+        },
+        {
+          "client_id": "846401053998-qrl3n7qomhilmq2u2ips337sdclmfsdq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDS4VvagXlDJ7jEaBPGhyWQ-mYgvi989rI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "846401053998-qrl3n7qomhilmq2u2ips337sdclmfsdq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846401053998:android:68ac49b1dadd4564",
+        "android_client_info": {
+          "package_name": "com.example.adeeliftikhar.ambulancetracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "846401053998-r1rsak6soclvuv9o8q7ifkn3jr9nsc8g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.adeeliftikhar.ambulancetracker",
+            "certificate_hash": "14f3d8c59a5c0a906514c1ea2fd66e5e72757e01"
+          }
+        },
+        {
+          "client_id": "846401053998-qrl3n7qomhilmq2u2ips337sdclmfsdq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDS4VvagXlDJ7jEaBPGhyWQ-mYgvi989rI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "846401053998-qrl3n7qomhilmq2u2ips337sdclmfsdq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
