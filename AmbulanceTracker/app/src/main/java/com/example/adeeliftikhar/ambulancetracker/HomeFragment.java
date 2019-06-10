@@ -472,6 +472,7 @@ public class HomeFragment extends Fragment
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child("CurrentVictim");
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("current_id", currentUserID);
+        hashMap.put("victim_image", imageURI);
         dbRef.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
