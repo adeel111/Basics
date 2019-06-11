@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
         textViewDriverName = findViewById(R.id.text_view_driver_name);
 
+        getDriverNameFromIntent();
+
         startService(new Intent(this, ListenOrder.class));
 
 
@@ -53,6 +55,14 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
         } else {
             getIncidentImageFromDB();
+        }
+    }
+
+    private void getDriverNameFromIntent() {
+        Intent intent = getIntent();
+        if (intent != null) {
+            String name = intent.getStringExtra("name");
+            textViewDriverName.setText(name);
         }
     }
 
@@ -107,12 +117,9 @@ public class MainActivity extends AppCompatActivity {
         if (!CheckInternetConnectivity.isConnectedtoInternet(MainActivity.this)) {
             Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
         } else {
-            selectDriver();
+            Intent intent = new Intent(MainActivity.this, SelectDriverActivity.class);
+            startActivity(intent);
         }
-    }
-
-    private void selectDriver() {
-        Toast.makeText(this, "Selecting Driver", Toast.LENGTH_SHORT).show();
     }
 
     public void buttonNotifyDriver(View view) {

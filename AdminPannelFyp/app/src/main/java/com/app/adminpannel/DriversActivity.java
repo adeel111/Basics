@@ -62,6 +62,7 @@ public class DriversActivity extends AppCompatActivity {
 
 //        Now load data from Firabase Database...
         loadDataFromFirebaseDB();
+
     }
 
     @Override
@@ -77,10 +78,9 @@ public class DriversActivity extends AppCompatActivity {
     }
 
     private void initialization() {
-        spinKitViewDrivers = findViewById(R.id.spin_kit_view_drivers);
 
+        spinKitViewDrivers = findViewById(R.id.spin_kit_view_drivers);
         dbRef = FirebaseDatabase.getInstance().getReference().child("DriverInfo");
-//        storageRef = FirebaseStorage.getInstance().getReference().child("TeamMember");
 
         recyclerViewDrivers = findViewById(R.id.recycler_view_drivers);
         recyclerViewDrivers.setHasFixedSize(true);
@@ -190,8 +190,8 @@ public class DriversActivity extends AppCompatActivity {
                 String name = dataSnapshot.child("name").getValue().toString();
                 String email = dataSnapshot.child("email").getValue().toString();
                 String phone = dataSnapshot.child("phone").getValue().toString();
-                String address = "My Address is Satellite Town, Sargodha";
-                String vehicle = "Ambulance (Bike, Car)";
+                String address = dataSnapshot.child("address").getValue().toString();
+                String vehicle = dataSnapshot.child("vahicletype").getValue().toString();
 
                 showAlertDialogBoxView(name, email, phone, address, vehicle);
             }
