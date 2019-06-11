@@ -9,44 +9,44 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:orientation="vertical"
         tools:context=".AboutActivity">
 
-        <android.support.v7.widget.CardView
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:src="@drawable/save_life"
+            tools:ignore="ContentDescription" />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginEnd="7dp"
-            android:elevation="4dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="4dp"
-            tools:targetApi="lollipop">
+            android:layout_marginTop="100dp"
+            android:gravity="center"
+            android:text="Ambulance Tracker.Inc"
+            android:textColor="#388E3C"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
 
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:src="@drawable/save_life"
-                tools:ignore="ContentDescription" />
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:elevation="4dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="4dp"
-            tools:targetApi="lollipop">
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Version: 1.0"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:text="@string/about"
-                android:textSize="16sp" />
-        </android.support.v7.widget.CardView>
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="Copyright 2019 All Rights Reserved"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 </ScrollView>

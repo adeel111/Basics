@@ -44,12 +44,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/edit_text_margin"
                 android:background="@drawable/edit_text_background"
+                android:drawableStart="@drawable/name_drawable_left"
+                android:drawablePadding="10dp"
                 android:focusable="true"
                 android:hint="@string/name"
                 android:inputType="text"
                 android:padding="@dimen/edit_text_padding"
                 android:textColor="@color/colorBlack"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 tools:ignore="Autofill" />
 
             <EditText
@@ -58,11 +60,13 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/edit_text_margin"
                 android:background="@drawable/edit_text_background"
+                android:drawableStart="@drawable/phone_drawable_left"
+                android:drawablePadding="10dp"
                 android:hint="@string/enter_phone_num"
                 android:inputType="phone"
                 android:padding="@dimen/edit_text_padding"
                 android:textColor="@color/colorBlack"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 tools:ignore="Autofill" />
 
             <Button

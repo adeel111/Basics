@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_weight="0.20"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/driver_image_design"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:contentDescription="null"
+            android:fitsSystemWindows="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/common_pic_place_holder"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="5dp"
+        android:layout_weight="0.50"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/select_driver_name_design"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:hint="Name"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/select_driver_phone_design"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:hint="Phone"
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/select_driver_vehicle_design"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:hint="Vehicle"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="0.30"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/select_driver_availability_design"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:background="@drawable/reactangle_green"
+            android:gravity="center"
+            android:hint="Available"
+            android:padding="8dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -19,7 +19,6 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private Toolbar toolbar;
-    Fragment fragment;
     BottomNavigationView bottomNavigationView;
 
     @SuppressLint("ClickableViewAccessibility")
