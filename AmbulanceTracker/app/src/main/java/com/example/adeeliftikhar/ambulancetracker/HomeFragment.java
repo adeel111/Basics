@@ -4,6 +4,7 @@ package com.example.adeeliftikhar.ambulancetracker;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 
@@ -89,9 +90,9 @@ public class HomeFragment extends Fragment
         LocationListener, ResultCallback<LocationSettingsResult> {
 
     ImageView imageViewAccident;
-    FloatingActionButton fabButtonTakePic, fabButtonNotifyTracking;
-    Button buttonMakeSimpleCall;
-    ProgressBar progressBarMain;
+    FloatingActionButton buttonMakeSimpleCall;
+    Button fabButtonTakePic, buttonTrackNow;
+    ImageView fabButtonNotifyTracking;
     String currentDateTimeString;
 
     Animation scaleAnimation;
@@ -103,6 +104,7 @@ public class HomeFragment extends Fragment
     StorageReference storageRef;
     String imageURI;
 
+    ProgressDialog progressDialog;
     private static final int CAMERA_REQUEST = 1888;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
 
@@ -132,6 +134,12 @@ public class HomeFragment extends Fragment
         view = inflater.inflate(R.layout.fragment_home, container, false);
 //        Objects.requireNonNull(getSupportActionBar()).setTitle("Inform Rescue Team");
 
+
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Saving");
+        progressDialog.setMessage("Sending accident inforamtion to Server ... ");
+        progressDialog.setCancelable(false);
+
         initializerAndClickListeners();
 
         getCurrentDateAndTime();
@@ -155,8 +163,6 @@ public class HomeFragment extends Fragment
     @SuppressLint("RestrictedApi")
     private void initializerAndClickListeners() {
 
-        progressBarMain = view.findViewById(R.id.progress_bar_main);
-        progressBarMain.setVisibility(View.GONE);
         imageViewAccident = view.findViewById(R.id.image_view_accident);
         fabButtonTakePic = view.findViewById(R.id.fab_button_take_pic);
         fabButtonTakePic.setOnClickListener(new View.OnClickListener() {
@@ -176,14 +182,35 @@ public class HomeFragment extends Fragment
         });
         fabButtonNotifyTracking = view.findViewById(R.id.fab_button_notify_tracking);
 //        Make FabButtonNotifyTracking Un-Visible...
-        fabButtonNotifyTracking.setVisibility(View.GONE);
+//        fabButtonNotifyTracking.setVisibility(View.GONE);
         fabButtonNotifyTracking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBarMain.setVisibility(View.VISIBLE);
-                getImageUri();
+                String txt = fabButtonTakePic.getText().toString();
+                if (!txt.equals("Uploaded")) {
+                    Toast.makeText(getContext(), "Plz Upload Image", Toast.LENGTH_SHORT).show();
+                } else {
+                    progressDialog.show();
+                    getImageUri();
+                }
             }
         });
+
+        buttonTrackNow = view.findViewById(R.id.button_track_now);
+        buttonTrackNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getContext(), TrackingActivity.class);
+                intent.putExtra("latitude", latitude);
+                intent.putExtra("longitude", longitude);
+                startActivity(intent);
+
+//                Toast.makeText(getContext(), "Please wait a second", Toast.LENGTH_SHORT).show();
+//                getImageUri();
+            }
+        });
+
 //        Database Initialization...
         mAuth = FirebaseAuth.getInstance();
         currentUser = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
@@ -232,7 +259,8 @@ public class HomeFragment extends Fragment
         if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
             Bitmap photo = (Bitmap) Objects.requireNonNull(data.getExtras()).get("data");
             imageViewAccident.setImageBitmap(photo);
-            fabButtonNotifyTracking.setVisibility(View.VISIBLE);
+
+            fabButtonTakePic.setText("Uploaded");
             scaleAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.point_arrow_anim);
             fabButtonNotifyTracking.setAnimation(scaleAnimation);
         }
@@ -278,9 +306,9 @@ public class HomeFragment extends Fragment
     }
 
     private void makeSimpleCall() {
-        String number = "03066798594";
+        String number = "1122";
         if (number.isEmpty()) {
-            String numStart = "03066798594";
+            String numStart = "1122";
             Uri call = Uri.parse("tel:" + numStart);
             Intent surf = new Intent(Intent.ACTION_DIAL, call);
             startActivity(surf);
@@ -336,7 +364,6 @@ public class HomeFragment extends Fragment
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    progressBarMain.setVisibility(View.GONE);
 //                    Toast.makeText(MainActivity.this, "Saved History Data", Toast.LENGTH_SHORT).show();
 //            save this data to DB...
                     saveDataToFirebase(latitude, longitude);
@@ -459,6 +486,7 @@ public class HomeFragment extends Fragment
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
+
 //                    Toast.makeText(MainActivity.this, "Data Saved to DB", Toast.LENGTH_SHORT).show();
                     saveCurrentUserIDToDB(currentId);
                 } else {
@@ -478,11 +506,12 @@ public class HomeFragment extends Fragment
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
+                    progressDialog.dismiss();
+                    fabButtonNotifyTracking.setImageResource(R.drawable.notify_done);
+                    buttonTrackNow.setVisibility(View.VISIBLE);
+
 //                    Toast.makeText(MainActivity.this, "Current User Saved", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getContext(), TrackingActivity.class);
-                    intent.putExtra("latitude", latitude);
-                    intent.putExtra("longitude", longitude);
-                    startActivity(intent);
+
                 } else {
                     Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
                 }

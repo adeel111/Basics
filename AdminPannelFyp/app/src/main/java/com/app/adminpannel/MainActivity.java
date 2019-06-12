@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -30,6 +31,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.internal.Sleeper;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -38,15 +40,14 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 1;
-    Spinner spinner;
-    TextView textViewDriverName;
 
     private DatabaseReference dbRefImage;
     private DatabaseReference dbRefSaveStatusAndNumber;
-    ImageView victimImage;
-    SpinKitView spinKitViewImage;
+    private ImageView victimImage;
+    private TextView buttonSelectDriver, textViewCriticalCondition, textViewNormalCondition;
 
-    String name, number, severity;
+    String name, number, severity, selected;
+    ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +56,25 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setTitle("Admin Panel");
 
         victimImage = findViewById(R.id.victim_image);
-        spinKitViewImage = findViewById(R.id.spin_kit_view_image);
-        spinner = findViewById(R.id.spinner);
-        textViewDriverName = findViewById(R.id.text_view_driver_name);
+        buttonSelectDriver = findViewById(R.id.button_select_driver);
+
+        textViewCriticalCondition = findViewById(R.id.critical_condition);
+        textViewCriticalCondition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textViewCriticalCondition.setText("Selected");
+                textViewNormalCondition.setText("Normal");
+            }
+        });
+
+        textViewNormalCondition = findViewById(R.id.normal_condition);
+        textViewNormalCondition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textViewNormalCondition.setText("Selected");
+                textViewCriticalCondition.setText("Critical");
+            }
+        });
 
         getDriverNameFromIntent();
 
@@ -67,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
 
         dbRefImage = FirebaseDatabase.getInstance().getReference().child("CurrentVictim");
         if (!CheckInternetConnectivity.isConnectedtoInternet(MainActivity.this)) {
-            spinKitViewImage.setVisibility(View.GONE);
             Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
         } else {
             getIncidentImageFromDB();
@@ -79,7 +95,9 @@ public class MainActivity extends AppCompatActivity {
         if (intent != null) {
             name = intent.getStringExtra("name");
             number = intent.getStringExtra("number");
-            textViewDriverName.setText(name);
+            buttonSelectDriver.setText(name);
+        } else {
+            buttonSelectDriver.setText("Select Driver");
         }
     }
 
@@ -131,7 +149,6 @@ public class MainActivity extends AppCompatActivity {
                 Picasso.get().load(chairmanPic).placeholder(R.drawable.common_pic_place_holder).into(victimImage, new Callback() {
                     @Override
                     public void onSuccess() {
-                        spinKitViewImage.setVisibility(View.GONE);
                     }
 
                     @Override
@@ -158,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buttonNotifyDriver(View view) {
-        Boolean response = validateTextData();
+        Boolean response = validateData();
         if (!response) {
             Toast.makeText(this, "Plz Select Driver and Recognize Severity", Toast.LENGTH_SHORT).show();
         } else {
@@ -171,28 +188,39 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private Boolean validateData() {
+
+        String txt = buttonSelectDriver.getText().toString();
+        String condition = textViewCriticalCondition.getText().toString();
+        String condition1 = textViewNormalCondition.getText().toString();
+
+        if (condition.equals("Critical") && condition1.equals("Normal")) {
+            selected = "None";
+        } else {
+            if (condition.equals("Selected")) {
+                selected = "Critical";
+            } else {
+                selected = "Normal";
+            }
+        }
+        return !txt.equals("Select Driver") && !selected.equals("None");
+    }
+
     public void sendMessageToDriver() {
         String message = "Accident occurred, go to App to check out as soon as possible.";
         try {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(number, null, message, null, null);
-//                Toast.makeText(getApplicationContext(), "Message Sent", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Message Sent", Toast.LENGTH_LONG).show();
         } catch (Exception ex) {
             Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
             ex.printStackTrace();
         }
     }
 
-    private Boolean validateTextData() {
-        String text = textViewDriverName.getText().toString();
-        String spinnerValue = spinner.getSelectedItem().toString();
-
-        return !text.isEmpty() && !spinnerValue.equals("Recognize Severity");
-    }
-
     private void saveStatusAndNumberToDB() {
 
-        severity = spinner.getSelectedItem().toString();
+        severity = "Normal";
 
         dbRefSaveStatusAndNumber = FirebaseDatabase.getInstance().getReference().child("NotifyDriver");
 

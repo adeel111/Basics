@@ -134,10 +134,10 @@ public class SelectDriverActivity extends AppCompatActivity {
                 if (model.getAvailability().equalsIgnoreCase("Available")) {
                     viewHolder.textViewSelectAvailability.setBackgroundResource(R.drawable.reactangle_green);
                     viewHolder.setAvailability(model.getAvailability());
-                }else if(model.getAvailability().equalsIgnoreCase("moving")){
+                } else if (model.getAvailability().equalsIgnoreCase("moving")) {
                     viewHolder.textViewSelectAvailability.setBackgroundResource(R.drawable.reactangle_blue);
                     viewHolder.setAvailability(model.getAvailability());
-                }else if(model.getAvailability().equalsIgnoreCase("unavailable")){
+                } else if (model.getAvailability().equalsIgnoreCase("unavailable")) {
                     viewHolder.textViewSelectAvailability.setBackgroundResource(R.drawable.reactangle_red);
                     viewHolder.setAvailability(model.getAvailability());
                 }

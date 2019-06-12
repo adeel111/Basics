@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.bottom_nav_home:
-                    toolbar.setTitle(bottomNavigationView.getMenu().getItem(0).getTitle());
+                    toolbar.setTitle("Ready to Serve");
                     viewPager.setCurrentItem(0);
                     return true;
                 case R.id.bottom_nav_history:

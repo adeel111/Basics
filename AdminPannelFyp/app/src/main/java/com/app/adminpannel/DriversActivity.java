@@ -255,7 +255,7 @@ public class DriversActivity extends AppCompatActivity {
     private void showAlertDialogDelete() {
         alertDialogDelete = new AlertDialog.Builder(DriversActivity.this);
         alertDialogDelete.setTitle("Delete");
-        alertDialogDelete.setMessage("Do you want to Delete your Team Member...");
+        alertDialogDelete.setMessage("Do you want to Delete this driver?");
         alertDialogDelete.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
