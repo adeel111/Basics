@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="edit_text_padding">12dp</dimen>
-    <dimen name="edit_text_margin">15dp</dimen>
-    <dimen name="button_margin">30dp</dimen>
-    <dimen name="margin">20dp</dimen>
-</resources>
