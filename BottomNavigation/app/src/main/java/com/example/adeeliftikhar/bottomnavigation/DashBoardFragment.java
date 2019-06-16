@@ -123,8 +123,8 @@ public class DashBoardFragment extends Fragment {
             }
         });
 //        First make view empty to set view again...
-        if(view.getParent() != null) {
-            ((ViewGroup)view.getParent()).removeView(view);
+        if (view.getParent() != null) {
+            ((ViewGroup) view.getParent()).removeView(view);
         }
         dialog.setContentView(view);
         dialog.show();
