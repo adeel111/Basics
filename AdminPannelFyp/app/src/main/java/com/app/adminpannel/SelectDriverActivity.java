@@ -169,11 +169,16 @@ public class SelectDriverActivity extends AppCompatActivity {
 //                    This count variable will prevent unnecessary calls to onDataChange
                 String name = dataSnapshot.child("name").getValue().toString();
                 String number = dataSnapshot.child("phone").getValue().toString();
+                String availability = dataSnapshot.child("availability").getValue().toString();
 
-                Intent intent = new Intent(SelectDriverActivity.this, MainActivity.class);
-                intent.putExtra("name", name);
-                intent.putExtra("number", number);
-                startActivity(intent);
+                if (availability.equals("Available")) {
+                    Intent intent = new Intent(SelectDriverActivity.this, MainActivity.class);
+                    intent.putExtra("name", name);
+                    intent.putExtra("number", number);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(SelectDriverActivity.this, "Driver is not Available", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

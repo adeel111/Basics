@@ -20,6 +20,7 @@
             android:layout_marginStart="2dp"
             android:layout_marginEnd="2dp"
             android:contentDescription="null"
+            android:visibility="gone"
             android:fitsSystemWindows="true"
             android:scaleType="centerCrop"
             android:src="@drawable/common_pic_place_holder"

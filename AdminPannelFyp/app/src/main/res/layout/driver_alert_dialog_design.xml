@@ -38,6 +38,7 @@
             android:contentDescription="null"
             android:fitsSystemWindows="true"
             android:scaleType="centerCrop"
+            android:visibility="gone"
             android:src="@drawable/common_pic_place_holder"
             tools:ignore="HardcodedText" />
 
